@@ -36,7 +36,7 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     
-    self.companyList = @[@"Apple mobile devices",@"Samsung mobile devices"];
+    self.companyList = @[@"Apple mobile devices",@"Samsung mobile devices",@"Google mobile devices", @"Nextel mobile devices"];
     self.title = @"Mobile device makers";
     
     
