@@ -75,7 +75,25 @@
     // Configure the cell...
     
     cell.textLabel.text = [self.companyList objectAtIndex:[indexPath row]];
+//    cell.imageView.image = [UIImage imageNamed:@"apple.png"];
+    if (cell.textLabel.text == [self.companyList objectAtIndex:[indexPath row]]){ //set different images to different products
+        for (int i=0; i<[self.companyList count]; i++)
     
+            if([cell.textLabel.text isEqualToString: @"Apple mobile devices"]){
+                cell.imageView.image = [UIImage imageNamed:@"apple.png"];
+            }
+        if([cell.textLabel.text isEqualToString: @"Samsung mobile devices"]){
+            cell.imageView.image = [UIImage imageNamed:@"samsung.png"];
+        }
+        if([cell.textLabel.text isEqualToString: @"Google mobile devices"]){
+            cell.imageView.image = [UIImage imageNamed:@"google.png"];
+        }
+        if([cell.textLabel.text isEqualToString: @"Sprint mobile devices"]){
+            cell.imageView.image = [UIImage imageNamed:@"sprint.png"];
+        }
+        
+    }
+
     return cell;
 }
 
@@ -128,17 +146,22 @@
 
     if (indexPath.row == 0){
         self.productViewController.title = @"Apple mobile devices";
-    } else {
+    } else if(indexPath.row == 1){
         self.productViewController.title = @"Samsung mobile devices";
     }
-    
+    else if(indexPath.row == 2){
+        self.productViewController.title = @"Google mobile devices";}
+        else if(indexPath.row == 3){
+            self.productViewController.title = @"Sprint mobile devices";
+        }
     [self.navigationController
         pushViewController:self.productViewController
         animated:YES];
     
+    
 
 }
- 
+
 
 
 @end

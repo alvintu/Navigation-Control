@@ -8,7 +8,7 @@
 
 #import "NavControllerAppDelegate.h"
 #import "CompanyViewController.h"
-
+#import "ProductViewController.h"
 @implementation NavControllerAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
