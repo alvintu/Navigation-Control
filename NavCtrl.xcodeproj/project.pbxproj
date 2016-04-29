@@ -28,6 +28,7 @@
 		C8C12D8E1CD2F13100A7CD01 /* samsung.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C12D8A1CD2F13100A7CD01 /* samsung.png */; };
 		C8C12D8F1CD2F13100A7CD01 /* sprint.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C12D8B1CD2F13100A7CD01 /* sprint.png */; };
 		C8C12D951CD3142500A7CD01 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C12D941CD3142500A7CD01 /* WebViewController.m */; };
+		C8C12D971CD3F44F00A7CD01 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C12D961CD3F44F00A7CD01 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		C8C12D8B1CD2F13100A7CD01 /* sprint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sprint.png; sourceTree = "<group>"; };
 		C8C12D931CD3142500A7CD01 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		C8C12D941CD3142500A7CD01 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		C8C12D961CD3F44F00A7CD01 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8C12D971CD3F44F00A7CD01 /* WebKit.framework in Frameworks */,
 				48A656B718163BF200746D36 /* CoreGraphics.framework in Frameworks */,
 				48A656B918163BF200746D36 /* UIKit.framework in Frameworks */,
 				48A656B518163BF200746D36 /* Foundation.framework in Frameworks */,
@@ -146,6 +149,7 @@
 		48A656B318163BF200746D36 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C8C12D961CD3F44F00A7CD01 /* WebKit.framework */,
 				48A656B418163BF200746D36 /* Foundation.framework */,
 				48A656B618163BF200746D36 /* CoreGraphics.framework */,
 				48A656B818163BF200746D36 /* UIKit.framework */,

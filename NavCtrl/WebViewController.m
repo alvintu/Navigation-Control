@@ -13,13 +13,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//    
+//    UIWebView *webview=[[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 1024,1024)];
+////    NSString *url=@"https://www.google.com";
+//    NSURL *nsurl=[NSURL URLWithString:self.link];
+//    NSURLRequest *nsrequest=[NSURLRequest requestWithURL:nsurl];
+//    [webview loadRequest:nsrequest];
+//    [self.view addSubview:webview];
     
-    UIWebView *webview=[[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 1024,1024)];
-//    NSString *url=@"https://www.google.com";
+    WKWebViewConfiguration *theConfiguration = [[WKWebViewConfiguration alloc] init];
+    WKWebView *webView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:theConfiguration];
     NSURL *nsurl=[NSURL URLWithString:self.link];
+
+    webView.navigationDelegate = self;
     NSURLRequest *nsrequest=[NSURLRequest requestWithURL:nsurl];
-    [webview loadRequest:nsrequest];
-    [self.view addSubview:webview];;
+    [webView loadRequest:nsrequest];
+    [self.view addSubview:webView];
     
     // Uncomment the following line to preserve selection between presentations.
     

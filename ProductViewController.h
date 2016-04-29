@@ -11,7 +11,7 @@
 @class WebViewController;
 
 @interface ProductViewController : UITableViewController
-@property (nonatomic, retain) NSArray *products;
+@property (nonatomic, retain) NSMutableArray *products;
 @property (nonatomic, retain) NSArray *logos;
 @property (nonatomic, retain) NSArray *productLinks;
 

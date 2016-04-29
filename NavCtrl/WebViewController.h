@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ProductViewController.h"
-@interface WebViewController : UIViewController
+@import WebKit;
+@interface WebViewController : UIViewController <WKNavigationDelegate, WKUIDelegate>
 @property (nonatomic, retain) NSString *link;
 
 

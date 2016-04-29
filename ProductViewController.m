@@ -27,6 +27,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSLog(@"viewDidLoad");
 
     // Uncomment the following line to preserve selection between presentations.
      self.clearsSelectionOnViewWillAppear = NO;
@@ -39,22 +41,24 @@
     
     [super viewWillAppear:animated];
     
+    NSLog(@"viewWillAppear");
+
+    
     if ([self.title isEqualToString:@"Apple mobile devices"]) {
-        self.products = @[@"iPad", @"iPod Touch",@"iPhone"];
+        self.products = [@[@"iPad", @"iPod Touch",@"iPhone"]mutableCopy];
         self.productLinks = @[@"https://www.apple.com/ipad", @"https://www.apple.com/ipod-touch",@"https://www.apple.com/iphone"];
 //        self.imageView.image = [UIImage imageNamed:@"apple.png"];
     
     } else if([self.title isEqualToString:@"Samsung mobile devices"]) {
-        self.products = @[@"Galaxy S4", @"Galaxy Note", @"Galaxy Tab"];
+        self.products = [@[@"Galaxy S4", @"Galaxy Note", @"Galaxy Tab"]mutableCopy];
           self.productLinks = @[@"http://www.samsung.com/us/mobile/cell-phones/SCH-I545ZKAVZW", @"http://www.samsung.com/us/mobile/galaxy-note/",@"http://www.samsung.com/us/mobile/galaxy-tab/"];
     }
     else if([self.title isEqualToString:@"Google mobile devices"]) {
-        self.products = @[@"Nexus 5X", @"Nexus 6P", @"Nexus 9"];
+        self.products = [@[@"Nexus 5X", @"Nexus 6P", @"Nexus 9"]mutableCopy];
         self.productLinks = @[@"https://www.google.com/nexus/5x/",@"https://www.google.com/nexus/6p",@"https://www.google.com/nexus/9"];
     }
     else {
-        NSLog(@"self.title is %@",self.title);
-        self.products = @[@"Nextel ", @"Blackberry", @"Motorola Razr"];
+        self.products = [@[@"Nextel ", @"Blackberry", @"Motorola Razr"]mutableCopy];
         self.productLinks = @[@"http://www.amazon.com/Motorola-Nextel-Boost-Mobile-Phone/dp/B003APT3KU/ref=sr_1_1?ie=UTF8&qid=1461951678&sr=8-1&keywords=nextel",@"http://www.amazon.com/BlackBerry-Classic-Factory-Unlocked-Cellphone/dp/B00OYZZ3VS/ref=sr_1_3?ie=UTF8&qid=1461951711&sr=8-3&keywords=blackberry",@"http://www.amazon.com/Motorola-V3-Unlocked-Player--U-S-Warranty/dp/B0016JDE34/ref=sr_1_1?s=wireless&ie=UTF8&qid=1461951732&sr=1-1&keywords=motorola+razr"];
 //        UIWebView *webview=[[UIWebView alloc]initWithFrame:CGRectMake(0,200, 700,1300)];
 //        webview.scalesPageToFit = YES;
@@ -77,14 +81,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return [self.products count];
 }
@@ -112,35 +114,40 @@
 }
 */
 
-/*
-// Override to support editing the table view.
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
+        [self.products removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
 
-/*
+
+
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
-}
-*/
+    NSInteger sourceRow = fromIndexPath.row;
+    NSInteger destRow = toIndexPath.row;
+    id object = [self.products objectAtIndex:sourceRow];
+    
+    [self.products removeObjectAtIndex:sourceRow];
+    [self.products insertObject:object atIndex:destRow];
 
-/*
+}
+
+
+
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
-*/
+
 
 /*
 #pragma mark - Table view delegate

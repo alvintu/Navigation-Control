@@ -36,7 +36,7 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     
-    self.companyList = @[@"Apple mobile devices",@"Samsung mobile devices",@"Google mobile devices", @"Sprint mobile devices"];
+    self.companyList = [@[@"Apple mobile devices",@"Samsung mobile devices",@"Google mobile devices", @"Sprint mobile devices"]mutableCopy];
     self.title = @"Mobile device makers";
     
     
@@ -52,14 +52,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return [self.companyList count];
 }
@@ -106,35 +104,50 @@
 }
 */
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
+
+        [self.companyList removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
+    }
+    
+    
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        
     }   
 }
-*/
+ 
+ 
 
-/*
+
+
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
-}
-*/
+    
+        NSInteger sourceRow = fromIndexPath.row;
+        NSInteger destRow = toIndexPath.row;
+        id object = [self.companyList objectAtIndex:sourceRow];
+        
+        [self.companyList removeObjectAtIndex:sourceRow];
+        [self.companyList insertObject:object atIndex:destRow];
+        
+    }
 
-/*
+
+
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
-*/
+
+
 
 
 #pragma mark - Table view delegate
@@ -144,16 +157,8 @@
 {
 
 
-    if (indexPath.row == 0){
-        self.productViewController.title = @"Apple mobile devices";
-    } else if(indexPath.row == 1){
-        self.productViewController.title = @"Samsung mobile devices";
-    }
-    else if(indexPath.row == 2){
-        self.productViewController.title = @"Google mobile devices";}
-        else if(indexPath.row == 3){
-            self.productViewController.title = @"Sprint mobile devices";
-        }
+    self.productViewController.title = self.companyList[indexPath.row];
+    
     [self.navigationController
         pushViewController:self.productViewController
         animated:YES];
