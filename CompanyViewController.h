@@ -10,6 +10,7 @@
 
 @class ProductViewController;
 
+
 @interface CompanyViewController : UITableViewController
 
 @property (nonatomic, retain) NSArray *companyList;
