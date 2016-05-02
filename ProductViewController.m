@@ -42,32 +42,10 @@
     [super viewWillAppear:animated];
     
     NSLog(@"viewWillAppear");
+    NSLog(@"%@",self.title);
 
+    NSLog(@"%@",self.products);
     
-    if ([self.title isEqualToString:@"Apple mobile devices"]) {
-        self.products = [@[@"iPad", @"iPod Touch",@"iPhone"]mutableCopy];
-        self.productLinks = @[@"https://www.apple.com/ipad", @"https://www.apple.com/ipod-touch",@"https://www.apple.com/iphone"];
-//        self.imageView.image = [UIImage imageNamed:@"apple.png"];
-    
-    } else if([self.title isEqualToString:@"Samsung mobile devices"]) {
-        self.products = [@[@"Galaxy S4", @"Galaxy Note", @"Galaxy Tab"]mutableCopy];
-          self.productLinks = @[@"http://www.samsung.com/us/mobile/cell-phones/SCH-I545ZKAVZW", @"http://www.samsung.com/us/mobile/galaxy-note/",@"http://www.samsung.com/us/mobile/galaxy-tab/"];
-    }
-    else if([self.title isEqualToString:@"Google mobile devices"]) {
-        self.products = [@[@"Nexus 5X", @"Nexus 6P", @"Nexus 9"]mutableCopy];
-        self.productLinks = @[@"https://www.google.com/nexus/5x/",@"https://www.google.com/nexus/6p",@"https://www.google.com/nexus/9"];
-    }
-    else {
-        self.products = [@[@"Nextel ", @"Blackberry", @"Motorola Razr"]mutableCopy];
-        self.productLinks = @[@"http://www.amazon.com/Motorola-Nextel-Boost-Mobile-Phone/dp/B003APT3KU/ref=sr_1_1?ie=UTF8&qid=1461951678&sr=8-1&keywords=nextel",@"http://www.amazon.com/BlackBerry-Classic-Factory-Unlocked-Cellphone/dp/B00OYZZ3VS/ref=sr_1_3?ie=UTF8&qid=1461951711&sr=8-3&keywords=blackberry",@"http://www.amazon.com/Motorola-V3-Unlocked-Player--U-S-Warranty/dp/B0016JDE34/ref=sr_1_1?s=wireless&ie=UTF8&qid=1461951732&sr=1-1&keywords=motorola+razr"];
-//        UIWebView *webview=[[UIWebView alloc]initWithFrame:CGRectMake(0,200, 700,1300)];
-//        webview.scalesPageToFit = YES;
-//        NSString *url=@"https://www.google.com/";
-//        NSURL *nsurl=[NSURL URLWithString:url];
-//        NSURLRequest *nsrequest=[NSURLRequest requestWithURL:nsurl];
-//        [webview loadRequest:nsrequest];
-//        [self.view addSubview:webview];;
-    }
     [self.tableView reloadData];
 }
 
@@ -100,7 +78,7 @@
     }
     // Configure the cell...
     
-    cell.textLabel.text = [self.products objectAtIndex:[indexPath row]];
+    cell.textLabel.text = [[self.products objectAtIndex:[indexPath row]] productName];
 //    cell.imageView.image = [UIImage imageNamed:@"apple.png"];
     return cell;
 }
@@ -171,84 +149,11 @@
 {
     self.webViewController = [[WebViewController alloc]init];
 
-    self.webViewController.link = [self.productLinks objectAtIndex:indexPath.row];
+    self.webViewController.link = [[self.products objectAtIndex:indexPath.row] productURL];
     [self.navigationController
      pushViewController:self.webViewController
      animated:YES];
-    
-//    if ([self.title isEqualToString:@"Apple mobile devices"]) {
-//        if (indexPath.row == 0){
-//
-//            UIWebView *webview=[[UIWebView alloc]initWithFrame:CGRectMake(0, 200, 1024,768)];
-//            NSString *url=@"http://www.apple.com/ipad/";
-//            NSURL *nsurl=[NSURL URLWithString:url];
-//            NSURLRequest *nsrequest=[NSURLRequest requestWithURL:nsurl];
-//            [webview loadRequest:nsrequest];
-//            [self.view addSubview:webview];
-//        }
-//        else if(indexPath.row == 1)
-//        {
-//            UIWebView *webview=[[UIWebView alloc]initWithFrame:CGRectMake(0, 200, 1024,768)];
-//            NSString *url=@"http://www.apple.com/ipod-touch";
-//            NSURL *nsurl=[NSURL URLWithString:url];
-//            NSURLRequest *nsrequest=[NSURLRequest requestWithURL:nsurl];
-//            [webview loadRequest:nsrequest];
-//            [self.view addSubview:webview];
-//            
-//        }
-//        else if(indexPath.row == 2)
-//        {
-//            UIWebView *webview=[[UIWebView alloc]initWithFrame:CGRectMake(0, 200, 1024,768)];
-//            NSString *url=@"http://www.apple.com/iphone";
-//            NSURL *nsurl=[NSURL URLWithString:url];
-//            NSURLRequest *nsrequest=[NSURLRequest requestWithURL:nsurl];
-//            [webview loadRequest:nsrequest];
-//            [self.view addSubview:webview];
-//        }
-//        
-//    } else if([self.title isEqualToString:@"Samsung mobile devices"]) {
-//        if (indexPath.row == 0){
-//            
-//            UIWebView *webview=[[UIWebView alloc]initWithFrame:CGRectMake(0, 200, 1024,768)];
-//            NSString *url=@"http://www.samsung.com/uk/consumer/mobile-devices/smartphones/galaxy-s/GT-I9505ZKABTU";
-//            NSURL *nsurl=[NSURL URLWithString:url];
-//            NSURLRequest *nsrequest=[NSURLRequest requestWithURL:nsurl];
-//            [webview loadRequest:nsrequest];
-//            [self.view addSubview:webview];
-//        }
-//        else if(indexPath.row == 1)
-//        {
-//            UIWebView *webview=[[UIWebView alloc]initWithFrame:CGRectMake(0, 200, 1024,768)];
-//            NSString *url=@"http://www.samsung.com/us/mobile/galaxy-note/";
-//            NSURL *nsurl=[NSURL URLWithString:url];
-//            NSURLRequest *nsrequest=[NSURLRequest requestWithURL:nsurl];
-//            [webview loadRequest:nsrequest];
-//            [self.view addSubview:webview];
-//            
-//        }
-//        else if(indexPath.row == 2)
-//        {
-//            UIWebView *webview=[[UIWebView alloc]initWithFrame:CGRectMake(0, 200, 1024,768)];
-//            NSString *url=@"http://www.samsung.com/us/mobile/galaxy-tab/";
-//            NSURL *nsurl=[NSURL URLWithString:url];
-//            NSURLRequest *nsrequest=[NSURLRequest requestWithURL:nsurl];
-//            [webview loadRequest:nsrequest];
-//            [self.view addSubview:webview];
-//    }
-//    else if([self.title isEqualToString:@"Google mobile devices"]) {
-//        
-//    }
-//    else {
-//        NSLog(@"self.title is %@",self.title);
-//       
-//    }
-//
-//     
-//    }
-    
-    // webViewController aloc, initWithFrame
-
-    
+ 
     
 }
 

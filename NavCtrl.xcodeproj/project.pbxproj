@@ -23,12 +23,16 @@
 		48A656E718163C1B00746D36 /* CompanyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48A656E518163C1B00746D36 /* CompanyViewController.xib */; };
 		48A656EB18163F8700746D36 /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A656E918163F8700746D36 /* ProductViewController.m */; };
 		48A656EE1816468000746D36 /* Sunflower.gif in Resources */ = {isa = PBXBuildFile; fileRef = 48A656ED1816468000746D36 /* Sunflower.gif */; };
+		C8384C4D1CD667640085DD84 /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A656E918163F8700746D36 /* ProductViewController.m */; };
+		C8384C501CD7D86E0085DD84 /* DAO.m in Sources */ = {isa = PBXBuildFile; fileRef = C8384C4F1CD7D86E0085DD84 /* DAO.m */; };
 		C8C12D8C1CD2F13100A7CD01 /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C12D881CD2F13100A7CD01 /* apple.png */; };
 		C8C12D8D1CD2F13100A7CD01 /* google.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C12D891CD2F13100A7CD01 /* google.png */; };
 		C8C12D8E1CD2F13100A7CD01 /* samsung.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C12D8A1CD2F13100A7CD01 /* samsung.png */; };
 		C8C12D8F1CD2F13100A7CD01 /* sprint.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C12D8B1CD2F13100A7CD01 /* sprint.png */; };
 		C8C12D951CD3142500A7CD01 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C12D941CD3142500A7CD01 /* WebViewController.m */; };
 		C8C12D971CD3F44F00A7CD01 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C12D961CD3F44F00A7CD01 /* WebKit.framework */; };
+		C8C12D9A1CD44BDD00A7CD01 /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C12D991CD44BDD00A7CD01 /* Company.m */; };
+		C8C12D9D1CD45B7800A7CD01 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C12D9C1CD45B7800A7CD01 /* Product.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +68,8 @@
 		48A656E818163F8700746D36 /* ProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductViewController.h; path = ../ProductViewController.h; sourceTree = "<group>"; };
 		48A656E918163F8700746D36 /* ProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductViewController.m; path = ../ProductViewController.m; sourceTree = "<group>"; };
 		48A656ED1816468000746D36 /* Sunflower.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Sunflower.gif; sourceTree = "<group>"; };
+		C8384C4E1CD7D86E0085DD84 /* DAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAO.h; sourceTree = "<group>"; };
+		C8384C4F1CD7D86E0085DD84 /* DAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAO.m; sourceTree = "<group>"; };
 		C8C12D881CD2F13100A7CD01 /* apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = apple.png; sourceTree = "<group>"; };
 		C8C12D891CD2F13100A7CD01 /* google.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = google.png; sourceTree = "<group>"; };
 		C8C12D8A1CD2F13100A7CD01 /* samsung.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = samsung.png; sourceTree = "<group>"; };
@@ -71,6 +77,10 @@
 		C8C12D931CD3142500A7CD01 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		C8C12D941CD3142500A7CD01 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		C8C12D961CD3F44F00A7CD01 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		C8C12D981CD44BDD00A7CD01 /* Company.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Company.h; sourceTree = "<group>"; };
+		C8C12D991CD44BDD00A7CD01 /* Company.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Company.m; sourceTree = "<group>"; };
+		C8C12D9B1CD45B7800A7CD01 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
+		C8C12D9C1CD45B7800A7CD01 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +122,12 @@
 			children = (
 				48A656E318163C1B00746D36 /* CompanyViewController.h */,
 				48A656E418163C1B00746D36 /* CompanyViewController.m */,
+				C8C12D981CD44BDD00A7CD01 /* Company.h */,
+				C8C12D991CD44BDD00A7CD01 /* Company.m */,
+				C8C12D9B1CD45B7800A7CD01 /* Product.h */,
+				C8C12D9C1CD45B7800A7CD01 /* Product.m */,
+				C8384C4E1CD7D86E0085DD84 /* DAO.h */,
+				C8384C4F1CD7D86E0085DD84 /* DAO.m */,
 			);
 			name = ParentViewController;
 			sourceTree = "<group>";
@@ -307,8 +323,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8C12D9D1CD45B7800A7CD01 /* Product.m in Sources */,
 				48A656E618163C1B00746D36 /* CompanyViewController.m in Sources */,
+				C8C12D9A1CD44BDD00A7CD01 /* Company.m in Sources */,
 				C8C12D951CD3142500A7CD01 /* WebViewController.m in Sources */,
+				C8384C501CD7D86E0085DD84 /* DAO.m in Sources */,
 				48A656C518163BF200746D36 /* NavControllerAppDelegate.m in Sources */,
 				48A656C118163BF200746D36 /* main.m in Sources */,
 				48A656EB18163F8700746D36 /* ProductViewController.m in Sources */,
@@ -319,6 +338,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8384C4D1CD667640085DD84 /* ProductViewController.m in Sources */,
 				48A656DA18163BF200746D36 /* NavCtrlTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

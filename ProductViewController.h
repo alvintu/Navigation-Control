@@ -7,13 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Company.h"
+#import "Product.h"
+#import "DAO.h"
 
 @class WebViewController;
 
 @interface ProductViewController : UITableViewController
 @property (nonatomic, retain) NSMutableArray *products;
 @property (nonatomic, retain) NSArray *logos;
-@property (nonatomic, retain) NSArray *productLinks;
+//@property (nonatomic, retain) NSMutableArray *productsView;
+@property(nonatomic, strong) DAO *dao;
+
+
+
+
+
 
 
 @property (nonatomic, retain) WebViewController *webViewController;
