@@ -33,6 +33,8 @@
 		C8C12D971CD3F44F00A7CD01 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C12D961CD3F44F00A7CD01 /* WebKit.framework */; };
 		C8C12D9A1CD44BDD00A7CD01 /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C12D991CD44BDD00A7CD01 /* Company.m */; };
 		C8C12D9D1CD45B7800A7CD01 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C12D9C1CD45B7800A7CD01 /* Product.m */; };
+		C8EA24CE1CD8F7F1007DB6C2 /* FormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8EA24CD1CD8F7F1007DB6C2 /* FormViewController.m */; };
+		C8EA24D11CD939DA007DB6C2 /* ProductFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8EA24D01CD939DA007DB6C2 /* ProductFormViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +83,10 @@
 		C8C12D991CD44BDD00A7CD01 /* Company.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Company.m; sourceTree = "<group>"; };
 		C8C12D9B1CD45B7800A7CD01 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
 		C8C12D9C1CD45B7800A7CD01 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
+		C8EA24CC1CD8F7F1007DB6C2 /* FormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormViewController.h; sourceTree = "<group>"; };
+		C8EA24CD1CD8F7F1007DB6C2 /* FormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormViewController.m; sourceTree = "<group>"; };
+		C8EA24CF1CD939DA007DB6C2 /* ProductFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductFormViewController.h; sourceTree = "<group>"; };
+		C8EA24D01CD939DA007DB6C2 /* ProductFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductFormViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +128,8 @@
 			children = (
 				48A656E318163C1B00746D36 /* CompanyViewController.h */,
 				48A656E418163C1B00746D36 /* CompanyViewController.m */,
+				C8EA24CC1CD8F7F1007DB6C2 /* FormViewController.h */,
+				C8EA24CD1CD8F7F1007DB6C2 /* FormViewController.m */,
 				C8C12D981CD44BDD00A7CD01 /* Company.h */,
 				C8C12D991CD44BDD00A7CD01 /* Company.m */,
 				C8C12D9B1CD45B7800A7CD01 /* Product.h */,
@@ -137,6 +145,8 @@
 			children = (
 				48A656E818163F8700746D36 /* ProductViewController.h */,
 				48A656E918163F8700746D36 /* ProductViewController.m */,
+				C8EA24CF1CD939DA007DB6C2 /* ProductFormViewController.h */,
+				C8EA24D01CD939DA007DB6C2 /* ProductFormViewController.m */,
 				C8C12D931CD3142500A7CD01 /* WebViewController.h */,
 				C8C12D941CD3142500A7CD01 /* WebViewController.m */,
 			);
@@ -327,8 +337,10 @@
 				48A656E618163C1B00746D36 /* CompanyViewController.m in Sources */,
 				C8C12D9A1CD44BDD00A7CD01 /* Company.m in Sources */,
 				C8C12D951CD3142500A7CD01 /* WebViewController.m in Sources */,
+				C8EA24D11CD939DA007DB6C2 /* ProductFormViewController.m in Sources */,
 				C8384C501CD7D86E0085DD84 /* DAO.m in Sources */,
 				48A656C518163BF200746D36 /* NavControllerAppDelegate.m in Sources */,
+				C8EA24CE1CD8F7F1007DB6C2 /* FormViewController.m in Sources */,
 				48A656C118163BF200746D36 /* main.m in Sources */,
 				48A656EB18163F8700746D36 /* ProductViewController.m in Sources */,
 			);

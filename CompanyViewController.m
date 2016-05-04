@@ -28,12 +28,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.allowsSelectionDuringEditing = YES;
 
     // Uncomment the following line to preserve selection between presentations.
      self.clearsSelectionOnViewWillAppear = NO;
- 
+    
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
+                                  initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                  target:self
+                                  action:@selector(pushForm)];
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.editButtonItem,addButton, nil];
+
     self.title = @"Mobile device makers";
 
 
@@ -65,15 +71,20 @@
     
     NSLog(@"%@",self.dao.companies);
     
-    
-    
-    
-    
-//     self.companies = [NSMutableArray arrayWithObjects:apple,samsung, google, sprint,nil];
-//    self.companyList = [NSMutableArray arrayWithObjects:apple.companyName,samsung.companyName, google.companyName, sprint.companyName,nil];
-//    
-    
 }
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
+    NSLog(@"viewWillAppear");
+    
+    NSLog(@"%@",self.dao.companies);
+    
+    [self.tableView reloadData];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -91,8 +102,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    
+//    int addRow;
+//    if(self.isEditing){
+//        addRow = 1;
+//    }
+//    else{
+//        addRow = 0;
+//    }
     // Return the number of rows in the section.
     return [self.dao.companies count];
+//    + addRow;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -103,56 +123,38 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    // Configure the cell...
-    Company *company = [self.dao.companies objectAtIndex:[indexPath row]];
-    
-    cell.textLabel.text = company.companyName; //[self.companyList objectAtIndex:[indexPath row]];
-    cell.imageView.image = [UIImage imageNamed:company.companyLogo];
-    /*
-    //    cell.imageView.image = [UIImage imageNamed:@"apple.png"];
-    if (cell.textLabel.text == [self.companyList objectAtIndex:[indexPath row]]){ //set different images to different products
-        
-        
-        
-        //        for (int i=0; i<[self.companyList count]; i++)
-        
-        
-        
-        
-        if([cell.textLabel.text isEqualToString:self.companies.apple.companyName]){
-            cell.imageView.image = [UIImage imageNamed:self.apple.companyLogo];
-        }
-        if([cell.textLabel.text isEqualToString:self.samsung.companyName]){
-            cell.imageView.image = [UIImage imageNamed:self.samsung.companyLogo];
-        }
-        
-        if([cell.textLabel.text isEqualToString:self.google.companyName]){
-            cell.imageView.image = [UIImage imageNamed:self.google.companyLogo];
-        }
-        if([cell.textLabel.text isEqualToString: self.sprint.companyName]){
-            cell.imageView.image = [UIImage imageNamed:self.sprint.companyLogo];
-        }
-        
-    }
-     */
+//    Company *company = [self.dao.companies objectAtIndex:[indexPath row]];
 
+//    if(indexPath.row >= self.dao.companies.count && [self isEditing]){
+//        cell.textLabel.text = @"Add Row";
+//    }else{
+//        cell.textLabel.text = self.dao.companies[indexPath.row];
+//    }
+//    
+    // Configure the cell...
+    
+    cell.textLabel.text = [[self.dao.companies objectAtIndex:[indexPath row]]companyName];; //[self.companyList objectAtIndex:[indexPath row]];
+    cell.imageView.image = [UIImage imageNamed:[[self.dao.companies objectAtIndex:[indexPath row]]companyLogo]];
+
+    
     return cell;
 }
 
-/*
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
+
 
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    // Keeps cells from being selectable while not editing. No more blue flash.
+   
 
     if (editingStyle == UITableViewCellEditingStyleDelete) {
 
@@ -162,11 +164,13 @@
     
     
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        
-    }   
+
+
+    }
+    
+
 }
- 
- 
+
 
 
 
@@ -176,10 +180,10 @@
     
         NSInteger sourceRow = fromIndexPath.row;
         NSInteger destRow = toIndexPath.row;
-        id object = [self.companyList objectAtIndex:sourceRow];
+        id object = [self.dao.companies objectAtIndex:sourceRow];
         
-        [self.companyList removeObjectAtIndex:sourceRow];
-        [self.companyList insertObject:object atIndex:destRow];
+        [self.dao.companies removeObjectAtIndex:sourceRow];
+        [self.dao.companies insertObject:object atIndex:destRow];
         
     }
 
@@ -191,7 +195,22 @@
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
+-(void)pushForm{
+    
+    FormViewController *formViewController = [[FormViewController alloc] init];
+    
+    
+        [self.navigationController
+         pushViewController:formViewController
+         animated:YES];
+        formViewController.title = @"Add a New Company";
+    formViewController.companyName = @"Enter Name";
+    formViewController.companyLogo = @"Enter Logo";
 
+    
+        NSLog(@"I'm editing");
+    
+}
 
 
 
@@ -202,17 +221,34 @@
 {
 
 //    self.productViewController.company = myCompanies[indexPath.row]
-    
+
     self.productViewController.title = [self.dao.companies[indexPath.row]companyName];
     Company *company = self.dao.companies[indexPath.row];
 
     self.productViewController.products =  company.products;
 
+//    FormViewController *formViewController = [[FormViewController alloc] init];
+//
+//    
+    if(self.editing == YES){
+        FormViewController *formViewController = [[FormViewController alloc] init];
+
+        
+        [self.navigationController
+         pushViewController:formViewController
+         animated:YES];
+        formViewController.title = @"Edit your company";
+        
+        formViewController.companyName = [self.dao.companies[indexPath.row]companyName];
+        formViewController.companyLogo = [self.dao.companies[indexPath.row]companyLogo];
+
+    }
+    else{
 
     [self.navigationController
         pushViewController:self.productViewController
         animated:YES];
-    
+    }
     
 
 }

@@ -10,7 +10,7 @@
 #import "Company.h"
 #import "Product.h"
 #import "DAO.h"
-
+#import "ProductFormViewController.h"
 @class WebViewController;
 
 @interface ProductViewController : UITableViewController
@@ -18,7 +18,6 @@
 @property (nonatomic, retain) NSArray *logos;
 //@property (nonatomic, retain) NSMutableArray *productsView;
 @property(nonatomic, strong) DAO *dao;
-
 
 
 

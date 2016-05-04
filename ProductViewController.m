@@ -29,12 +29,18 @@
     [super viewDidLoad];
     
     NSLog(@"viewDidLoad");
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
+                                  initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                  target:self
+                                  action:@selector(pushForm)];
+
+    self.tableView.allowsSelectionDuringEditing = YES;
 
     // Uncomment the following line to preserve selection between presentations.
      self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.editButtonItem,addButton, nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -91,6 +97,27 @@
     return YES;
 }
 */
+
+-(void)pushForm{
+    
+    ProductFormViewController *productformViewController = [[ProductFormViewController alloc] init];
+    
+    
+    [self.navigationController
+     pushViewController:productformViewController
+     animated:YES];
+    productformViewController.title = @"Add a New Product";
+    productformViewController.productName = @"Enter Name";
+    productformViewController.productURL = @"Enter URL";
+    productformViewController.currentproducts = self.products;
+
+    
+    
+    NSLog(@"I'm editing");
+    
+}
+
+
 
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -150,10 +177,30 @@
     self.webViewController = [[WebViewController alloc]init];
 
     self.webViewController.link = [[self.products objectAtIndex:indexPath.row] productURL];
-    [self.navigationController
-     pushViewController:self.webViewController
-     animated:YES];
+  
  
+    if(self.editing == YES){
+        ProductFormViewController *productFormViewController = [[ProductFormViewController alloc] init];
+        
+
+        productFormViewController.title = @"Edit your products";
+        productFormViewController.productName = [self.products[indexPath.row] productName];
+        productFormViewController.productURL = [self.products[indexPath.row] productURL];
+        productFormViewController.currentCompany = self.dao.companies[indexPath.row];
+        productFormViewController.currentProduct = self.products[indexPath.row];
+        productFormViewController.currentproducts = self.products;
+
+        
+        [self.navigationController
+         pushViewController:productFormViewController
+         animated:YES];
+    }
+    else{
+        
+        [self.navigationController
+         pushViewController:self.webViewController
+         animated:YES];
+    }
     
 }
 
