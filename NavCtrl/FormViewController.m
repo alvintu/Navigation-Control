@@ -74,8 +74,12 @@
 
     }
     if (found == NO) {
+        
+        ProductFormViewController *productFormViewController = [[ProductFormViewController alloc]init];
         Company *newcompany = [[Company alloc]initWithCompanyName:self.tf.text companyLogo:self.tf1.text];
+        newcompany.products = [[NSMutableArray alloc]init];
         [self.dao.companies insertObject:newcompany atIndex:([self.dao.companies count])];
+        productFormViewController.newproducts = newcompany.products;
     }
     [self.navigationController popViewControllerAnimated:YES];
 

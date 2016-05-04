@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DAO.h"
 #import "CompanyViewController.h"
+#import "ProductFormViewController.h"
 
 @interface FormViewController : UIViewController
 
@@ -16,7 +17,7 @@
 @property (nonatomic,strong) NSString *companyLogo;
 @property (nonatomic,strong) UITextField *tf;
 @property (nonatomic,strong) UITextField *tf1;
-
+@property(nonatomic,strong) Company *currentCompany;
 @property(nonatomic, strong) DAO *dao;
 
 -(void)saveButton;

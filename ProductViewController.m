@@ -110,6 +110,7 @@
     productformViewController.productName = @"Enter Name";
     productformViewController.productURL = @"Enter URL";
     productformViewController.currentproducts = self.products;
+    productformViewController.newproducts = self.products;
 
     
     
@@ -186,7 +187,6 @@
         productFormViewController.title = @"Edit your products";
         productFormViewController.productName = [self.products[indexPath.row] productName];
         productFormViewController.productURL = [self.products[indexPath.row] productURL];
-        productFormViewController.currentCompany = self.dao.companies[indexPath.row];
         productFormViewController.currentProduct = self.products[indexPath.row];
         productFormViewController.currentproducts = self.products;
 

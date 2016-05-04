@@ -204,9 +204,12 @@
          pushViewController:formViewController
          animated:YES];
         formViewController.title = @"Add a New Company";
+//    Company *newCompany = [[Company alloc]init];
     formViewController.companyName = @"Enter Name";
     formViewController.companyLogo = @"Enter Logo";
-
+//    formViewController.currentCompany = newCompany;
+//    [self.dao.companies insertObject:newCompany atIndex:[self.dao.companies count]];
+     //trying to insert company object into companies so that program can add products= to new companies that are not in DAO
     
         NSLog(@"I'm editing");
     

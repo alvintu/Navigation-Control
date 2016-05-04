@@ -12,7 +12,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.newproducts = [[NSMutableArray alloc]init];
     self.dao = [DAO sharedDAO];
     NSLog(@"%@",_currentCompany);
     
@@ -69,7 +69,7 @@
 //            [self.dao.companies[i]setCompanyLogo:self.tf1.text];
 //            NSLog(@"%@",[self.dao.companies[i]companyName]);
 //            NSLog(@"%@",[self.dao.companies[i]companyLogo]);
-//            found = YES;
+            found = YES;
                     
 
                 }
@@ -77,6 +77,8 @@
     if (found == NO) {
         Product *newProduct = [[Product alloc]initWithProductName:self.tf.text productURL:self.tf1.text];
         [self.currentproducts insertObject:newProduct atIndex:([self.currentproducts count])];
+        [self.newproducts insertObject:newProduct atIndex:([self.newproducts count])];
+
 }
 
     [self.navigationController popViewControllerAnimated:YES];

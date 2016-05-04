@@ -17,7 +17,7 @@
 @property (nonatomic,strong) Product *currentProduct;
 @property (nonatomic,strong) Company *currentCompany;
 @property(nonatomic, strong) DAO *dao;
-
 @property (nonatomic,strong) NSMutableArray *currentproducts;
+@property (nonatomic,strong) NSMutableArray *newproducts;
 
 @end
