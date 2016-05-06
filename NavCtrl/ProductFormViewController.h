@@ -12,8 +12,11 @@
 @interface ProductFormViewController : UIViewController
 @property (nonatomic,strong) UITextField *tf;
 @property (nonatomic,strong) UITextField *tf1;
+@property (nonatomic,strong) UITextField *tf2;
 @property (nonatomic,strong) NSString *productName;
 @property (nonatomic,strong) NSString *productURL;
+@property (nonatomic,strong) NSString *productLogo;
+
 @property (nonatomic,strong) Product *currentProduct;
 @property (nonatomic,strong) Company *currentCompany;
 @property(nonatomic, strong) DAO *dao;

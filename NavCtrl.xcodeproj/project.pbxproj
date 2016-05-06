@@ -25,6 +25,18 @@
 		48A656EE1816468000746D36 /* Sunflower.gif in Resources */ = {isa = PBXBuildFile; fileRef = 48A656ED1816468000746D36 /* Sunflower.gif */; };
 		C8384C4D1CD667640085DD84 /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A656E918163F8700746D36 /* ProductViewController.m */; };
 		C8384C501CD7D86E0085DD84 /* DAO.m in Sources */ = {isa = PBXBuildFile; fileRef = C8384C4F1CD7D86E0085DD84 /* DAO.m */; };
+		C8B72BA41CDCFAF80089DC5D /* blackberry.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8B72B981CDCFAF80089DC5D /* blackberry.jpg */; };
+		C8B72BA51CDCFAF80089DC5D /* galaxynote.png in Resources */ = {isa = PBXBuildFile; fileRef = C8B72B991CDCFAF80089DC5D /* galaxynote.png */; };
+		C8B72BA61CDCFAF80089DC5D /* galaxys4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8B72B9A1CDCFAF80089DC5D /* galaxys4.jpg */; };
+		C8B72BA71CDCFAF80089DC5D /* galaxytab.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8B72B9B1CDCFAF80089DC5D /* galaxytab.jpg */; };
+		C8B72BA81CDCFAF80089DC5D /* ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8B72B9C1CDCFAF80089DC5D /* ipad.jpg */; };
+		C8B72BA91CDCFAF80089DC5D /* iphone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8B72B9D1CDCFAF80089DC5D /* iphone.jpg */; };
+		C8B72BAA1CDCFAF80089DC5D /* ipodtouch.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8B72B9E1CDCFAF80089DC5D /* ipodtouch.jpg */; };
+		C8B72BAB1CDCFAF80089DC5D /* nextel.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8B72B9F1CDCFAF80089DC5D /* nextel.jpg */; };
+		C8B72BAC1CDCFAF80089DC5D /* nexus5x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8B72BA01CDCFAF80089DC5D /* nexus5x.jpg */; };
+		C8B72BAD1CDCFAF80089DC5D /* nexus6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8B72BA11CDCFAF80089DC5D /* nexus6.jpg */; };
+		C8B72BAE1CDCFAF80089DC5D /* nexus9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8B72BA21CDCFAF80089DC5D /* nexus9.jpg */; };
+		C8B72BAF1CDCFAF80089DC5D /* razr.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8B72BA31CDCFAF80089DC5D /* razr.jpg */; };
 		C8C12D8C1CD2F13100A7CD01 /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C12D881CD2F13100A7CD01 /* apple.png */; };
 		C8C12D8D1CD2F13100A7CD01 /* google.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C12D891CD2F13100A7CD01 /* google.png */; };
 		C8C12D8E1CD2F13100A7CD01 /* samsung.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C12D8A1CD2F13100A7CD01 /* samsung.png */; };
@@ -72,6 +84,18 @@
 		48A656ED1816468000746D36 /* Sunflower.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Sunflower.gif; sourceTree = "<group>"; };
 		C8384C4E1CD7D86E0085DD84 /* DAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAO.h; sourceTree = "<group>"; };
 		C8384C4F1CD7D86E0085DD84 /* DAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAO.m; sourceTree = "<group>"; };
+		C8B72B981CDCFAF80089DC5D /* blackberry.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blackberry.jpg; sourceTree = "<group>"; };
+		C8B72B991CDCFAF80089DC5D /* galaxynote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = galaxynote.png; sourceTree = "<group>"; };
+		C8B72B9A1CDCFAF80089DC5D /* galaxys4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = galaxys4.jpg; sourceTree = "<group>"; };
+		C8B72B9B1CDCFAF80089DC5D /* galaxytab.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = galaxytab.jpg; sourceTree = "<group>"; };
+		C8B72B9C1CDCFAF80089DC5D /* ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ipad.jpg; sourceTree = "<group>"; };
+		C8B72B9D1CDCFAF80089DC5D /* iphone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iphone.jpg; sourceTree = "<group>"; };
+		C8B72B9E1CDCFAF80089DC5D /* ipodtouch.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ipodtouch.jpg; sourceTree = "<group>"; };
+		C8B72B9F1CDCFAF80089DC5D /* nextel.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nextel.jpg; sourceTree = "<group>"; };
+		C8B72BA01CDCFAF80089DC5D /* nexus5x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nexus5x.jpg; sourceTree = "<group>"; };
+		C8B72BA11CDCFAF80089DC5D /* nexus6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nexus6.jpg; sourceTree = "<group>"; };
+		C8B72BA21CDCFAF80089DC5D /* nexus9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nexus9.jpg; sourceTree = "<group>"; };
+		C8B72BA31CDCFAF80089DC5D /* razr.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = razr.jpg; sourceTree = "<group>"; };
 		C8C12D881CD2F13100A7CD01 /* apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = apple.png; sourceTree = "<group>"; };
 		C8C12D891CD2F13100A7CD01 /* google.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = google.png; sourceTree = "<group>"; };
 		C8C12D8A1CD2F13100A7CD01 /* samsung.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = samsung.png; sourceTree = "<group>"; };
@@ -202,6 +226,18 @@
 			children = (
 				48A656ED1816468000746D36 /* Sunflower.gif */,
 				C8C12D881CD2F13100A7CD01 /* apple.png */,
+				C8B72B981CDCFAF80089DC5D /* blackberry.jpg */,
+				C8B72B991CDCFAF80089DC5D /* galaxynote.png */,
+				C8B72B9A1CDCFAF80089DC5D /* galaxys4.jpg */,
+				C8B72B9B1CDCFAF80089DC5D /* galaxytab.jpg */,
+				C8B72B9C1CDCFAF80089DC5D /* ipad.jpg */,
+				C8B72B9D1CDCFAF80089DC5D /* iphone.jpg */,
+				C8B72B9E1CDCFAF80089DC5D /* ipodtouch.jpg */,
+				C8B72B9F1CDCFAF80089DC5D /* nextel.jpg */,
+				C8B72BA01CDCFAF80089DC5D /* nexus5x.jpg */,
+				C8B72BA11CDCFAF80089DC5D /* nexus6.jpg */,
+				C8B72BA21CDCFAF80089DC5D /* nexus9.jpg */,
+				C8B72BA31CDCFAF80089DC5D /* razr.jpg */,
 				C8C12D891CD2F13100A7CD01 /* google.png */,
 				C8C12D8A1CD2F13100A7CD01 /* samsung.png */,
 				C8C12D8B1CD2F13100A7CD01 /* sprint.png */,
@@ -308,8 +344,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				48A656EE1816468000746D36 /* Sunflower.gif in Resources */,
+				C8B72BA71CDCFAF80089DC5D /* galaxytab.jpg in Resources */,
+				C8B72BA81CDCFAF80089DC5D /* ipad.jpg in Resources */,
+				C8B72BAE1CDCFAF80089DC5D /* nexus9.jpg in Resources */,
+				C8B72BA51CDCFAF80089DC5D /* galaxynote.png in Resources */,
+				C8B72BA91CDCFAF80089DC5D /* iphone.jpg in Resources */,
+				C8B72BAF1CDCFAF80089DC5D /* razr.jpg in Resources */,
+				C8B72BAA1CDCFAF80089DC5D /* ipodtouch.jpg in Resources */,
+				C8B72BAC1CDCFAF80089DC5D /* nexus5x.jpg in Resources */,
+				C8B72BA41CDCFAF80089DC5D /* blackberry.jpg in Resources */,
 				48A656E718163C1B00746D36 /* CompanyViewController.xib in Resources */,
 				C8C12D8E1CD2F13100A7CD01 /* samsung.png in Resources */,
+				C8B72BAB1CDCFAF80089DC5D /* nextel.jpg in Resources */,
+				C8B72BA61CDCFAF80089DC5D /* galaxys4.jpg in Resources */,
+				C8B72BAD1CDCFAF80089DC5D /* nexus6.jpg in Resources */,
 				48A656BF18163BF200746D36 /* InfoPlist.strings in Resources */,
 				48A656C718163BF200746D36 /* Images.xcassets in Resources */,
 				C8C12D8F1CD2F13100A7CD01 /* sprint.png in Resources */,

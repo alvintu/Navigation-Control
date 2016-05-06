@@ -36,6 +36,13 @@
     self.tf1.text=self.companyLogo;
     
     
+    self.tf2 = [[UITextField alloc] initWithFrame:CGRectMake(45, self.tf1.frame.origin.y+100, 400, 80)];
+    self.tf2.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
+    self.tf2.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
+    self.tf2.backgroundColor=[UIColor greenColor];
+    self.tf2.text=self.companySYM;
+    
+    
     CGRect buttonFrame = CGRectMake( 300, 300, 100, 30 );
     UIButton *button = [[UIButton alloc] initWithFrame: buttonFrame];
     [button setTitle: @"Save" forState: UIControlStateNormal];
@@ -51,6 +58,7 @@
     view.backgroundColor = [UIColor whiteColor];
     [view addSubview:self.tf];
     [view addSubview:self.tf1];
+    [view addSubview:self.tf2];
     [view addSubview:button];
     
     [self.view addSubview:view];
@@ -65,8 +73,8 @@
         if(self.companyName == [self.dao.companies[i]companyName]){ //comparing textfield with dao array
             [self.dao.companies[i]setCompanyName:self.tf.text]; //set name/logo for selected Company obj
             [self.dao.companies[i]setCompanyLogo:self.tf1.text];
-            NSLog(@"%@",[self.dao.companies[i]companyName]);
-            NSLog(@"%@",[self.dao.companies[i]companyLogo]);
+            [self.dao.companies[i]setCompanySYM:self.tf2.text];
+
             found = YES;
             break;
             //  CompanyViewController *companyViewController = [[CompanyViewController alloc]init];
@@ -76,7 +84,7 @@
     if (found == NO) {
         
         ProductFormViewController *productFormViewController = [[ProductFormViewController alloc]init];
-        Company *newcompany = [[Company alloc]initWithCompanyName:self.tf.text companyLogo:self.tf1.text];
+        Company *newcompany = [[Company alloc]initWithCompanyName:self.tf.text companyLogo:self.tf1.text companySYM:self.tf2.text];
         newcompany.products = [[NSMutableArray alloc]init];
         [self.dao.companies insertObject:newcompany atIndex:([self.dao.companies count])];
         productFormViewController.newproducts = newcompany.products;

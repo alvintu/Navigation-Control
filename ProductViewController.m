@@ -85,7 +85,8 @@
     // Configure the cell...
     
     cell.textLabel.text = [[self.products objectAtIndex:[indexPath row]] productName];
-//    cell.imageView.image = [UIImage imageNamed:@"apple.png"];
+    
+    cell.imageView.image = [UIImage imageNamed:[[self.products objectAtIndex:[indexPath row]] productLogo] ];
     return cell;
 }
 

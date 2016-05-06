@@ -17,10 +17,11 @@
 }
 
 
--(instancetype)initWithCompanyName:(NSString*)companyName companyLogo:(NSString*)companyLogo{
+-(instancetype)initWithCompanyName:(NSString*)companyName companyLogo:(NSString*)companyLogo companySYM:(NSString*)companySYM {
     if(self == [super init]){
         self.companyName = companyName;
         self.companyLogo = companyLogo;
+        self.companySYM = companySYM;
     }
     return self;
 }

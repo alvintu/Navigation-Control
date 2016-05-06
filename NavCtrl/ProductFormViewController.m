@@ -32,6 +32,12 @@
     self.tf1.backgroundColor=[UIColor greenColor];
     self.tf1.text=self.productURL;
     
+    self.tf2 = [[UITextField alloc] initWithFrame:CGRectMake(45, self.tf1.frame.origin.y+100, 400, 80)];
+    self.tf2.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
+    self.tf2.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
+    self.tf2.backgroundColor=[UIColor greenColor];
+    self.tf2.text=self.productLogo;
+    
     
     CGRect buttonFrame = CGRectMake( 300, 300, 100, 30 );
     UIButton *button = [[UIButton alloc] initWithFrame: buttonFrame];
@@ -48,6 +54,8 @@
     view.backgroundColor = [UIColor whiteColor];
     [view addSubview:self.tf];
     [view addSubview:self.tf1];
+    [view addSubview:self.tf2];
+
     [view addSubview:button];
     
     [self.view addSubview:view];
@@ -75,7 +83,7 @@
                 }
 
     if (found == NO) {
-        Product *newProduct = [[Product alloc]initWithProductName:self.tf.text productURL:self.tf1.text];
+        Product *newProduct = [[Product alloc]initWithProductName:self.tf.text productURL:self.tf1.text productLogo:self.tf2.text];
         [self.currentproducts insertObject:newProduct atIndex:([self.currentproducts count])];
         [self.newproducts insertObject:newProduct atIndex:([self.newproducts count])];
 

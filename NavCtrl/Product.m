@@ -12,10 +12,11 @@
 
 
 
--(instancetype)initWithProductName:(NSString*)productName productURL:(NSString*)productURL{
+-(instancetype)initWithProductName:(NSString*)productName productURL:(NSString*)productURL productLogo:(NSString*)productLogo{
     if(self == [super init]){
         self.productName = productName;
         self.productURL = productURL;
+        self.productLogo = productLogo;
     }
     return self;
 }

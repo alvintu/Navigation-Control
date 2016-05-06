@@ -75,14 +75,58 @@
 
 
 - (void)viewWillAppear:(BOOL)animated {
-    
+    //init withStockSymbol
     [super viewWillAppear:animated];
+    NSMutableString *stockSymbols = [[NSMutableString alloc]init];
+    [stockSymbols appendString:[self.dao.companies[0]companySYM]];
+    for(int i = 1;i < [self.dao.companies count]; i++){
+
+    NSMutableString *stock = [[self.dao.companies[i]companySYM]mutableCopy];
+    NSMutableString *add = [NSMutableString stringWithFormat:@"+"];
+        [stockSymbols appendString:add];
+        [stockSymbols appendString:stock];
+    }
+    NSLog(@"stocksymbols is %@",stockSymbols);
+
     
     NSLog(@"viewWillAppear");
+
+    NSString *yahooAPI = [NSString stringWithFormat:@"http://download.finance.yahoo.com/d/quotes.csv?s=%@&f=a",stockSymbols];
+    NSURL *yahooAPIURL = [NSURL URLWithString:yahooAPI];
+//    NSError* error = nil;
+//    NSString* text = [NSString stringWithContentsOfURL:yahooAPIURL encoding:NSASCIIStringEncoding error:&error];
+//    NSArray *stockComponents = [[text componentsSeparatedByString:@"\n" ]mutableCopy];
     
-    NSLog(@"%@",self.dao.companies);
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:yahooAPIURL
+                                                         completionHandler:
+                              ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                  if (data) {
+                                      NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                    self.stockComponents1 = [[str componentsSeparatedByString:@"\n" ]mutableCopy];
+
+                                    
+                                  } else {
+                                      NSLog(@"Failed to fetch %@: %@", yahooAPIURL, error);
+                                  }
+                                  
+                                  for(int i = 0;i < [self.dao.companies count]; i++){
+                                      [self.dao.companies[i] setStockPrice: self.stockComponents1[i]];
+                                  }
+
+//                                  NSLog(@"%@ %@ %@ %@",[self.dao.companies[0]stockPrice],[self.dao.companies[1]stockPrice],[self.dao.companies[2]stockPrice],[self.dao.companies[3]stockPrice]);
+                                  
+                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                      [self.tableView reloadData];
+                                  });
+                                  
+                                  
+                              }];
+
+    [task resume];
     
+
     [self.tableView reloadData];
+
 }
 
 
@@ -120,7 +164,7 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
 //    Company *company = [self.dao.companies objectAtIndex:[indexPath row]];
@@ -135,8 +179,8 @@
     
     cell.textLabel.text = [[self.dao.companies objectAtIndex:[indexPath row]]companyName];; //[self.companyList objectAtIndex:[indexPath row]];
     cell.imageView.image = [UIImage imageNamed:[[self.dao.companies objectAtIndex:[indexPath row]]companyLogo]];
-
-    
+    cell.detailTextLabel.text = [[self.dao.companies objectAtIndex:[indexPath row]]stockPrice];
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:16.0];
     return cell;
 }
 
@@ -244,6 +288,7 @@
         
         formViewController.companyName = [self.dao.companies[indexPath.row]companyName];
         formViewController.companyLogo = [self.dao.companies[indexPath.row]companyLogo];
+        formViewController.companySYM = [self.dao.companies[indexPath.row]companySYM];
 
     }
     else{
