@@ -11,6 +11,8 @@
 #import "Product.h"
 #import "DAO.h"
 #import "FormViewController.h"
+#import "ProductFormViewController.h"
+
 
 
 @class ProductViewController;
@@ -23,6 +25,8 @@
 @property(nonatomic, strong) DAO *dao;
 //@property (nonatomic, retain) IBOutlet FormViewController *formViewController;
 @property (nonatomic, retain) IBOutlet  ProductViewController * productViewController;
+@property (nonatomic, retain)  ProductFormViewController * productFormViewController;
+
 @property (nonatomic, retain) NSMutableArray *companies;
 
 @property(nonatomic,retain) NSMutableArray *stockComponents1;

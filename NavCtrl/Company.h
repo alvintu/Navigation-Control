@@ -15,9 +15,11 @@
 @property (nonatomic, strong ) NSString *companySYM;
 @property (nonatomic, strong) NSMutableArray *products;
 @property (nonatomic,strong) NSString *stockPrice;
+@property (nonatomic,strong) NSString *companyID;
+
 
 
 //@property (nonatomic,strong) Product *product;
--(instancetype)initWithCompanyName:(NSString*)companyName companyLogo:(NSString*)companyLogo companySYM:(NSString*)companySYM;
+-(instancetype)initWithCompanyName:(NSString*)companyName companyLogo:(NSString*)companyLogo companySYM:(NSString*)companySYM companyID:(NSString*)companyID;
 
 @end

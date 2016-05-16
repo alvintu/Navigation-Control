@@ -17,26 +17,26 @@
     NSLog(@"%@",_currentCompany);
     
     //    NSLog(@"in form");
-    self.tf =  [[UITextField alloc] initWithFrame:CGRectMake(45, 30, 400, 80)];
-    self.tf.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
-    self.tf.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
-    self.tf.backgroundColor=[UIColor greenColor];
-    self.tf.text=self.productName;
+    self.productNameField =  [[UITextField alloc] initWithFrame:CGRectMake(45, 30, 400, 80)];
+    self.productNameField.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
+    self.productNameField.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
+    self.productNameField.backgroundColor=[UIColor greenColor];
+    self.productNameField.text=self.productName;
     
     
     
     //second one
-    self.tf1 = [[UITextField alloc] initWithFrame:CGRectMake(45, self.tf.frame.origin.y+100, 400, 80)];
-    self.tf1.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
-    self.tf1.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
-    self.tf1.backgroundColor=[UIColor greenColor];
-    self.tf1.text=self.productURL;
+    self.productURLField = [[UITextField alloc] initWithFrame:CGRectMake(45, self.productNameField.frame.origin.y+100, 400, 80)];
+    self.productURLField.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
+    self.productURLField.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
+    self.productURLField.backgroundColor=[UIColor greenColor];
+    self.productURLField.text=self.productURL;
     
-    self.tf2 = [[UITextField alloc] initWithFrame:CGRectMake(45, self.tf1.frame.origin.y+100, 400, 80)];
-    self.tf2.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
-    self.tf2.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
-    self.tf2.backgroundColor=[UIColor greenColor];
-    self.tf2.text=self.productLogo;
+    self.productLogoLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, self.productURLField.frame.origin.y+100, 400, 80)];
+    self.productLogoLabel.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
+    self.productLogoLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
+    self.productLogoLabel.backgroundColor=[UIColor greenColor];
+    self.productLogoLabel.text=self.productLogo;
     
     
     CGRect buttonFrame = CGRectMake( 300, 300, 100, 30 );
@@ -52,9 +52,9 @@
     CGFloat screenHeight = screenRect.size.height;
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 45, screenWidth, screenHeight)];
     view.backgroundColor = [UIColor whiteColor];
-    [view addSubview:self.tf];
-    [view addSubview:self.tf1];
-    [view addSubview:self.tf2];
+    [view addSubview:self.productNameField];
+    [view addSubview:self.productURLField];
+    [view addSubview:self.productLogoLabel];
 
     [view addSubview:button];
     
@@ -66,26 +66,24 @@
 
 -(void)saveButton{
     bool found = NO;
-//    for(int i = 0; i < [self.dao.companies count]; i ++){
-//        if(self.companyName == [self.dao.companies[i]companyName]){
-//            Company *currentCompany = self.dao.companies[i];  // change to being a company
                 if([self.currentProduct productName] ==  self.productName){
-                    [self.currentProduct setProductName:self.tf.text];
-                    [self.currentProduct setProductURL:self.tf1.text];
-//                }
-//            [self.dao.companies[i]setCompanyName:self.tf.text]; //set name/logo for selected Company obj
-//            [self.dao.companies[i]setCompanyLogo:self.tf1.text];
-//            NSLog(@"%@",[self.dao.companies[i]companyName]);
-//            NSLog(@"%@",[self.dao.companies[i]companyLogo]);
+                    [self.currentProduct setProductName:self.productNameField.text];
+                    [self.currentProduct setProductURL:self.productURLField.text];
+                    [self.currentProduct setProductLogo:self.productLogoLabel.text];
+                    [self.dao editProducts:self.currentProduct selectedCompany:self.currentCompany];
+
+
+                    
             found = YES;
                     
 
                 }
 
     if (found == NO) {
-        Product *newProduct = [[Product alloc]initWithProductName:self.tf.text productURL:self.tf1.text productLogo:self.tf2.text];
+        Product *newProduct = [[Product alloc]initWithProductName:self.productNameField.text productURL:self.productURLField.text productLogo:self.productLogoLabel.text];
         [self.currentproducts insertObject:newProduct atIndex:([self.currentproducts count])];
         [self.newproducts insertObject:newProduct atIndex:([self.newproducts count])];
+        [self.dao addProduct:newProduct selectedCompany:self.currentCompany indexOfProduct:[self.currentproducts indexOfObject:newProduct]];
 
 }
 

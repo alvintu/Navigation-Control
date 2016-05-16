@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSArray *logos;
 //@property (nonatomic, retain) NSMutableArray *productsView;
 @property(nonatomic, strong) DAO *dao;
+@property (nonatomic,strong) Company *currentCompany;
 
 
 

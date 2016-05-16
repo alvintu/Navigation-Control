@@ -12,7 +12,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     
     self.dao = [DAO sharedDAO];
     //    [self.dao.companies[0]setCompanyName:@"adfas"];
@@ -20,30 +20,38 @@
     
     
     //    NSLog(@"in form");
-    self.tf =  [[UITextField alloc] initWithFrame:CGRectMake(45, 30, 400, 80)];
-    self.tf.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
-    self.tf.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
-    self.tf.backgroundColor=[UIColor greenColor];
-    self.tf.text=self.companyName;
+    self.nameField =  [[UITextField alloc] initWithFrame:CGRectMake(150, 30, 400, 80)];
+    self.nameField.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
+    self.nameField.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
+    self.nameField.backgroundColor=[UIColor greenColor];
+    self.nameField.text =self.companyName;
     
     
     
     //second one
-    self.tf1 = [[UITextField alloc] initWithFrame:CGRectMake(45, self.tf.frame.origin.y+100, 400, 80)];
-    self.tf1.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
-    self.tf1.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
-    self.tf1.backgroundColor=[UIColor greenColor];
-    self.tf1.text=self.companyLogo;
+    self.logoField = [[UITextField alloc] initWithFrame:CGRectMake(150, self.nameField.frame.origin.y+100, 400, 80)];
+    self.logoField.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
+    self.logoField.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
+    self.logoField.backgroundColor=[UIColor greenColor];
+    self.logoField.text=self.companyLogo;
     
     
-    self.tf2 = [[UITextField alloc] initWithFrame:CGRectMake(45, self.tf1.frame.origin.y+100, 400, 80)];
-    self.tf2.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
-    self.tf2.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
-    self.tf2.backgroundColor=[UIColor greenColor];
-    self.tf2.text=self.companySYM;
+    self.stockSymbolField = [[UITextField alloc] initWithFrame:CGRectMake(150, self.logoField.frame.origin.y+100, 400, 80)];
+    self.stockSymbolField.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
+    self.stockSymbolField.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
+    self.stockSymbolField.backgroundColor=[UIColor greenColor];
+    self.stockSymbolField.text=self.companySYM;
     
     
-    CGRect buttonFrame = CGRectMake( 300, 300, 100, 30 );
+    self.companyIDLabel = [[UILabel alloc] initWithFrame:CGRectMake(150, self.stockSymbolField.frame.origin.y+100, 400, 80)];
+    self.companyIDLabel.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
+    self.companyIDLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
+    self.companyIDLabel.backgroundColor=[UIColor greenColor];
+    self.companyIDLabel.textAlignment =  NSTextAlignmentCenter;
+    self.companyIDLabel.text=self.companyID;
+    
+    
+    CGRect buttonFrame = CGRectMake( 300, 400, 100, 30 );
     UIButton *button = [[UIButton alloc] initWithFrame: buttonFrame];
     [button setTitle: @"Save" forState: UIControlStateNormal];
     [button addTarget:self action:@selector(saveButton) forControlEvents:UIControlEventTouchUpInside];
@@ -56,9 +64,10 @@
     CGFloat screenHeight = screenRect.size.height;
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 45, screenWidth, screenHeight)];
     view.backgroundColor = [UIColor whiteColor];
-    [view addSubview:self.tf];
-    [view addSubview:self.tf1];
-    [view addSubview:self.tf2];
+    [view addSubview:self.nameField];
+    [view addSubview:self.logoField];
+    [view addSubview:self.stockSymbolField];
+    [view addSubview:self.companyIDLabel];
     [view addSubview:button];
     
     [self.view addSubview:view];
@@ -68,29 +77,32 @@
 }
 
 -(void)saveButton{
+    
+    
     bool found = NO;
     for(int i = 0; i < [self.dao.companies count]; i ++){
         if(self.companyName == [self.dao.companies[i]companyName]){ //comparing textfield with dao array
-            [self.dao.companies[i]setCompanyName:self.tf.text]; //set name/logo for selected Company obj
-            [self.dao.companies[i]setCompanyLogo:self.tf1.text];
-            [self.dao.companies[i]setCompanySYM:self.tf2.text];
+            [self.dao.companies[i]setCompanyName:self.nameField.text]; //set name/logo for selected Company obj
+            [self.dao.companies[i]setCompanyLogo:self.logoField.text];
+            [self.dao.companies[i]setCompanySYM:self.stockSymbolField.text];
+            [self.dao.companies[i]setCompanyID:self.companyIDLabel.text];
+            [self.dao editCompany:self.dao.companies[i]];
 
             found = YES;
             break;
             //  CompanyViewController *companyViewController = [[CompanyViewController alloc]init];
         }
-
     }
     if (found == NO) {
         
-        ProductFormViewController *productFormViewController = [[ProductFormViewController alloc]init];
-        Company *newcompany = [[Company alloc]initWithCompanyName:self.tf.text companyLogo:self.tf1.text companySYM:self.tf2.text];
+        Company *newcompany = [[Company alloc]initWithCompanyName:self.nameField.text companyLogo:self.logoField.text companySYM:self.stockSymbolField.text companyID:self.companyIDLabel.text];
         newcompany.products = [[NSMutableArray alloc]init];
-        [self.dao.companies insertObject:newcompany atIndex:([self.dao.companies count])];
-        productFormViewController.newproducts = newcompany.products;
+        [self.dao.companies addObject:newcompany];
+         newcompany.companyID =  [NSString stringWithFormat:@"%d", [self.dao addCompany:newcompany]];
+        
     }
     [self.navigationController popViewControllerAnimated:YES];
-
+    
     //    [self.navigationController
     //     popViewControllerAnimated:YES];
     

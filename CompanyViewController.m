@@ -28,8 +28,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.allowsSelectionDuringEditing = YES;
 
+    self.tableView.allowsSelectionDuringEditing = YES;
+    
     // Uncomment the following line to preserve selection between presentations.
      self.clearsSelectionOnViewWillAppear = NO;
     
@@ -37,59 +38,35 @@
                                   initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                   target:self
                                   action:@selector(pushForm)];
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.editButtonItem,addButton, nil];
 
     self.title = @"Mobile device makers";
-
-
-//    Company *apple = [[Company alloc]initWithCompanyName:@"Apple" companyLogo:@"apple.png"];
-//    Company *samsung = [[Company alloc]initWithCompanyName:@"Samsung" companyLogo:@"samsung.png"];
-//    Company *google = [[Company alloc]initWithCompanyName:@"Google" companyLogo:@"google.png"];
-//    Company *sprint = [[Company alloc]initWithCompanyName:@"Sprint" companyLogo:@"sprint.png"];
-//    Product *iPad = [[Product alloc]initWithProductName:@"iPad" productURL:@"https://www.apple.com/ipad"];
-//    Product *iPodTouch = [[Product alloc]initWithProductName:@"iPod Touch" productURL:@"https://www.apple.com/ipod-touch"];
-//    Product *iPhone = [[Product alloc]initWithProductName:@"iPhone" productURL:@"https://www.apple.com/iPhone"];
-//    Product *GalaxyS4 = [[Product alloc]initWithProductName:@"GalaxyS4" productURL:@"http://www.samsung.com/us/mobile/cell-phones/SCH-I545ZKAVZW"];
-//    Product *GalaxyNote = [[Product alloc]initWithProductName:@"Galaxy Note" productURL:@"http://www.samsung.com/us/mobile/galaxy-note/"];
-//    Product *GalaxyTab = [[Product alloc]initWithProductName:@"Galaxy Tab" productURL:@"http://www.samsung.com/us/mobile/galaxy-tab/"];
-//    Product *Nexus5X = [[Product alloc]initWithProductName:@"Nexus 5X" productURL:@"https://www.google.com/nexus/5x/"];
-//    Product *Nexus6P = [[Product alloc]initWithProductName:@"Nexus 6P" productURL:@"https://www.google.com/nexus/6p"];
-//    Product *Nexus9 = [[Product alloc]initWithProductName:@"Nexus 9" productURL:@"https://www.google.com/nexus/9"];
-//    Product *Nextel = [[Product alloc]initWithProductName:@"Nextel" productURL:@"http://www.amazon.com/Motorola-Nextel-Boost-Mobile-Phone/dp/B003APT3KU/ref=sr_1_1?ie=UTF8&qid=1461951678&sr=8-1&keywords=nextel"];
-//    Product *BlackBerry = [[Product alloc]initWithProductName:@"Blackberry" productURL:@"http://www.amazon.com/BlackBerry-Classic-Factory-Unlocked-Cellphone/dp/B00OYZZ3VS/ref=sr_1_3?ie=UTF8&qid=1461951711&sr=8-3&keywords=blackberry"];
-//    Product *MotorolaRazr = [[Product alloc]initWithProductName:@"Motorla Razr" productURL:@"http://www.amazon.com/Motorola-V3-Unlocked-Player--U-S-Warranty/dp/B0016JDE34/ref=sr_1_1?s=wireless&ie=UTF8&qid=1461951732&sr=1-1&keywords=motorola+razr"];
-//
-//    apple.products = [NSMutableArray arrayWithObjects:iPad,iPodTouch, iPhone,nil];
-//    samsung.products =[NSMutableArray arrayWithObjects:GalaxyS4,GalaxyNote, GalaxyTab,nil];
-//    google.products = [NSMutableArray arrayWithObjects:Nexus5X,Nexus6P, Nexus9,nil];
-//    sprint.products = [NSMutableArray arrayWithObjects:Nextel,BlackBerry, MotorolaRazr,nil];
-
     
     self.dao = [DAO sharedDAO];
-    
-    
-    NSLog(@"%@",self.dao.companies);
-    
+//
+    NSLog(@"%lu",[self.dao.companies count]);
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
+     [self.tableView reloadData];
+//    [self.dao orderCompaniesByPosition];
+
     //init withStockSymbol
     [super viewWillAppear:animated];
     NSMutableString *stockSymbols = [[NSMutableString alloc]init];
-    [stockSymbols appendString:[self.dao.companies[0]companySYM]];
-    for(int i = 1;i < [self.dao.companies count]; i++){
+//    [stockSymbols appendString:[self.dao.companies[0]companySYM]];
+    for(int i = 0;i < [self.dao.companies count]; i++){
 
     NSMutableString *stock = [[self.dao.companies[i]companySYM]mutableCopy];
     NSMutableString *add = [NSMutableString stringWithFormat:@"+"];
-        [stockSymbols appendString:add];
         [stockSymbols appendString:stock];
+        [stockSymbols appendString:add];
     }
-    NSLog(@"stocksymbols is %@",stockSymbols);
 
     
-    NSLog(@"viewWillAppear");
 
     NSString *yahooAPI = [NSString stringWithFormat:@"http://download.finance.yahoo.com/d/quotes.csv?s=%@&f=a",stockSymbols];
     NSURL *yahooAPIURL = [NSURL URLWithString:yahooAPI];
@@ -113,10 +90,9 @@
                                       [self.dao.companies[i] setStockPrice: self.stockComponents1[i]];
                                   }
 
-//                                  NSLog(@"%@ %@ %@ %@",[self.dao.companies[0]stockPrice],[self.dao.companies[1]stockPrice],[self.dao.companies[2]stockPrice],[self.dao.companies[3]stockPrice]);
                                   
                                   dispatch_async(dispatch_get_main_queue(), ^{
-                                      [self.tableView reloadData];
+                                      [self.tableView reloadData]; //dispatch main queue
                                   });
                                   
                                   
@@ -146,17 +122,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-//    int addRow;
-//    if(self.isEditing){
-//        addRow = 1;
-//    }
-//    else{
-//        addRow = 0;
-//    }
-    // Return the number of rows in the section.
+
     return [self.dao.companies count];
-//    + addRow;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -167,15 +134,6 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-//    Company *company = [self.dao.companies objectAtIndex:[indexPath row]];
-
-//    if(indexPath.row >= self.dao.companies.count && [self isEditing]){
-//        cell.textLabel.text = @"Add Row";
-//    }else{
-//        cell.textLabel.text = self.dao.companies[indexPath.row];
-//    }
-//    
-    // Configure the cell...
     
     cell.textLabel.text = [[self.dao.companies objectAtIndex:[indexPath row]]companyName];; //[self.companyList objectAtIndex:[indexPath row]];
     cell.imageView.image = [UIImage imageNamed:[[self.dao.companies objectAtIndex:[indexPath row]]companyLogo]];
@@ -201,9 +159,11 @@
    
 
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.dao deleteCompany:[self.dao.companies objectAtIndex:indexPath.row]];
 
         [self.dao.companies removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.dao trackCompanyPosition];
     }
     
     
@@ -228,7 +188,10 @@
         
         [self.dao.companies removeObjectAtIndex:sourceRow];
         [self.dao.companies insertObject:object atIndex:destRow];
-        
+    
+    [self.dao trackCompanyPosition];
+
+    
     }
 
 
@@ -239,7 +202,7 @@
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
--(void)pushForm{
+-(void)pushForm{ //when you create a new company name, logo, symbol pushed to formviewcontroller
     
     FormViewController *formViewController = [[FormViewController alloc] init];
     
@@ -248,13 +211,12 @@
          pushViewController:formViewController
          animated:YES];
         formViewController.title = @"Add a New Company";
-//    Company *newCompany = [[Company alloc]init];
     formViewController.companyName = @"Enter Name";
     formViewController.companyLogo = @"Enter Logo";
-//    formViewController.currentCompany = newCompany;
-//    [self.dao.companies insertObject:newCompany atIndex:[self.dao.companies count]];
-     //trying to insert company object into companies so that program can add products= to new companies that are not in DAO
-    
+    formViewController.companySYM = @"EnterStockSymbol";
+    formViewController.companyID = @"Company ID Loading....";
+
+
         NSLog(@"I'm editing");
     
 }
@@ -273,22 +235,28 @@
     Company *company = self.dao.companies[indexPath.row];
 
     self.productViewController.products =  company.products;
+    self.productViewController.currentCompany = self.dao.companies[indexPath.row];
 
 //    FormViewController *formViewController = [[FormViewController alloc] init];
 //
 //    
-    if(self.editing == YES){
+    if(self.editing == YES){  //conditions for editing a comapany
         FormViewController *formViewController = [[FormViewController alloc] init];
 
         
         [self.navigationController
          pushViewController:formViewController
          animated:YES];
+        
+//        Company *newCompany = [[Company alloc]init];
         formViewController.title = @"Edit your company";
         
         formViewController.companyName = [self.dao.companies[indexPath.row]companyName];
         formViewController.companyLogo = [self.dao.companies[indexPath.row]companyLogo];
         formViewController.companySYM = [self.dao.companies[indexPath.row]companySYM];
+        formViewController.companyID = [self.dao.companies[indexPath.row]companyID];
+//        formViewController.companyID = [NSString stringWithFormat:@"%d",[self.dao addCompany:newCompany]] ;
+
 
     }
     else{

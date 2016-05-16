@@ -16,10 +16,15 @@
 @property (nonatomic,strong) NSString *companyName;
 @property (nonatomic,strong) NSString *companyLogo;
 @property (nonatomic,strong) NSString *companySYM;
+@property (nonatomic,strong) NSString *companyID;
 
-@property (nonatomic,strong) UITextField *tf;
-@property (nonatomic,strong) UITextField *tf1;
-@property (nonatomic,strong) UITextField *tf2;
+
+@property (nonatomic,strong) UITextField *nameField;
+@property (nonatomic,strong) UITextField *logoField;
+@property (nonatomic,strong) UITextField *stockSymbolField;
+@property (nonatomic,strong) UITextField *textfield3;
+@property (nonatomic,strong) UILabel *companyIDLabel;
+
 @property(nonatomic,strong) Company *currentCompany;
 @property(nonatomic, strong) DAO *dao;
 
