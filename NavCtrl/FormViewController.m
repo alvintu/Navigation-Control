@@ -12,89 +12,136 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     
     self.dao = [DAO sharedDAO];
-    //    [self.dao.companies[0]setCompanyName:@"adfas"];
-    //    NSLog(@"%@",[self.dao.companies[0] companyName]);
     
+    self.nameField =  [[UITextField alloc] initWithFrame:CGRectMake(60, 70, 200, 20)];
+    self.nameField.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
+    self.nameField.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
+    self.nameField.backgroundColor=[UIColor orangeColor];
+    self.nameField.text =[self.currentCompany companyName];
+    self.nameField.placeholder = @"Company Name";
+    self.nameField.textAlignment =  NSTextAlignmentCenter;
     
-    //    NSLog(@"in form");
-    self.tf =  [[UITextField alloc] initWithFrame:CGRectMake(45, 30, 400, 80)];
-    self.tf.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
-    self.tf.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
-    self.tf.backgroundColor=[UIColor greenColor];
-    self.tf.text=self.companyName;
     
     
     
     //second one
-    self.tf1 = [[UITextField alloc] initWithFrame:CGRectMake(45, self.tf.frame.origin.y+100, 400, 80)];
-    self.tf1.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
-    self.tf1.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
-    self.tf1.backgroundColor=[UIColor greenColor];
-    self.tf1.text=self.companyLogo;
+    self.logoField = [[UITextField alloc] initWithFrame:CGRectMake(60, self.nameField.frame.origin.y+30, 200, 20)];
+    self.logoField.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
+    self.logoField.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
+    self.logoField.backgroundColor=[UIColor orangeColor];
+    self.logoField.text=[self.currentCompany companyLogo];
+    self.logoField.placeholder = @"Company Logo";
+    self.logoField.textAlignment =  NSTextAlignmentCenter;
     
     
-    self.tf2 = [[UITextField alloc] initWithFrame:CGRectMake(45, self.tf1.frame.origin.y+100, 400, 80)];
-    self.tf2.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
-    self.tf2.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
-    self.tf2.backgroundColor=[UIColor greenColor];
-    self.tf2.text=self.companySYM;
+    
+    self.stockSymbolField = [[UITextField alloc] initWithFrame:CGRectMake(60, self.logoField.frame.origin.y+30, 200, 20)];
+    self.stockSymbolField.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
+    self.stockSymbolField.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
+    self.stockSymbolField.backgroundColor=[UIColor orangeColor];
+    self.stockSymbolField.text=[self.currentCompany companySYM];
+    self.stockSymbolField.placeholder = @"Stock Symbol";
+    self.stockSymbolField.textAlignment =  NSTextAlignmentCenter;
     
     
-    CGRect buttonFrame = CGRectMake( 300, 300, 100, 30 );
-    UIButton *button = [[UIButton alloc] initWithFrame: buttonFrame];
-    [button setTitle: @"Save" forState: UIControlStateNormal];
-    [button addTarget:self action:@selector(saveButton) forControlEvents:UIControlEventTouchUpInside];
-    [button setTitleColor: [UIColor whiteColor] forState: UIControlStateNormal];
-    button.backgroundColor = [UIColor redColor];
+    
+    self.companyIDLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, self.stockSymbolField.frame.origin.y+30, 200, 20)];
+    self.companyIDLabel.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
+    self.companyIDLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
+    self.companyIDLabel.backgroundColor=[UIColor orangeColor];
+    self.companyIDLabel.textAlignment =  NSTextAlignmentCenter;
+  
+    //    self.companyIDLabel.text=[self.currentCompany companyID];
+    
+    
+    CGRect buttonFrame = CGRectMake( 120, self.companyIDLabel.frame.origin.y+30, 70, 20 );
+    self.button = [[UIButton alloc] initWithFrame: buttonFrame];
+    [self.button setTitle: @"Save" forState: UIControlStateNormal];
+    [self.button addTarget:self action:@selector(saveButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.button setTitleColor: [UIColor whiteColor] forState: UIControlStateNormal];
+    self.button.backgroundColor = [UIColor redColor];
+    
+    
+    self.warningMessageLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 150, 600, 300)];
+    self.warningMessageLabel.textColor = [UIColor redColor];
+    self.warningMessageLabel.font  = [UIFont fontWithName:@"Helvetica-Bold" size:14];
+    self.warningMessageLabel.text = @"Missing company name ";
+    self.warningMessageLabel.hidden = YES;
+    
+    
+    
+    self.warningMessageLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(70, 200, 500, 300)];
+    self.warningMessageLabel1.textColor = [UIColor redColor];
+    self.warningMessageLabel1.font  = [UIFont fontWithName:@"Helvetica-Bold" size:14];
+    self.warningMessageLabel1.text = @" or stock symbol.";
+    self.warningMessageLabel1.hidden = YES;
+    
+    
+    
     
     //and so on adjust your view size according to your needs
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 45, screenWidth, screenHeight)];
-    view.backgroundColor = [UIColor whiteColor];
-    [view addSubview:self.tf];
-    [view addSubview:self.tf1];
-    [view addSubview:self.tf2];
-    [view addSubview:button];
-    
+    view.backgroundColor = [UIColor colorWithRed:255/256.0 green:140/256.0 blue:0/256.0 alpha:1.0];
+    [view addSubview:self.nameField];
+    [view addSubview:self.logoField];
+    [view addSubview:self.stockSymbolField];
+    [view addSubview:self.companyIDLabel];
+    [view addSubview:self.button];
+    [view addSubview:self.warningMessageLabel];     //WARNING MESSAGE TO ENTER NAME
+    [view addSubview:self.warningMessageLabel1];        //WARNING MESSAGE TO ENTER STOCK SYMBOL
     [self.view addSubview:view];
-    
-    
     
 }
 
 -(void)saveButton{
-    bool found = NO;
-    for(int i = 0; i < [self.dao.companies count]; i ++){
-        if(self.companyName == [self.dao.companies[i]companyName]){ //comparing textfield with dao array
-            [self.dao.companies[i]setCompanyName:self.tf.text]; //set name/logo for selected Company obj
-            [self.dao.companies[i]setCompanyLogo:self.tf1.text];
-            [self.dao.companies[i]setCompanySYM:self.tf2.text];
-
-            found = YES;
-            break;
+    if(![self.nameField.text isEqualToString:@""] && ![self.stockSymbolField.text isEqualToString:@""]){
+        if (self.currentCompany){
+            [self.currentCompany setCompanyName:self.nameField.text];
+            [self.currentCompany setCompanyLogo:self.logoField.text];
+            [self.currentCompany setCompanySYM:self.stockSymbolField.text];
+            [self.dao editCompany:self.currentCompany];
             //  CompanyViewController *companyViewController = [[CompanyViewController alloc]init];
+        } else {
+            self.currentCompany = [[Company alloc]initWithCompanyName:self.nameField.text companyLogo:self.logoField.text companySYM:self.stockSymbolField.text companyID:self.companyIDLabel.text];
+            self.currentCompany.products = [[NSMutableArray alloc]init];
+            [self.dao.companies addObject:self.currentCompany];
+            [self.dao addCompany:self.currentCompany];
+
         }
-
-    }
-    if (found == NO) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        self.warningMessageLabel.hidden = NO;
         
-        ProductFormViewController *productFormViewController = [[ProductFormViewController alloc]init];
-        Company *newcompany = [[Company alloc]initWithCompanyName:self.tf.text companyLogo:self.tf1.text companySYM:self.tf2.text];
-        newcompany.products = [[NSMutableArray alloc]init];
-        [self.dao.companies insertObject:newcompany atIndex:([self.dao.companies count])];
-        productFormViewController.newproducts = newcompany.products;
+        self.warningMessageLabel1.hidden = NO;
+        //        [self.view release];
     }
-    [self.navigationController popViewControllerAnimated:YES];
-
-    //    [self.navigationController
-    //     popViewControllerAnimated:YES];
-    
 }
+
+-(void)dealloc {
+    
+    [_nameField release];
+    [_logoField release];
+    [_stockSymbolField release];
+    [_companyIDLabel release];
+    [_button release];
+    [_warningMessageLabel release];
+    [_warningMessageLabel1 release];
+    
+    
+    
+    [super dealloc];
+}
+
+
+//    [self.navigationController
+//     popViewControllerAnimated:YES];
+
+
 
 
 @end

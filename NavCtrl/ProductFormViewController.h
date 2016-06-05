@@ -10,9 +10,9 @@
 #import "DAO.h"
 
 @interface ProductFormViewController : UIViewController
-@property (nonatomic,strong) UITextField *tf;
-@property (nonatomic,strong) UITextField *tf1;
-@property (nonatomic,strong) UITextField *tf2;
+@property (nonatomic,strong) UITextField *productNameField;
+@property (nonatomic,strong) UITextField *productURLField;
+@property (nonatomic,strong) UILabel *productLogoLabel;
 @property (nonatomic,strong) NSString *productName;
 @property (nonatomic,strong) NSString *productURL;
 @property (nonatomic,strong) NSString *productLogo;
@@ -21,6 +21,8 @@
 @property (nonatomic,strong) Company *currentCompany;
 @property(nonatomic, strong) DAO *dao;
 @property (nonatomic,strong) NSMutableArray *currentproducts;
-@property (nonatomic,strong) NSMutableArray *newproducts;
+
+
+@property (nonatomic,strong) UILabel *warningMessageLabel;
 
 @end

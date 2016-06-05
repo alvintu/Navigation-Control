@@ -11,23 +11,46 @@
 @implementation Company
 
 -(instancetype)init{
-    self = [super init];
-    self.products = [[NSMutableArray alloc]init];
+    if(self = [super init]){
+    
+    _products = [[NSMutableArray alloc]init];
+    }
     return self;
 }
 
-
--(instancetype)initWithCompanyName:(NSString*)companyName companyLogo:(NSString*)companyLogo companySYM:(NSString*)companySYM {
-    if(self == [super init]){
-        self.companyName = companyName;
-        self.companyLogo = companyLogo;
-        self.companySYM = companySYM;
-    }
+-(instancetype)initWithCompanyName:(NSString*)companyName companyLogo:(NSString*)companyLogo companySYM:(NSString*)companySYM companyID:(NSNumber*)companyID{
+    self = [super init];
+        _companyName = companyName;
+        _companyLogo = companyLogo;
+        _companySYM = companySYM;
+        _companyID = companyID;
+        _products = [[NSMutableArray alloc]init];
+    
     return self;
 }
 
 -(NSString *)description{
     return [NSString stringWithFormat:@"%@",self.companyName];
     //    return self.productName;
+}
+
+-(void)dealloc {
+
+    [_companyName release];
+    [_companyLogo release];
+    [_companySYM release];
+    [_companyID release];
+    [_products release];
+    [_stockPrice release];
+
+    _companyName = nil;
+    _companyLogo = nil;
+    _companySYM = nil;
+    _companyID = nil;
+    _products = nil;
+    
+    NSLog(@"Company Dealloc");
+    
+    [super dealloc];
 }
 @end

@@ -33,25 +33,48 @@
                                   initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                   target:self
                                   action:@selector(pushForm)];
+    self.dao = [DAO sharedDAO];
 
     self.tableView.allowsSelectionDuringEditing = YES;
 
     // Uncomment the following line to preserve selection between presentations.
      self.clearsSelectionOnViewWillAppear = NO;
  
+    
+    UIBarButtonItem *undoButton = [[UIBarButtonItem alloc]
+                                   initWithBarButtonSystemItem:UIBarButtonSystemItemUndo
+                                   target:self
+                                   action:@selector(undo)];
+    
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc]
+                                   initWithBarButtonSystemItem:UIBarButtonSystemItemSave
+                                   target:self
+                                   action:@selector(saveToDisk)];
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.editButtonItem,addButton, nil];
+       self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.editButtonItem,addButton,saveButton,undoButton,nil];
+
+}
+-(void)saveToDisk{
+    [self.dao saveChanges];
+}
+-(void)undo{
+
+[self.dao undoProductChanges];
+[self.tableView reloadData];
+    NSLog(@"undoed");
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
     
+
+//    [self.dao sortProducts:self.currentCompany];
+
     NSLog(@"viewWillAppear");
     NSLog(@"%@",self.title);
-
-    NSLog(@"%@",self.products);
-    
+//    [self.dao populateProductsBasedOnCompanyID:self.currentCompany];
     [self.tableView reloadData];
 }
 
@@ -86,7 +109,7 @@
     
     cell.textLabel.text = [[self.products objectAtIndex:[indexPath row]] productName];
     
-    cell.imageView.image = [UIImage imageNamed:[[self.products objectAtIndex:[indexPath row]] productLogo] ];
+    cell.imageView.image = [UIImage imageNamed:[[_products objectAtIndex:[indexPath row]] productLogo] ];
     return cell;
 }
 
@@ -102,22 +125,21 @@
 -(void)pushForm{
     
     ProductFormViewController *productformViewController = [[ProductFormViewController alloc] init];
-    
-    
+    NSUInteger i = [self.products count];
     [self.navigationController
      pushViewController:productformViewController
      animated:YES];
+    
     productformViewController.title = @"Add a New Product";
-    productformViewController.productName = @"Enter Name";
-    productformViewController.productURL = @"Enter URL";
+//    productformViewController.productName = @"Enter Name";
+//    productformViewController.productURL = @"Enter URL";
+    productformViewController.productLogo = [NSString stringWithFormat:@"defaultLogo%lu.jpg",(unsigned long)i];
     productformViewController.currentproducts = self.products;
-    productformViewController.newproducts = self.products;
-
+    productformViewController.currentCompany = self.currentCompany;
     
-    
-    NSLog(@"I'm editing");
-    
+    [productformViewController release];
 }
+
 
 
 
@@ -125,8 +147,15 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        [self.dao sortProducts:self.currentCompany];
+        [self.dao deleteProduct:self.products[indexPath.row]];
+
         [self.products removeObjectAtIndex:indexPath.row];
+        [self.dao trackProductsPosition:self.products selectedCompany:self.currentCompany];
+
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
+
     }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
     }   
@@ -139,10 +168,15 @@
 {
     NSInteger sourceRow = fromIndexPath.row;
     NSInteger destRow = toIndexPath.row;
-    id object = [self.products objectAtIndex:sourceRow];
-    
+    Product*product = [[Product alloc] init];
+
+    product = [[self.products objectAtIndex:sourceRow]retain];
+    [self.tableView beginUpdates];
     [self.products removeObjectAtIndex:sourceRow];
-    [self.products insertObject:object atIndex:destRow];
+    [self.products insertObject:product atIndex:destRow];
+     [self.dao trackProductsPosition:self.products selectedCompany:self.currentCompany];
+    [self.tableView endUpdates];
+    [self.tableView reloadData];
 
 }
 
@@ -156,7 +190,7 @@
 }
 
 
-/*
+/*/Users/Jo/Library/Developer/CoreSimulator/Devices/83ECACC1-0A82-478B-85C4-5A7E69472557/data/Containers/Data/Application/FF1B14CC-F688-4ADF-9078-55CC222004B7/Documents/CompanyProduct.db
 #pragma mark - Table view delegate
 
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
@@ -176,33 +210,40 @@
  */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.webViewController = [[WebViewController alloc]init];
+//    self.webViewController = [[WebViewController alloc]init];
+//
+//    self.webViewController.link = [[self.products objectAtIndex:indexPath.row] productURL];
 
-    self.webViewController.link = [[self.products objectAtIndex:indexPath.row] productURL];
-  
- 
     if(self.editing == YES){
         ProductFormViewController *productFormViewController = [[ProductFormViewController alloc] init];
-        
 
         productFormViewController.title = @"Edit your products";
         productFormViewController.productName = [self.products[indexPath.row] productName];
         productFormViewController.productURL = [self.products[indexPath.row] productURL];
+        productFormViewController.productLogo = [self.products[indexPath.row] productLogo];
         productFormViewController.currentProduct = self.products[indexPath.row];
         productFormViewController.currentproducts = self.products;
+        productFormViewController.currentCompany = self.currentCompany;
 
-        
         [self.navigationController
          pushViewController:productFormViewController
          animated:YES];
+        [productFormViewController release];
     }
     else{
+        WebViewController *webViewController = [[WebViewController alloc]init];
+        
+        webViewController.link = [[self.products objectAtIndex:indexPath.row] productURL];
         
         [self.navigationController
-         pushViewController:self.webViewController
+         pushViewController:webViewController
          animated:YES];
+        [webViewController release];
     }
-    
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    self.currentCompany = nil;
 }
 
 @end

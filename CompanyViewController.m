@@ -11,6 +11,8 @@
 
 @interface CompanyViewController ()
 
+@property (nonatomic, retain)  FormViewController * formViewController;
+
 @end
 
 @implementation CompanyViewController
@@ -28,105 +30,151 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.allowsSelectionDuringEditing = YES;
-
-    // Uncomment the following line to preserve selection between presentations.
-     self.clearsSelectionOnViewWillAppear = NO;
     
+    
+    
+    self.tableView.allowsSelectionDuringEditing = YES;
+    
+    // Uncomment the following line to preserve selection between presentations.
+    self.clearsSelectionOnViewWillAppear = NO;
+    self.dao = [DAO sharedDAO];
+
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
                                   initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                   target:self
                                   action:@selector(pushForm)];
+    
+    
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc]
+                                  initWithBarButtonSystemItem:UIBarButtonSystemItemSave
+                                  target:self
+                                  action:@selector(saveToDisk)];
+    
+    
+    UIBarButtonItem *undoButton = [[UIBarButtonItem alloc]
+                                   initWithBarButtonSystemItem:UIBarButtonSystemItemUndo
+                                   target:self
+                                   action:@selector(undo)];
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.editButtonItem,addButton, nil];
-
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.editButtonItem,addButton,saveButton,undoButton,nil];
     self.title = @"Mobile device makers";
-
-
-//    Company *apple = [[Company alloc]initWithCompanyName:@"Apple" companyLogo:@"apple.png"];
-//    Company *samsung = [[Company alloc]initWithCompanyName:@"Samsung" companyLogo:@"samsung.png"];
-//    Company *google = [[Company alloc]initWithCompanyName:@"Google" companyLogo:@"google.png"];
-//    Company *sprint = [[Company alloc]initWithCompanyName:@"Sprint" companyLogo:@"sprint.png"];
-//    Product *iPad = [[Product alloc]initWithProductName:@"iPad" productURL:@"https://www.apple.com/ipad"];
-//    Product *iPodTouch = [[Product alloc]initWithProductName:@"iPod Touch" productURL:@"https://www.apple.com/ipod-touch"];
-//    Product *iPhone = [[Product alloc]initWithProductName:@"iPhone" productURL:@"https://www.apple.com/iPhone"];
-//    Product *GalaxyS4 = [[Product alloc]initWithProductName:@"GalaxyS4" productURL:@"http://www.samsung.com/us/mobile/cell-phones/SCH-I545ZKAVZW"];
-//    Product *GalaxyNote = [[Product alloc]initWithProductName:@"Galaxy Note" productURL:@"http://www.samsung.com/us/mobile/galaxy-note/"];
-//    Product *GalaxyTab = [[Product alloc]initWithProductName:@"Galaxy Tab" productURL:@"http://www.samsung.com/us/mobile/galaxy-tab/"];
-//    Product *Nexus5X = [[Product alloc]initWithProductName:@"Nexus 5X" productURL:@"https://www.google.com/nexus/5x/"];
-//    Product *Nexus6P = [[Product alloc]initWithProductName:@"Nexus 6P" productURL:@"https://www.google.com/nexus/6p"];
-//    Product *Nexus9 = [[Product alloc]initWithProductName:@"Nexus 9" productURL:@"https://www.google.com/nexus/9"];
-//    Product *Nextel = [[Product alloc]initWithProductName:@"Nextel" productURL:@"http://www.amazon.com/Motorola-Nextel-Boost-Mobile-Phone/dp/B003APT3KU/ref=sr_1_1?ie=UTF8&qid=1461951678&sr=8-1&keywords=nextel"];
-//    Product *BlackBerry = [[Product alloc]initWithProductName:@"Blackberry" productURL:@"http://www.amazon.com/BlackBerry-Classic-Factory-Unlocked-Cellphone/dp/B00OYZZ3VS/ref=sr_1_3?ie=UTF8&qid=1461951711&sr=8-3&keywords=blackberry"];
-//    Product *MotorolaRazr = [[Product alloc]initWithProductName:@"Motorla Razr" productURL:@"http://www.amazon.com/Motorola-V3-Unlocked-Player--U-S-Warranty/dp/B0016JDE34/ref=sr_1_1?s=wireless&ie=UTF8&qid=1461951732&sr=1-1&keywords=motorola+razr"];
-//
-//    apple.products = [NSMutableArray arrayWithObjects:iPad,iPodTouch, iPhone,nil];
-//    samsung.products =[NSMutableArray arrayWithObjects:GalaxyS4,GalaxyNote, GalaxyTab,nil];
-//    google.products = [NSMutableArray arrayWithObjects:Nexus5X,Nexus6P, Nexus9,nil];
-//    sprint.products = [NSMutableArray arrayWithObjects:Nextel,BlackBerry, MotorolaRazr,nil];
-
-    
-    self.dao = [DAO sharedDAO];
     
     
-    NSLog(@"%@",self.dao.companies);
     
 }
 
+-(void)saveToDisk{
+    [self.dao saveChanges];
+}
 
-- (void)viewWillAppear:(BOOL)animated {
-    //init withStockSymbol
-    [super viewWillAppear:animated];
-    NSMutableString *stockSymbols = [[NSMutableString alloc]init];
-    [stockSymbols appendString:[self.dao.companies[0]companySYM]];
-    for(int i = 1;i < [self.dao.companies count]; i++){
-
-    NSMutableString *stock = [[self.dao.companies[i]companySYM]mutableCopy];
-    NSMutableString *add = [NSMutableString stringWithFormat:@"+"];
-        [stockSymbols appendString:add];
-        [stockSymbols appendString:stock];
-    }
-    NSLog(@"stocksymbols is %@",stockSymbols);
-
+-(void)undo{
+    [self.dao undoChanges];
     
-    NSLog(@"viewWillAppear");
-
+    NSMutableString *stockSymbols = [[NSMutableString alloc]init];
+    for(Company* company in self.dao.companies){
+        NSMutableString *companyStockSymbol = [[company companySYM]mutableCopy];
+        NSMutableString *add = [NSMutableString stringWithFormat:@"+"];
+        [stockSymbols appendString:companyStockSymbol];
+        [stockSymbols appendString:add];
+        //        [companyStockSymbol release];
+    }
+    
+    
     NSString *yahooAPI = [NSString stringWithFormat:@"http://download.finance.yahoo.com/d/quotes.csv?s=%@&f=a",stockSymbols];
+    [stockSymbols release];
     NSURL *yahooAPIURL = [NSURL URLWithString:yahooAPI];
-//    NSError* error = nil;
-//    NSString* text = [NSString stringWithContentsOfURL:yahooAPIURL encoding:NSASCIIStringEncoding error:&error];
-//    NSArray *stockComponents = [[text componentsSeparatedByString:@"\n" ]mutableCopy];
     
     NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:yahooAPIURL
                                                          completionHandler:
                               ^(NSData *data, NSURLResponse *response, NSError *error) {
                                   if (data) {
+                                      
                                       NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                    self.stockComponents1 = [[str componentsSeparatedByString:@"\n" ]mutableCopy];
-
-                                    
-                                  } else {
+                                      self.stockComponents = [[str componentsSeparatedByString:@"\n" ]mutableCopy];
+                                      //                                      for(Company* company in self.dao.companies){
+                                      //                                          for(NSString* components in self.stockComponents){
+                                      //                                              [company setStockPrice: components];
+                                      for(int i = 0; i < [self.dao.companies count]; i++){
+                                          [self.dao.companies[i] setStockPrice: self.stockComponents[i]];
+                                      }
+                                      [str release];
+                                      dispatch_async(dispatch_get_main_queue(), ^{
+                                          [self.tableView reloadData]; //dispatch main queue
+                                      });
+                                      
+                                      
+                                      
+                                      
+                                      
+                                  }else {
                                       NSLog(@"Failed to fetch %@: %@", yahooAPIURL, error);
                                   }
                                   
-                                  for(int i = 0;i < [self.dao.companies count]; i++){
-                                      [self.dao.companies[i] setStockPrice: self.stockComponents1[i]];
-                                  }
-
-//                                  NSLog(@"%@ %@ %@ %@",[self.dao.companies[0]stockPrice],[self.dao.companies[1]stockPrice],[self.dao.companies[2]stockPrice],[self.dao.companies[3]stockPrice]);
                                   
-                                  dispatch_async(dispatch_get_main_queue(), ^{
-                                      [self.tableView reloadData];
-                                  });
+                                  
                                   
                                   
                               }];
-
+    
+    [task resume];
+    [self.tableView reloadData];
+    
+}
+- (void)viewWillAppear:(BOOL)animated {
+    //    [self.dao orderCompaniesByPosition];
+    
+    //init withStockSymbol
+    [super viewWillAppear:animated];
+    NSMutableString *stockSymbols = [[NSMutableString alloc]init];
+    for(Company* company in self.dao.companies){
+        NSMutableString *companyStockSymbol = [[company companySYM]mutableCopy];
+        NSMutableString *add = [NSMutableString stringWithFormat:@"+"];
+        [stockSymbols appendString:companyStockSymbol];
+        [stockSymbols appendString:add];
+//        [companyStockSymbol release];
+    }
+    
+    
+    NSString *yahooAPI = [NSString stringWithFormat:@"http://download.finance.yahoo.com/d/quotes.csv?s=%@&f=a",stockSymbols];
+    [stockSymbols release];
+    NSURL *yahooAPIURL = [NSURL URLWithString:yahooAPI];
+    
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:yahooAPIURL
+                                                         completionHandler:
+                              ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                  if (data) {
+                                      
+                                      NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                      self.stockComponents = [[str componentsSeparatedByString:@"\n" ]mutableCopy];
+//                                      for(Company* company in self.dao.companies){
+//                                          for(NSString* components in self.stockComponents){
+//                                              [company setStockPrice: components];
+                                      for(int i = 0; i < [self.dao.companies count]; i++){
+                                          [self.dao.companies[i] setStockPrice: self.stockComponents[i]];
+                                      }
+                                      [str release];
+                                      dispatch_async(dispatch_get_main_queue(), ^{
+                                          [self.tableView reloadData]; //dispatch main queue
+                                      });
+                                      
+                                      
+                                      
+                                      
+                                      
+                                  }else {
+                                      NSLog(@"Failed to fetch %@: %@", yahooAPIURL, error);
+                                  }
+                                  
+                                  
+                                  
+                                  
+                                  
+                              }];
+    
     [task resume];
     
-
     [self.tableView reloadData];
-
+    
 }
 
 
@@ -146,17 +194,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-//    int addRow;
-//    if(self.isEditing){
-//        addRow = 1;
-//    }
-//    else{
-//        addRow = 0;
-//    }
-    // Return the number of rows in the section.
     return [self.dao.companies count];
-//    + addRow;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -165,21 +203,13 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        
     }
     
-//    Company *company = [self.dao.companies objectAtIndex:[indexPath row]];
-
-//    if(indexPath.row >= self.dao.companies.count && [self isEditing]){
-//        cell.textLabel.text = @"Add Row";
-//    }else{
-//        cell.textLabel.text = self.dao.companies[indexPath.row];
-//    }
-//    
-    // Configure the cell...
     
-    cell.textLabel.text = [[self.dao.companies objectAtIndex:[indexPath row]]companyName];; //[self.companyList objectAtIndex:[indexPath row]];
+    cell.textLabel.text = [[self.dao.companies objectAtIndex:indexPath.row]companyName];; //[self.companyList objectAtIndex:[indexPath row]];
     cell.imageView.image = [UIImage imageNamed:[[self.dao.companies objectAtIndex:[indexPath row]]companyLogo]];
-    cell.detailTextLabel.text = [[self.dao.companies objectAtIndex:[indexPath row]]stockPrice];
+    cell.detailTextLabel.text = [[self.dao.companies objectAtIndex:indexPath.row]stockPrice];
     cell.detailTextLabel.font = [UIFont systemFontOfSize:16.0];
     return cell;
 }
@@ -198,18 +228,33 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Keeps cells from being selectable while not editing. No more blue flash.
-   
-
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
 
-        [self.dao.companies removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [tableView beginUpdates];
+
+
+        
+     
+           [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
+        [self.dao deleteCompany:[self.dao.companies objectAtIndex:indexPath.row]];
+//        [self.dao trackCompanyPosition];
+//        [tableView reloadData];
+
+        [tableView endUpdates];
+        [tableView reloadData];
+        
+        //        [[self.dao.companies objectAtIndex:indexPath.row] release]; //1st attem
+        //        [self.dao.companies objectAtIndex:indexPath.row release];
+        //        Company* company = [self.dao.companies objectAtIndex:indexPath.row]; //2nd attempt
+        //        [company.products release];
     }
     
     
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
-
-
+        
+        
     }
     
 
@@ -219,17 +264,19 @@
 
 
 // Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-    
-        NSInteger sourceRow = fromIndexPath.row;
-        NSInteger destRow = toIndexPath.row;
-        id object = [self.dao.companies objectAtIndex:sourceRow];
-        
-        [self.dao.companies removeObjectAtIndex:sourceRow];
-        [self.dao.companies insertObject:object atIndex:destRow];
-        
-    }
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    NSInteger sourceRow = fromIndexPath.row;
+    NSInteger destRow = toIndexPath.row;
+    [self.tableView beginUpdates];
+    Company*company = [[Company alloc] init];
+    company = [[self.dao.companies objectAtIndex:sourceRow] retain];
+    [[[DAO sharedDAO] companies] removeObjectAtIndex:sourceRow];
+    [[[DAO sharedDAO] companies] insertObject:company atIndex:destRow];
+    [[DAO sharedDAO] trackCompanyPosition];
+    [self.tableView endUpdates];
+    [self.tableView reloadData];
+
+}
 
 
 
@@ -239,23 +286,21 @@
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
--(void)pushForm{
+-(void)pushForm{ //when you create a new company name, logo, symbol pushed to formviewcontroller
     
     FormViewController *formViewController = [[FormViewController alloc] init];
     
     
-        [self.navigationController
-         pushViewController:formViewController
-         animated:YES];
-        formViewController.title = @"Add a New Company";
-//    Company *newCompany = [[Company alloc]init];
-    formViewController.companyName = @"Enter Name";
-    formViewController.companyLogo = @"Enter Logo";
-//    formViewController.currentCompany = newCompany;
-//    [self.dao.companies insertObject:newCompany atIndex:[self.dao.companies count]];
-     //trying to insert company object into companies so that program can add products= to new companies that are not in DAO
     
-        NSLog(@"I'm editing");
+    formViewController.title = @"Add a New Company";
+    
+    
+    
+    [self.navigationController
+     pushViewController:formViewController
+     animated:YES];
+    [formViewController release];
+    
     
 }
 
@@ -266,39 +311,45 @@
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-//    self.productViewController.company = myCompanies[indexPath.row]
-
+    
+    //    self.productViewController.company = myCompanies[indexPath.row]
+    
     self.productViewController.title = [self.dao.companies[indexPath.row]companyName];
     Company *company = self.dao.companies[indexPath.row];
-
+    
     self.productViewController.products =  company.products;
-
-//    FormViewController *formViewController = [[FormViewController alloc] init];
-//
-//    
-    if(self.editing == YES){
-        FormViewController *formViewController = [[FormViewController alloc] init];
-
+    self.productViewController.currentCompany = self.dao.companies[indexPath.row];
+    
+    //    FormViewController *formViewController = [[FormViewController alloc] init];
+    //
+    //
+    if(self.editing == YES){  //conditions for editing a comapany
+        self.formViewController = [[FormViewController alloc] init];
+        
         
         [self.navigationController
-         pushViewController:formViewController
+         pushViewController:self.formViewController
          animated:YES];
-        formViewController.title = @"Edit your company";
         
-        formViewController.companyName = [self.dao.companies[indexPath.row]companyName];
-        formViewController.companyLogo = [self.dao.companies[indexPath.row]companyLogo];
-        formViewController.companySYM = [self.dao.companies[indexPath.row]companySYM];
-
+        //        Company *newCompany = [[Company alloc]init];
+        self.formViewController.title = @"Edit your company";
+        self.formViewController.currentCompany = self.dao.companies[indexPath.row];
+        
+        [self.formViewController.currentCompany setCompanyName:[self.dao.companies[indexPath.row]companyName]];
+        [self.formViewController.currentCompany setCompanyLogo: [self.dao.companies[indexPath.row]companyLogo]];
+        [self.formViewController.currentCompany setCompanySYM:[self.dao.companies[indexPath.row]companySYM]];
+//        [self.formViewController.currentCompany setCompanyID:[self.dao.companies[indexPath.row]companyID]];
+        [self.formViewController release];
+        //        formViewController.companyID = [NSString stringWithFormat:@"%d",[self.dao addCompany:newCompany]] ;
     }
     else{
-
-    [self.navigationController
-        pushViewController:self.productViewController
-        animated:YES];
+        
+        [self.navigationController
+         pushViewController:self.productViewController
+         animated:YES];
     }
     
-
+    
 }
 
 

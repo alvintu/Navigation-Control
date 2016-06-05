@@ -19,11 +19,12 @@
 
 @interface CompanyViewController : UITableViewController
 
-@property (nonatomic, retain) NSMutableArray *companyList;
+//@property (nonatomic, retain) NSMutableArray *companyList;
 @property(nonatomic, strong) DAO *dao;
 //@property (nonatomic, retain) IBOutlet FormViewController *formViewController;
 @property (nonatomic, retain) IBOutlet  ProductViewController * productViewController;
-@property (nonatomic, retain) NSMutableArray *companies;
 
-@property(nonatomic,retain) NSMutableArray *stockComponents1;
+//@property (nonatomic, retain) NSMutableArray *companies;
+
+@property(nonatomic,retain) NSMutableArray *stockComponents;
 @end

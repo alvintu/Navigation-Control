@@ -12,89 +12,106 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.newproducts = [[NSMutableArray alloc]init];
     self.dao = [DAO sharedDAO];
     NSLog(@"%@",_currentCompany);
     
     //    NSLog(@"in form");
-    self.tf =  [[UITextField alloc] initWithFrame:CGRectMake(45, 30, 400, 80)];
-    self.tf.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
-    self.tf.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
-    self.tf.backgroundColor=[UIColor greenColor];
-    self.tf.text=self.productName;
-    
-    
+    self.productNameField =  [[UITextField alloc] initWithFrame:CGRectMake(60, 70, 200, 20)];
+    self.productNameField.textColor = [UIColor orangeColor];
+    self.productNameField.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
+    self.productNameField.backgroundColor=[UIColor blueColor];
+    self.productNameField.text=self.productName;
+    self.productNameField.textAlignment =  NSTextAlignmentCenter;
+    self.productNameField.placeholder = @"Product Name";
     
     //second one
-    self.tf1 = [[UITextField alloc] initWithFrame:CGRectMake(45, self.tf.frame.origin.y+100, 400, 80)];
-    self.tf1.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
-    self.tf1.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
-    self.tf1.backgroundColor=[UIColor greenColor];
-    self.tf1.text=self.productURL;
+    self.productURLField = [[UITextField alloc] initWithFrame:CGRectMake(60, self.productNameField.frame.origin.y+30, 200, 20)];
+    self.productURLField.textColor = [UIColor orangeColor];
+    self.productURLField.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
+    self.productURLField.backgroundColor=[UIColor blueColor];
+    self.productURLField.text=self.productURL;
+    self.productURLField.textAlignment =  NSTextAlignmentCenter;
+    self.productURLField.placeholder = @"Product URL";
+
+    self.productLogoLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, self.productURLField.frame.origin.y+50, 200, 20)];
+    self.productLogoLabel.textColor = [UIColor orangeColor];
+    self.productLogoLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
+    self.productLogoLabel.backgroundColor=[UIColor blueColor];
+    self.productLogoLabel.text=self.productLogo;
+    self.productLogoLabel.textAlignment =  NSTextAlignmentCenter;
     
-    self.tf2 = [[UITextField alloc] initWithFrame:CGRectMake(45, self.tf1.frame.origin.y+100, 400, 80)];
-    self.tf2.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
-    self.tf2.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
-    self.tf2.backgroundColor=[UIColor greenColor];
-    self.tf2.text=self.productLogo;
-    
-    
-    CGRect buttonFrame = CGRectMake( 300, 300, 100, 30 );
+    CGRect buttonFrame = CGRectMake(120, self.productLogoLabel.frame.origin.y+30, 70, 20 );
     UIButton *button = [[UIButton alloc] initWithFrame: buttonFrame];
     [button setTitle: @"Save" forState: UIControlStateNormal];
     [button addTarget:self action:@selector(saveButton) forControlEvents:UIControlEventTouchUpInside];
     [button setTitleColor: [UIColor whiteColor] forState: UIControlStateNormal];
     button.backgroundColor = [UIColor redColor];
     
+    self.warningMessageLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 150, 600, 300)];
+    self.warningMessageLabel.textColor = [UIColor redColor];
+    self.warningMessageLabel.font  = [UIFont fontWithName:@"Helvetica-Bold" size:20];
+    self.warningMessageLabel.text = @"Missing product name ";
+    self.warningMessageLabel.hidden = YES;
+
+   
+    
     //and so on adjust your view size according to your needs
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 45, screenWidth, screenHeight)];
-    view.backgroundColor = [UIColor whiteColor];
-    [view addSubview:self.tf];
-    [view addSubview:self.tf1];
-    [view addSubview:self.tf2];
-
+    view.backgroundColor = [UIColor colorWithRed:0/256.0 green:0/256.0 blue:256.0/256.0 alpha:1.0];
+    [view addSubview:self.productNameField];
+    [view addSubview:self.productURLField];
+    [view addSubview:self.productLogoLabel];
+    [view addSubview:self.warningMessageLabel];
     [view addSubview:button];
     
     [self.view addSubview:view];
-    
-    
-    
+//    [self.currentCompany release];
 }
 
 -(void)saveButton{
-    bool found = NO;
-//    for(int i = 0; i < [self.dao.companies count]; i ++){
-//        if(self.companyName == [self.dao.companies[i]companyName]){
-//            Company *currentCompany = self.dao.companies[i];  // change to being a company
-                if([self.currentProduct productName] ==  self.productName){
-                    [self.currentProduct setProductName:self.tf.text];
-                    [self.currentProduct setProductURL:self.tf1.text];
-//                }
-//            [self.dao.companies[i]setCompanyName:self.tf.text]; //set name/logo for selected Company obj
-//            [self.dao.companies[i]setCompanyLogo:self.tf1.text];
-//            NSLog(@"%@",[self.dao.companies[i]companyName]);
-//            NSLog(@"%@",[self.dao.companies[i]companyLogo]);
-            found = YES;
-                    
+    if(![self.productNameField.text isEqualToString:@""]){
+        
+//        bool found = NO;
+        //                if([self.currentProduct productName] ==  self.productName){
+//        for(Product* product in self.currentCompany.products){
+            if(self.currentProduct){ //comparing textfield with dao array
+                [self.currentProduct setProductName:self.productNameField.text];
+                [self.currentProduct setProductURL:self.productURLField.text];
+                [self.currentProduct setProductLogo:self.productLogoLabel.text];
+                [self.dao editProducts:self.currentProduct];
+//                found = YES;
+//                [product release];
+            }
+        
+//        if (found == NO)
+    else
+        {
+            Product *newProduct = [[Product alloc]initWithProductName:self.productNameField.text productURL:self.productURLField.text productLogo:self.productLogoLabel.text];
+            for(Company *company in self.dao.companies){
+                if(company.products == self.currentproducts)
+                    self.currentCompany = company;
+            }
+            
+            [newProduct setComp_id:(NSNumber*)self.currentCompany.companyID ];
+            [self.currentproducts addObject:newProduct];
+            [self.dao addProduct:newProduct selectedCompanyID:newProduct.comp_id indexOfProduct:[self.currentproducts indexOfObject:newProduct]];
+            [newProduct release];
 
-                }
+        }
+        [self.navigationController popViewControllerAnimated:YES];
 
-    if (found == NO) {
-        Product *newProduct = [[Product alloc]initWithProductName:self.tf.text productURL:self.tf1.text productLogo:self.tf2.text];
-        [self.currentproducts insertObject:newProduct atIndex:([self.currentproducts count])];
-        [self.newproducts insertObject:newProduct atIndex:([self.newproducts count])];
-
+    } else {
+        self.warningMessageLabel.hidden = NO;
+        //        [self.view release];
+    }
 }
 
-    [self.navigationController popViewControllerAnimated:YES];
-    
-    //    [self.navigationController
-    //     popViewControllerAnimated:YES];
-    
-    }
+-(void)viewWillDisappear:(BOOL)animated {
+    self.currentCompany = nil;
 
+}
 
 @end

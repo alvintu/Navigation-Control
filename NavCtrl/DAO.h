@@ -9,17 +9,41 @@
 #import <Foundation/Foundation.h>
 #import "Product.h"
 #import "Company.h"
+//#import "sqlite3.h"
+#import <CoreData/CoreData.h>
+
+
 
 @interface DAO : NSObject
-@property (nonatomic, retain) NSMutableArray *companies;
-//@property (nonatomic, retain) NSMutableArray *products;
+@property (nonatomic, retain) NSMutableArray<Company*> *companies;
+@property (nonatomic, retain) NSMutableArray<Product*> *products;
 
 
     // whatever instance vars you want
 
+-(void)readDatabase;
 
 + (DAO *)sharedDAO;   // class method to return the singleton object
+-(void)createOrOpenDB;
+-(int)addCompany:(Company*)newCompany;
+-(void)deleteCompany:(Company*)selectedCompany;
+-(void)editCompany:(Company*)selectedCompany;
+-(void)trackCompanyPosition;
+//-(void)orderCompaniesByPosition;
+-(void)addProduct:(Product*)newProduct  selectedCompanyID:(NSNumber*)selectedCompanyID indexOfProduct:(NSInteger)indexOfProduct;
+-(void)deleteProduct:(Product*)selectedProduct;
+//-(void)sortProducts:(Company*)selectedCompany;
+//-(void)trackProductsPosition;
+-(void)editProducts:(Product*)selectedProduct;
+-(void)trackProductsPosition:(NSMutableArray*)products selectedCompany:(Company*)selectedCompany;
+-(void)deleteProductsRelatedToCompanyID:(Company*)company;
 
-- (void)customMethod; // add optional methods to customize the singleton class
+
+-(void) saveChanges;
+-(void)populateProductsBasedOnCompanyID:(Company*)selectedCompany;
+@property(nonatomic,retain) NSManagedObjectContext *context;
+@property(nonatomic,retain) NSManagedObjectModel *model;
+-(void)undoChanges;
+-(void)undoProductChanges;
 
 @end

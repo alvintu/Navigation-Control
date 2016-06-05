@@ -13,6 +13,10 @@
 @property (nonatomic,strong) NSString *productName;
 @property (nonatomic,strong) NSString *productURL;
 @property (nonatomic,strong) NSString *productLogo;
+@property (nonatomic,strong) NSNumber *comp_id;
+@property (nonatomic) int productPosition;
+
 
 -(instancetype)initWithProductName:(NSString*)productName productURL:(NSString*)productURL productLogo:(NSString*)productLogo;
+
 @end
