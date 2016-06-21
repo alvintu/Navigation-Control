@@ -890,11 +890,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CompanyViewController.m"
-            timestampString = "487728646.592597"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -906,11 +906,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CompanyViewController.m"
-            timestampString = "487728646.592597"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -922,12 +922,18 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CompanyViewController.m"
-            timestampString = "487728646.592597"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
             startingLineNumber = "87"
             endingLineNumber = "87"
             landmarkName = "-viewWillAppear:"
+=======
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "-viewDidLoad"
+>>>>>>> nsurlsession
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -938,12 +944,18 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CompanyViewController.m"
-            timestampString = "487728646.592597"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
             startingLineNumber = "230"
             endingLineNumber = "230"
             landmarkName = "-editCollectionCell:"
+=======
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "-collectionView:cellForItemAtIndexPath:"
+>>>>>>> nsurlsession
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -954,11 +966,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CompanyViewController.m"
-            timestampString = "487728646.592597"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "-edit"
             landmarkType = "5">
          </BreakpointContent>
@@ -970,12 +982,18 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CompanyViewController.m"
-            timestampString = "487728646.592597"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
             startingLineNumber = "280"
             endingLineNumber = "280"
             landmarkName = "-pushForm"
+=======
+            startingLineNumber = "252"
+            endingLineNumber = "252"
+            landmarkName = "-deleteCollectionCell:"
+>>>>>>> nsurlsession
             landmarkType = "5">
             <Locations>
                <Location
@@ -1063,11 +1081,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CompanyViewController.m"
-            timestampString = "487728646.592597"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1079,11 +1097,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CompanyViewController.m"
-            timestampString = "487728646.592597"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1095,12 +1113,18 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CompanyViewController.m"
-            timestampString = "487728646.592597"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
             startingLineNumber = "250"
             endingLineNumber = "250"
             landmarkName = "-deleteCollectionCell:"
+=======
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "-editCollectionCell:"
+>>>>>>> nsurlsession
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1111,12 +1135,18 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CompanyViewController.m"
-            timestampString = "487728646.592597"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
             startingLineNumber = "237"
             endingLineNumber = "237"
             landmarkName = "-deleteCollectionCell:"
+=======
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "-editCollectionCell:"
+>>>>>>> nsurlsession
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1143,12 +1173,18 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CompanyViewController.m"
-            timestampString = "487728646.592597"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
             startingLineNumber = "349"
             endingLineNumber = "349"
             landmarkName = "-loadStockPrices"
+=======
+            startingLineNumber = "298"
+            endingLineNumber = "298"
+            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
+>>>>>>> nsurlsession
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1159,12 +1195,18 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CompanyViewController.m"
-            timestampString = "487728646.592597"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
             startingLineNumber = "347"
             endingLineNumber = "347"
             landmarkName = "-loadStockPrices"
+=======
+            startingLineNumber = "296"
+            endingLineNumber = "296"
+            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
+>>>>>>> nsurlsession
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1175,11 +1217,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProductViewController.m"
-            timestampString = "487697382.162054"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
             landmarkName = "-collectionView:numberOfItemsInSection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1191,11 +1233,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProductViewController.m"
-            timestampString = "487697382.162054"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "-numberOfSectionsInCollectionView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1207,12 +1249,18 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CompanyViewController.m"
-            timestampString = "487728646.592597"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
             startingLineNumber = "178"
             endingLineNumber = "178"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
+=======
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "-numberOfSectionsInCollectionView:"
+>>>>>>> nsurlsession
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1223,12 +1271,18 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CompanyViewController.m"
-            timestampString = "487728646.592597"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
             startingLineNumber = "185"
             endingLineNumber = "185"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
+=======
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "-collectionView:numberOfItemsInSection:"
+>>>>>>> nsurlsession
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1239,11 +1293,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProductViewController.m"
-            timestampString = "487721617.612917"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
             landmarkName = "-edit"
             landmarkType = "5">
          </BreakpointContent>
@@ -1255,11 +1309,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProductViewController.m"
-            timestampString = "487721617.612917"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
             landmarkName = "-edit"
             landmarkType = "5">
          </BreakpointContent>
@@ -1271,11 +1325,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProductViewController.m"
-            timestampString = "487721617.612917"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
             landmarkName = "-done"
             landmarkType = "5">
          </BreakpointContent>
@@ -1287,12 +1341,18 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CompanyViewController.m"
-            timestampString = "487728646.592597"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
             startingLineNumber = "107"
             endingLineNumber = "107"
             landmarkName = "-saveToDisk"
+=======
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "-edit"
+>>>>>>> nsurlsession
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1303,12 +1363,18 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CompanyViewController.m"
-            timestampString = "487728646.592597"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
             startingLineNumber = "105"
             endingLineNumber = "105"
             landmarkName = "-saveToDisk"
+=======
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "-edit"
+>>>>>>> nsurlsession
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1319,11 +1385,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CompanyViewController.m"
-            timestampString = "487728646.592597"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "-edit"
             landmarkType = "5">
          </BreakpointContent>
@@ -1335,11 +1401,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CompanyViewController.m"
-            timestampString = "487728646.592597"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "-edit"
             landmarkType = "5">
          </BreakpointContent>
@@ -1351,12 +1417,18 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CompanyViewController.m"
-            timestampString = "487728646.592597"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
             startingLineNumber = "108"
             endingLineNumber = "108"
             landmarkName = "-saveToDisk"
+=======
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "-edit"
+>>>>>>> nsurlsession
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1383,11 +1455,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProductViewController.m"
-            timestampString = "487721617.612917"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
             landmarkName = "-deleteCollectionCell:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1399,11 +1471,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProductViewController.m"
-            timestampString = "487721617.612917"
+            timestampString = "488214620.231636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
             landmarkName = "-deleteCollectionCell:"
             landmarkType = "5">
             <Locations>
@@ -1415,11 +1487,11 @@
                   moduleName = "NavCtrl"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Jo/NavCtrl/ProductViewController.m"
-                  timestampString = "487808563.876578"
+                  timestampString = "488220569.431649"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "187"
-                  endingLineNumber = "187"
+                  startingLineNumber = "204"
+                  endingLineNumber = "204"
                   offsetFromSymbolStart = "72">
                </Location>
                <Location
@@ -1430,11 +1502,11 @@
                   moduleName = "NavCtrl"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Jo/NavCtrl/ProductViewController.m"
-                  timestampString = "487808563.876788"
+                  timestampString = "488220569.431798"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "187"
-                  endingLineNumber = "187"
+                  startingLineNumber = "204"
+                  endingLineNumber = "204"
                   offsetFromSymbolStart = "12">
                </Location>
             </Locations>
@@ -1454,6 +1526,22 @@
             endingLineNumber = "92"
             landmarkName = "-saveButton"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NavCtrl/AFNetworking/AFURLSessionManager.m"
+            timestampString = "488216131.988453"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "@implementation AFURLSessionManagerTaskDelegate"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
