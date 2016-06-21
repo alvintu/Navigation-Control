@@ -927,7 +927,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "87"
             endingLineNumber = "87"
-            landmarkName = "-viewDidLoad"
+            landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -943,7 +943,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "230"
             endingLineNumber = "230"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
+            landmarkName = "-editCollectionCell:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -975,7 +975,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "280"
             endingLineNumber = "280"
-            landmarkName = "-deleteCollectionCell:"
+            landmarkName = "-pushForm"
             landmarkType = "5">
             <Locations>
                <Location
@@ -1100,7 +1100,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "250"
             endingLineNumber = "250"
-            landmarkName = "-editCollectionCell:"
+            landmarkName = "-deleteCollectionCell:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1116,7 +1116,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "237"
             endingLineNumber = "237"
-            landmarkName = "-editCollectionCell:"
+            landmarkName = "-deleteCollectionCell:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1148,7 +1148,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "349"
             endingLineNumber = "349"
-            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
+            landmarkName = "-loadStockPrices"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1164,7 +1164,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "347"
             endingLineNumber = "347"
-            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
+            landmarkName = "-loadStockPrices"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1212,7 +1212,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "178"
             endingLineNumber = "178"
-            landmarkName = "-numberOfSectionsInCollectionView:"
+            landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1228,7 +1228,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "185"
             endingLineNumber = "185"
-            landmarkName = "-collectionView:numberOfItemsInSection:"
+            landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1292,7 +1292,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "107"
             endingLineNumber = "107"
-            landmarkName = "-edit"
+            landmarkName = "-saveToDisk"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1308,7 +1308,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "105"
             endingLineNumber = "105"
-            landmarkName = "-edit"
+            landmarkName = "-saveToDisk"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1356,7 +1356,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "108"
             endingLineNumber = "108"
-            landmarkName = "-edit"
+            landmarkName = "-saveToDisk"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
