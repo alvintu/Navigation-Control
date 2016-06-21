@@ -11,13 +11,13 @@
 #import "Product.h"
 #import "DAO.h"
 #import "FormViewController.h"
-
-
+#import "ProtoCell.h"
 @class ProductViewController;
 
 
 
-@interface CompanyViewController : UITableViewController
+@interface CompanyViewController : UICollectionViewController<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIGestureRecognizerDelegate>
+
 
 //@property (nonatomic, retain) NSMutableArray *companyList;
 @property(nonatomic, strong) DAO *dao;
@@ -27,4 +27,11 @@
 //@property (nonatomic, retain) NSMutableArray *companies;
 
 @property(nonatomic,retain) NSMutableArray *stockComponents;
+//@property (retain, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong) IBOutlet UICollectionViewFlowLayout *flowLayout;
+@property BOOL isEditing;
+//@property (nonatomic) UIButton *deleteButton;
+
+
+
 @end

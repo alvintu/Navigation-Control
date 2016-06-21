@@ -516,6 +516,12 @@ static DAO *sharedDAO = nil;    // static instance variable
         //    NSManagedObject *company = (NSManagedObject *)[result objectAtIndex:[self.companies indexOfObject:selectedCompany]];
         
         [self.context deleteObject:product];
+        for(Company *company in self.companies){
+            if(company.companyID == selectedProduct.comp_id){
+            [company.products removeObject:selectedProduct];
+        }
+        }
+
         
         NSError *deleteError = nil;
         

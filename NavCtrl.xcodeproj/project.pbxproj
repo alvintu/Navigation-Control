@@ -23,8 +23,16 @@
 		48A656E718163C1B00746D36 /* CompanyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48A656E518163C1B00746D36 /* CompanyViewController.xib */; };
 		48A656EB18163F8700746D36 /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A656E918163F8700746D36 /* ProductViewController.m */; };
 		48A656EE1816468000746D36 /* Sunflower.gif in Resources */ = {isa = PBXBuildFile; fileRef = 48A656ED1816468000746D36 /* Sunflower.gif */; };
+		C820878D1D071B39003192C4 /* ProtoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C820878C1D071B39003192C4 /* ProtoCell.m */; };
+		C820878F1D071B9F003192C4 /* ProtoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C820878E1D071B9F003192C4 /* ProtoCell.xib */; };
+		C82087931D0750DB003192C4 /* google.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C82087921D0750DB003192C4 /* google.jpg */; };
+		C82087951D0876E1003192C4 /* sprint.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C82087941D0876E1003192C4 /* sprint.jpg */; };
 		C8384C4D1CD667640085DD84 /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A656E918163F8700746D36 /* ProductViewController.m */; };
 		C8384C501CD7D86E0085DD84 /* DAO.m in Sources */ = {isa = PBXBuildFile; fileRef = C8384C4F1CD7D86E0085DD84 /* DAO.m */; };
+		C85ED88E1D094AFE0048A489 /* delete.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C85ED88D1D094AFE0048A489 /* delete.jpg */; };
+		C86DD7B81D10847200C0B494 /* defaultlogo1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C86DD7B71D10847200C0B494 /* defaultlogo1.jpg */; };
+		C86DD7BA1D1084E600C0B494 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = C86DD7B91D1084E600C0B494 /* edit.png */; };
+		C86DD7BC1D10BD3500C0B494 /* ProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C86DD7BB1D10BD3500C0B494 /* ProductViewController.xib */; };
 		C87F91511CFDED6600C7D35F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C87F914F1CFDED6600C7D35F /* Model.xcdatamodeld */; };
 		C8B72BA41CDCFAF80089DC5D /* blackberry.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8B72B981CDCFAF80089DC5D /* blackberry.jpg */; };
 		C8B72BA51CDCFAF80089DC5D /* galaxynote.png in Resources */ = {isa = PBXBuildFile; fileRef = C8B72B991CDCFAF80089DC5D /* galaxynote.png */; };
@@ -48,11 +56,8 @@
 		C8E71A181CE2C58D003912F2 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C8E71A171CE2C58D003912F2 /* libsqlite3.tbd */; };
 		C8EA24CE1CD8F7F1007DB6C2 /* FormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8EA24CD1CD8F7F1007DB6C2 /* FormViewController.m */; };
 		C8EA24D11CD939DA007DB6C2 /* ProductFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8EA24D01CD939DA007DB6C2 /* ProductFormViewController.m */; };
-		C8EF20021CF4E93C00190D2C /* google.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8EF20011CF4E93C00190D2C /* google.jpg */; };
-		C8EF20041CF4E9A800190D2C /* sprint.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8EF20031CF4E9A800190D2C /* sprint.jpg */; };
 		C8EF20061CF4F55100190D2C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8EF20051CF4F55100190D2C /* Launch Screen.storyboard */; };
 		C8FE38861CE9353000B7B99B /* defaultLogo0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8FE38841CE9353000B7B99B /* defaultLogo0.jpg */; };
-		C8FE38871CE9353000B7B99B /* defaultLogo1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8FE38851CE9353000B7B99B /* defaultLogo1.jpg */; };
 		C8FE388C1CE9353800B7B99B /* defaultLogo2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8FE38881CE9353800B7B99B /* defaultLogo2.jpg */; };
 		C8FE388D1CE9353800B7B99B /* defaultLogo3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8FE38891CE9353800B7B99B /* defaultLogo3.jpg */; };
 		C8FE388E1CE9353800B7B99B /* defaultLogo4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8FE388A1CE9353800B7B99B /* defaultLogo4.jpg */; };
@@ -97,8 +102,17 @@
 		48A656E818163F8700746D36 /* ProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductViewController.h; path = ../ProductViewController.h; sourceTree = "<group>"; };
 		48A656E918163F8700746D36 /* ProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductViewController.m; path = ../ProductViewController.m; sourceTree = "<group>"; };
 		48A656ED1816468000746D36 /* Sunflower.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Sunflower.gif; sourceTree = "<group>"; };
+		C820878B1D071B39003192C4 /* ProtoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtoCell.h; sourceTree = "<group>"; };
+		C820878C1D071B39003192C4 /* ProtoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtoCell.m; sourceTree = "<group>"; };
+		C820878E1D071B9F003192C4 /* ProtoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProtoCell.xib; sourceTree = "<group>"; };
+		C82087921D0750DB003192C4 /* google.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = google.jpg; sourceTree = "<group>"; };
+		C82087941D0876E1003192C4 /* sprint.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sprint.jpg; sourceTree = "<group>"; };
 		C8384C4E1CD7D86E0085DD84 /* DAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAO.h; sourceTree = "<group>"; };
 		C8384C4F1CD7D86E0085DD84 /* DAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAO.m; sourceTree = "<group>"; };
+		C85ED88D1D094AFE0048A489 /* delete.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = delete.jpg; sourceTree = "<group>"; };
+		C86DD7B71D10847200C0B494 /* defaultlogo1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = defaultlogo1.jpg; sourceTree = "<group>"; };
+		C86DD7B91D1084E600C0B494 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit.png; sourceTree = "<group>"; };
+		C86DD7BB1D10BD3500C0B494 /* ProductViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductViewController.xib; sourceTree = "<group>"; };
 		C87F91501CFDED6600C7D35F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		C8B72B981CDCFAF80089DC5D /* blackberry.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blackberry.jpg; sourceTree = "<group>"; };
 		C8B72B991CDCFAF80089DC5D /* galaxynote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = galaxynote.png; sourceTree = "<group>"; };
@@ -128,11 +142,8 @@
 		C8EA24CD1CD8F7F1007DB6C2 /* FormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormViewController.m; sourceTree = "<group>"; };
 		C8EA24CF1CD939DA007DB6C2 /* ProductFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductFormViewController.h; sourceTree = "<group>"; };
 		C8EA24D01CD939DA007DB6C2 /* ProductFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductFormViewController.m; sourceTree = "<group>"; };
-		C8EF20011CF4E93C00190D2C /* google.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = google.jpg; sourceTree = "<group>"; };
-		C8EF20031CF4E9A800190D2C /* sprint.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sprint.jpg; sourceTree = "<group>"; };
 		C8EF20051CF4F55100190D2C /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		C8FE38841CE9353000B7B99B /* defaultLogo0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = defaultLogo0.jpg; sourceTree = "<group>"; };
-		C8FE38851CE9353000B7B99B /* defaultLogo1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = defaultLogo1.jpg; sourceTree = "<group>"; };
 		C8FE38881CE9353800B7B99B /* defaultLogo2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = defaultLogo2.jpg; sourceTree = "<group>"; };
 		C8FE38891CE9353800B7B99B /* defaultLogo3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = defaultLogo3.jpg; sourceTree = "<group>"; };
 		C8FE388A1CE9353800B7B99B /* defaultLogo4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = defaultLogo4.jpg; sourceTree = "<group>"; };
@@ -192,6 +203,9 @@
 				C8C12D9C1CD45B7800A7CD01 /* Product.m */,
 				C8384C4E1CD7D86E0085DD84 /* DAO.h */,
 				C8384C4F1CD7D86E0085DD84 /* DAO.m */,
+				C820878B1D071B39003192C4 /* ProtoCell.h */,
+				C820878C1D071B39003192C4 /* ProtoCell.m */,
+				C820878E1D071B9F003192C4 /* ProtoCell.xib */,
 				C87F914F1CFDED6600C7D35F /* Model.xcdatamodeld */,
 			);
 			name = ParentViewController;
@@ -206,6 +220,7 @@
 				C8EA24D01CD939DA007DB6C2 /* ProductFormViewController.m */,
 				C8C12D931CD3142500A7CD01 /* WebViewController.h */,
 				C8C12D941CD3142500A7CD01 /* WebViewController.m */,
+				C86DD7BB1D10BD3500C0B494 /* ProductViewController.xib */,
 			);
 			name = ProductViewController;
 			sourceTree = "<group>";
@@ -261,9 +276,11 @@
 		48A656BB18163BF200746D36 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C86DD7B91D1084E600C0B494 /* edit.png */,
 				C8FE38841CE9353000B7B99B /* defaultLogo0.jpg */,
-				C8FE38851CE9353000B7B99B /* defaultLogo1.jpg */,
+				C86DD7B71D10847200C0B494 /* defaultlogo1.jpg */,
 				C8FE38881CE9353800B7B99B /* defaultLogo2.jpg */,
+				C85ED88D1D094AFE0048A489 /* delete.jpg */,
 				C8FE38891CE9353800B7B99B /* defaultLogo3.jpg */,
 				C8FE388A1CE9353800B7B99B /* defaultLogo4.jpg */,
 				C8FE388B1CE9353800B7B99B /* defaultLogo5.jpg */,
@@ -273,6 +290,7 @@
 				C8FE38931CE9354200B7B99B /* defaultLogo9.jpg */,
 				C8FE38981CE9354D00B7B99B /* defaultLogo10.jpg */,
 				48A656ED1816468000746D36 /* Sunflower.gif */,
+				C82087921D0750DB003192C4 /* google.jpg */,
 				C8C12D881CD2F13100A7CD01 /* apple.png */,
 				C8B72B981CDCFAF80089DC5D /* blackberry.jpg */,
 				C8B72B991CDCFAF80089DC5D /* galaxynote.png */,
@@ -280,15 +298,14 @@
 				C8B72B9B1CDCFAF80089DC5D /* galaxytab.jpg */,
 				C8B72B9C1CDCFAF80089DC5D /* ipad.jpg */,
 				C8B72B9D1CDCFAF80089DC5D /* iphone.jpg */,
+				C82087941D0876E1003192C4 /* sprint.jpg */,
 				C8B72B9E1CDCFAF80089DC5D /* ipodtouch.jpg */,
 				C8B72B9F1CDCFAF80089DC5D /* nextel.jpg */,
 				C8B72BA01CDCFAF80089DC5D /* nexus5x.jpg */,
 				C8B72BA11CDCFAF80089DC5D /* nexus6.jpg */,
 				C8B72BA21CDCFAF80089DC5D /* nexus9.jpg */,
 				C8B72BA31CDCFAF80089DC5D /* razr.jpg */,
-				C8EF20011CF4E93C00190D2C /* google.jpg */,
 				C8C12D8A1CD2F13100A7CD01 /* samsung.png */,
-				C8EF20031CF4E9A800190D2C /* sprint.jpg */,
 				48A656BC18163BF200746D36 /* NavCtrl-Info.plist */,
 				48A656BD18163BF200746D36 /* InfoPlist.strings */,
 				48A656C018163BF200746D36 /* main.m */,
@@ -399,18 +416,22 @@
 				C8B72BA71CDCFAF80089DC5D /* galaxytab.jpg in Resources */,
 				C8B72BA81CDCFAF80089DC5D /* ipad.jpg in Resources */,
 				C8B72BAE1CDCFAF80089DC5D /* nexus9.jpg in Resources */,
-				C8EF20041CF4E9A800190D2C /* sprint.jpg in Resources */,
+				C82087951D0876E1003192C4 /* sprint.jpg in Resources */,
+				C82087931D0750DB003192C4 /* google.jpg in Resources */,
 				C8B72BA51CDCFAF80089DC5D /* galaxynote.png in Resources */,
 				C8B72BA91CDCFAF80089DC5D /* iphone.jpg in Resources */,
 				C8B72BAF1CDCFAF80089DC5D /* razr.jpg in Resources */,
-				C8FE38871CE9353000B7B99B /* defaultLogo1.jpg in Resources */,
+				C820878F1D071B9F003192C4 /* ProtoCell.xib in Resources */,
 				C8B72BAA1CDCFAF80089DC5D /* ipodtouch.jpg in Resources */,
 				C8B72BAC1CDCFAF80089DC5D /* nexus5x.jpg in Resources */,
+				C86DD7B81D10847200C0B494 /* defaultlogo1.jpg in Resources */,
 				C8B72BA41CDCFAF80089DC5D /* blackberry.jpg in Resources */,
 				C8EF20061CF4F55100190D2C /* Launch Screen.storyboard in Resources */,
 				48A656E718163C1B00746D36 /* CompanyViewController.xib in Resources */,
 				C8FE38951CE9354200B7B99B /* defaultLogo7.jpg in Resources */,
+				C85ED88E1D094AFE0048A489 /* delete.jpg in Resources */,
 				C8C12D8E1CD2F13100A7CD01 /* samsung.png in Resources */,
+				C86DD7BC1D10BD3500C0B494 /* ProductViewController.xib in Resources */,
 				C8B72BAB1CDCFAF80089DC5D /* nextel.jpg in Resources */,
 				C8B72BA61CDCFAF80089DC5D /* galaxys4.jpg in Resources */,
 				C8FE388C1CE9353800B7B99B /* defaultLogo2.jpg in Resources */,
@@ -420,7 +441,7 @@
 				C8FE38961CE9354200B7B99B /* defaultLogo8.jpg in Resources */,
 				C8FE38861CE9353000B7B99B /* defaultLogo0.jpg in Resources */,
 				C8FE38991CE9354D00B7B99B /* defaultLogo10.jpg in Resources */,
-				C8EF20021CF4E93C00190D2C /* google.jpg in Resources */,
+				C86DD7BA1D1084E600C0B494 /* edit.png in Resources */,
 				C8FE388E1CE9353800B7B99B /* defaultLogo4.jpg in Resources */,
 				C8FE38971CE9354200B7B99B /* defaultLogo9.jpg in Resources */,
 				48A656BF18163BF200746D36 /* InfoPlist.strings in Resources */,
@@ -447,6 +468,7 @@
 			files = (
 				C8C12D9D1CD45B7800A7CD01 /* Product.m in Sources */,
 				48A656E618163C1B00746D36 /* CompanyViewController.m in Sources */,
+				C820878D1D071B39003192C4 /* ProtoCell.m in Sources */,
 				C8C12D9A1CD44BDD00A7CD01 /* Company.m in Sources */,
 				C8C12D951CD3142500A7CD01 /* WebViewController.m in Sources */,
 				C8EA24D11CD939DA007DB6C2 /* ProductFormViewController.m in Sources */,
