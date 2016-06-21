@@ -8,7 +8,7 @@
 
 #import "CompanyViewController.h"
 #import "ProductViewController.h"
-
+#import "AFNetworking.h"
 @interface CompanyViewController (){
     UIBarButtonItem *editButton;
     UIBarButtonItem *doneButton;
@@ -345,38 +345,83 @@
     [stockSymbols release];
     NSURL *yahooAPIURL = [NSURL URLWithString:yahooAPI];
     
-    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:yahooAPIURL
-                                                         completionHandler:
-                              ^(NSData *data, NSURLResponse *response, NSError *error) {
-                                  if (data) {
-                                      
-                                      NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                      self.stockComponents = [[str componentsSeparatedByString:@"\n" ]mutableCopy];
-                                      //                                      for(Company* company in self.dao.companies){
-                                      //                                          for(NSString* components in self.stockComponents){
-                                      //                                              [company setStockPrice: components];
-                                      for(int i = 0; i < [self.dao.companies count]; i++){
-                                          [self.dao.companies[i] setStockPrice: self.stockComponents[i]];
-                                      }
-                                      [str release];
-                                      dispatch_async(dispatch_get_main_queue(), ^{
-                                          [self.collectionView reloadData]; //dispatch main queue
-                                      });
-                                      
-                                      
-                                      
-                                      
-                                      
-                                  }else {
-                                      NSLog(@"Failed to fetch %@: %@", yahooAPIURL, error);
-                                  }
-                                  
-                                  
-                                  
-                                  
-                                  
-                              }];
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
-    [task resume];
+//    NSURL *URL = [NSURL URLWithString:@"http://example.com/upload"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:yahooAPIURL];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+
+    
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        } else {
+            NSData *data;
+            data = responseObject;
+            NSLog(@"response is %@  and responseObject is %@", response, responseObject);
+            if (data) {
+                
+                NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                self.stockComponents = [[str componentsSeparatedByString:@"\n" ]mutableCopy];
+                //                                      for(Company* company in self.dao.companies){
+                //                                          for(NSString* components in self.stockComponents){
+                //                                              [company setStockPrice: components];
+                for(int i = 0; i < [self.dao.companies count]; i++){
+                    [self.dao.companies[i] setStockPrice: self.stockComponents[i]];
+                }
+                [str release];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.collectionView reloadData]; //dispatch main queue
+                });
+                
+                
+                
+                
+                
+            }else {
+                NSLog(@"Failed to fetch %@: %@", yahooAPIURL, error);
+            }
+            
+            
+ 
+        }
+    }];
+    [dataTask resume];
+
+    
+//    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:yahooAPIURL
+//                                                         completionHandler:
+//                              ^(NSData *data, NSURLResponse *response, NSError *error) {
+//                                  if (data) {
+//
+//                                      NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//                                      self.stockComponents = [[str componentsSeparatedByString:@"\n" ]mutableCopy];
+//                                      //                                      for(Company* company in self.dao.companies){
+//                                      //                                          for(NSString* components in self.stockComponents){
+//                                      //                                              [company setStockPrice: components];
+//                                      for(int i = 0; i < [self.dao.companies count]; i++){
+//                                          [self.dao.companies[i] setStockPrice: self.stockComponents[i]];
+//                                      }
+//                                      [str release];
+//                                      dispatch_async(dispatch_get_main_queue(), ^{
+//                                          [self.collectionView reloadData]; //dispatch main queue
+//                                      });
+//                                      
+//                                      
+//                                      
+//                                      
+//                                      
+//                                  }else {
+//                                      NSLog(@"Failed to fetch %@: %@", yahooAPIURL, error);
+//                                  }
+//                                  
+//                                  
+//
+//                                  
+//                                  
+//                              }];
+//    
+//    [task resume];
 }
 @end
