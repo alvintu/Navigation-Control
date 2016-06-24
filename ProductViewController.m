@@ -9,95 +9,115 @@
 #import "ProductViewController.h"
 #import "WebViewController.h"
 
-@interface ProductViewController (){
-UIBarButtonItem *editButton;
-UIBarButtonItem *doneButton;
-UIBarButtonItem *addButton;
-UIBarButtonItem *saveButton;
-UIBarButtonItem *undoButton;
-NSMutableArray *navigationItems;
-}
+@interface ProductViewController ()
 
 @end
 
 @implementation ProductViewController
 
-//ProtoCell *cell;
-NSIndexPath *deleteIndexPath;
+//- (id)initWithStyle:(UITableViewStyle)style
+//{
+//    self = [super initWithStyle:style];
+//    if (self) {
+//        // Custom initialization
+//    }
+//    return self;
+//}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.installsStandardGestureForInteractiveMovement = true;
-    
-    //    self.tableView.allowsSelectionDuringEditing = YES;
-    
-    // Uncomment the following line to preserve selection between presentations.
-    //    self.clearsSelectionOnViewWillAppear = NO;
+
+
+    NSLog(@"viewDidLoad");
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
+                                  initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                  target:self
+                                  action:@selector(pushForm)];
     self.dao = [DAO sharedDAO];
+
+    self.tableView.allowsSelectionDuringEditing = YES;
+
+    // Uncomment the following line to preserve selection between presentations.
+//     self.tableview.clearsSelectionOnViewWillAppear = NO;
+ 
     
-    addButton = [[UIBarButtonItem alloc]
-                 initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                 target:self
-                 action:@selector(pushForm)];
+    UIBarButtonItem *undoButton = [[UIBarButtonItem alloc]
+                                   initWithBarButtonSystemItem:UIBarButtonSystemItemUndo
+                                   target:self
+                                   action:@selector(undo)];
     
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc]
+                                   initWithBarButtonSystemItem:UIBarButtonSystemItemSave
+                                   target:self
+                                   action:@selector(saveToDisk)];
     
-    saveButton = [[UIBarButtonItem alloc]
-                  initWithBarButtonSystemItem:UIBarButtonSystemItemSave
-                  target:self
-                  action:@selector(saveToDisk)];
-    
-    
-    undoButton = [[UIBarButtonItem alloc]
-                  initWithBarButtonSystemItem:UIBarButtonSystemItemUndo
-                  target:self
-                  action:@selector(undo)];
-    
-    editButton = [[UIBarButtonItem alloc]
-                  initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
-                  target:self
-                  action:@selector(edit)];
-    
-    doneButton = [[UIBarButtonItem alloc]
-                  initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                  target:self
-                  action:@selector(done)];
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:editButton,addButton,saveButton,undoButton,nil];
+       self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:addButton,saveButton,nil]; //removed undo button, will implement later when doing redo functionality
+
+    CGRect undoButtonFrame = CGRectMake(200,625, 200, 50 );
+    self.undoButton = [[UIButton alloc] initWithFrame: undoButtonFrame];
+    [self.undoButton setTitle: @"Undo" forState: UIControlStateNormal];
+    [self.undoButton addTarget:self action:@selector(undo) forControlEvents:UIControlEventTouchUpInside];
+    [self.undoButton setTitleColor: [UIColor whiteColor] forState: UIControlStateNormal];
+    self.undoButton.backgroundColor = [UIColor colorWithRed:0.259 green:0.259 blue:0.259 alpha:1];
     
-    //    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    //    CGFloat screenWidth = screenRect.size.width;
-    //    CGFloat screenHeight = screenRect.size.height;
-    //    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(1, 1, screenWidth, screenHeight)];
-    self.collectionView.backgroundColor = [UIColor whiteColor];
+    CGRect redoButtonFrame = CGRectMake(0,625, 200, 50 );
     
-    UINib *cellNib = [UINib nibWithNibName:@"ProtoCell" bundle:nil];
-    [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"ProtoCell"];
-    
-    self.flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [self.flowLayout setItemSize:CGSizeMake(350, 350)];
-    [self.flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    self.flowLayout.minimumInteritemSpacing = 0.0f;
-    [self.collectionView setCollectionViewLayout:self.flowLayout];
-    //    self.collectionView.bounces = YES;
-    [self.collectionView setShowsHorizontalScrollIndicator:NO];
-    [self.collectionView setShowsVerticalScrollIndicator:NO];
-    
-    //    self.deleteButton.hidden = YES;
-    
-    
-    
+    self.redoButton = [[UIButton alloc] initWithFrame: redoButtonFrame];
+    [self.redoButton setTitle: @"Redo" forState: UIControlStateNormal];
+    [self.redoButton addTarget:self action:@selector(redo) forControlEvents:UIControlEventTouchUpInside];
+    [self.redoButton setTitleColor: [UIColor whiteColor] forState: UIControlStateNormal];
+    self.redoButton.backgroundColor = [UIColor colorWithRed:0.259 green:0.259 blue:0.259 alpha:1];
+    [self.view addSubview:self.redoButton];
+    [self.view addSubview:self.undoButton];
+}
+-(void)saveToDisk{
+    [self.dao saveChanges];
+}
+-(void)undo{
+
+[self.dao undoProductChanges];
+[self.tableView reloadData];
+[self viewWillAppear:YES];
+    NSLog(@"undoed");
 }
 
+
+-(void)redo{
+    [self.dao redoProductChanges];
+    [self.tableView reloadData];
+    [self viewWillAppear:YES];
+    
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    self.editing = NO;
+    UIImage *tempImg = [UIImage imageNamed:self.passedLogoString];
+
+    self.logoImage = [[UIImageView alloc]initWithFrame:CGRectMake(150, 100, 75, 75)];
+    self.logoImage.image = tempImg;
+    self.logoImage.layer.cornerRadius = 20;
+    self.logoImage.layer.masksToBounds = YES;
     
-    [self.collectionView reloadData];
+    self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(165, 175, 100, 30)];
+    self.titleLabel.text = self.currentCompany.companyName;
+    self.titleLabel.textColor = [UIColor whiteColor];
+    [self.view addSubview:self.titleLabel];
+    [self.view addSubview:self.logoImage];
+    [self pushEmptyStateViewWhenNoProductsExist];
+    NSLog(@"currentCompany is %@",self.currentCompany);
+    NSLog(@"amount of products in currentcompany is %@",self.currentCompany.products);
+
+    
+//    [self.dao sortProducts:self.currentCompany];
+
+    NSLog(@"viewWillAppear");
+    NSLog(@"%@",self.title);
+//    [self.dao populateProductsBasedOnCompanyID:self.currentCompany];
+    [self.tableView reloadData];
 }
-
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -105,228 +125,198 @@ NSIndexPath *deleteIndexPath;
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Table view data source
 
-
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    //    return [self.dao.companies count];
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
     return 1;
-    
 }
 
-
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    //    return 1;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
     return [self.products count];
-    
 }
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    if(!self.isEditing){
-        //    self.productViewController.company = myCompanies[indexPath.row]
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    // Configure the cell...
+    
+    cell.textLabel.text = [[self.products objectAtIndex:[indexPath row]] productName];
+    
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"$%@",[[self.products objectAtIndex:[indexPath row]] price]];
+    NSLog(@"price of product is %@",[[self.products objectAtIndex:[indexPath row]] price]);
+    
+    cell.imageView.image = [UIImage imageNamed:[[_products objectAtIndex:[indexPath row]] productLogo] ];
+    return cell;
+}
+
+/*
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+*/
+
+-(void)pushForm{
+    
+    ProductFormViewController *productformViewController = [[ProductFormViewController alloc] init];
+//    NSUInteger i = [self.products count];
+    [self.navigationController
+     pushViewController:productformViewController
+     animated:YES];
+    
+    productformViewController.title = @"Add Product";
+//    productformViewController.productName = @"Enter Name";
+//    productformViewController.productURL = @"Enter URL";
+//    productformViewController.productLogo
+    productformViewController.currentproducts = self.products;
+    productformViewController.currentCompany = self.currentCompany;
+    
+    [productformViewController release];
+}
+
+
+
+
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        [self.dao sortProducts:self.currentCompany];
+        [self.dao deleteProduct:self.products[indexPath.row]];
+        
+        
+
+//        [self.products removeObjectAtIndex:indexPath.row];
+        [self.dao trackProductsPosition:self.products selectedCompany:self.currentCompany];
+        [self pushEmptyStateViewWhenNoProductsExist];
+
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
+
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+    }   
+}
+
+
+
+// Override to support rearranging the table view.
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+{
+    NSInteger sourceRow = fromIndexPath.row;
+    NSInteger destRow = toIndexPath.row;
+    Product*product = [[Product alloc] init];
+
+    product = [[self.products objectAtIndex:sourceRow]retain];
+    [self.tableView beginUpdates];
+    [self.products removeObjectAtIndex:sourceRow];
+    [self.products insertObject:product atIndex:destRow];
+     [self.dao trackProductsPosition:self.products selectedCompany:self.currentCompany];
+    [self.tableView endUpdates];
+    [self.tableView reloadData];
+
+}
+
+
+
+// Override to support conditional rearranging of the table view.
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the item to be re-orderable.
+    return YES;
+}
+
+
+
+ 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    self.webViewController = [[WebViewController alloc]init];
+//
+//    self.webViewController.link = [[self.products objectAtIndex:indexPath.row] productURL];
+
+//    if(self.editing == YES){
+//        ProductFormViewController *productFormViewController = [[ProductFormViewController alloc] init];
+//
+//        productFormViewController.title = @"Edit your products";
+//        productFormViewController.productName = [self.products[indexPath.row] productName];
+//        productFormViewController.productURL = [self.products[indexPath.row] productURL];
+//        productFormViewController.productLogo = [self.products[indexPath.row] productLogo];
+//        productFormViewController.currentProduct = self.products[indexPath.row];
+//        productFormViewController.currentproducts = self.products;
+//        productFormViewController.currentCompany = self.currentCompany;
+//
+//        [self.navigationController
+//         pushViewController:productFormViewController
+//         animated:YES];
+//        [productFormViewController release];
+//    }
+//    else{
         WebViewController *webViewController = [[WebViewController alloc]init];
         
         webViewController.link = [[self.products objectAtIndex:indexPath.row] productURL];
-        
-        
+    
+        webViewController.productName = [self.products[indexPath.row] productName];
+        webViewController.productURL = [self.products[indexPath.row] productURL];
+        webViewController.productLogo = [self.products[indexPath.row] productLogo];
+        webViewController.productPrice = [self.products[indexPath.row]price];
+        webViewController.currentProduct = self.products[indexPath.row];
+        webViewController.currentproducts = self.products;
+        webViewController.currentCompany = self.currentCompany;
+        webViewController.passedCompanyIndex = indexPath.row;
+    NSLog(@"webViewController.productPrice is %@",webViewController.productPrice);
         [self.navigationController
          pushViewController:webViewController
          animated:YES];
         [webViewController release];
-
-    }
-    
+//    }
 }
 
--(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    ProtoCell *cell  = [collectionView dequeueReusableCellWithReuseIdentifier:@"ProtoCell" forIndexPath:indexPath];
-    UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[[_products objectAtIndex:[indexPath row]]productLogo]]];
+-(void)viewWillDisappear:(BOOL)animated {
+//    self.currentCompany = nil;
+    [self.titleLabel removeFromSuperview];  //fix overlapping labels
+    [self.logoImage removeFromSuperview]; //fix overlapping logos
+}
 
-    logo.contentMode = UIViewContentModeScaleAspectFit;
-    cell.backgroundView = logo;
+-(void)pushEmptyStateViewWhenNoProductsExist{
     
-    cell.titleLabel.text = [[self.products objectAtIndex:[indexPath row]]productName];
-    cell.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
-    cell.titleLabel.textAlignment =  NSTextAlignmentCenter;
-
-    cell.deleteButton.tag = indexPath.row;
-    [cell.deleteButton addTarget:self
-                          action:@selector(deleteCollectionCell:)
-     
-                forControlEvents:UIControlEventTouchUpInside];
     
-    cell.editButton.tag = indexPath.row;
-    [cell.editButton addTarget:self action:@selector(editCollectionCell:) forControlEvents:UIControlEventTouchUpInside];
-
-    cell.stockPriceLabel.hidden = YES;
-    if(self.isEditing){
-        cell.deleteButton.hidden = NO;
-        cell.editButton.hidden = NO;
+    if([self.products count] != 0){
+        self.title = self.currentCompany.companyName;
+        [self.productEmptyState removeFromSuperview];
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
     }
     else{
-        cell.deleteButton.hidden = YES;
-        cell.editButton.hidden = YES;
+        self.title = self.currentCompany.companyName;
+//        self.tableView 
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [self.tableView addSubview:self.productEmptyState];
+        
+        
     }
     
-
-    return cell;
+}
+- (void)dealloc {
+    [_tableView release];
+    [_productEmptyState release];
+    [_logoImage release];
+    [_titleLabel release];
+    [_titleLabel release];
+    [super dealloc];
 }
 
-
-
--(void)edit{
-    self.isEditing = YES;
-    
-//    if(self.isEditing){
-//        
-//        NSLog(@"I'm editing");
-//        
-//        for(ProtoCell *cell in _collectionView.visibleCells){
-//            cell.deleteButton.hidden = NO;
-//            cell.editButton.hidden = NO;
-//            //    }
-//            
-//        }
-//        
-    
-        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:doneButton,addButton,saveButton,undoButton,nil];
-    [self.collectionView reloadData];
-//    }
+- (IBAction)addProductButton:(id)sender {
+    [self pushForm];
 }
-
-
--(void)deleteCollectionCell:(id)sender{
-    NSLog(@"dododo");
-    
-    UIButton *delBtn = sender;
-    int row = (int)delBtn.tag;
-    
-
-    [self.collectionView performBatchUpdates:^{
-
-
-        [self.dao deleteProduct:self.products[row]];
-//        [self.products removeObjectAtIndex:row];  //transferred a version of this method into the DAO
-        NSIndexPath *indexPath =[NSIndexPath indexPathForItem:row inSection:0];
-        [self.collectionView deleteItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
-
-        
-        
-    } completion:^(BOOL finished) {
-        
-        
-    [self.collectionView reloadData];
-    
-
-        //    }
-        
-        
-        
-        
-    }];
-    
-}
-
-
--(void)editCollectionCell:(id)sender{
-    
-    UIButton *editBtn = sender;
-    int row = (int)editBtn.tag;
-    
-    ProductFormViewController *productFormViewController = [[ProductFormViewController alloc] init];
-    
-    productFormViewController.title = @"Edit your products";
-    productFormViewController.productName = [self.products[row] productName];
-    productFormViewController.productURL = [self.products[row] productURL];
-    productFormViewController.productLogo = [self.products[row] productLogo];
-    productFormViewController.currentProduct = self.products[row];
-    productFormViewController.currentproducts = self.products;
-    productFormViewController.currentCompany = self.currentCompany;
-    
-    [self.navigationController
-     pushViewController:productFormViewController
-     animated:YES];
-    [productFormViewController release];
-    
-    
-    
-}
-
--(void)done{
-    self.isEditing = NO;
-    [self.collectionView reloadData];
-//    for(ProtoCell *cell in _collectionView.visibleCells){
-//        cell.deleteButton.hidden = YES;
-//        cell.editButton.hidden = YES;
-//        //hides all cells buttons when done buttin is clicked
-//    }
-
-    
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:editButton,addButton,saveButton,undoButton,nil];
-}
-
-
--(void)pushForm{ //when you create a new company name, logo, symbol pushed to formviewcontroller
-    
-    ProductFormViewController *productFormViewController = [[ProductFormViewController alloc] init];
-    NSUInteger i = [self.products count];
-    
-    productFormViewController.title = @"Add A New Product";
-
-    //    productformViewController.productName = @"Enter Name";
-    //    productformViewController.productURL = @"Enter URL";
-    productFormViewController.productLogo = [NSString stringWithFormat:@"defaultLogo%lu.jpg",(unsigned long)i];
-    productFormViewController.currentproducts = self.products;
-    productFormViewController.currentCompany = self.currentCompany;
-
-    
-    
-    
-    
-    
-    
-    [self.navigationController
-     pushViewController:productFormViewController
-     animated:YES];
-    [productFormViewController release];
-    
-    
-}
-    
-
-
--(void)saveToDisk{
-    [self.dao saveChanges];
-}
--(void)undo{
-
-[self.dao undoProductChanges];
-[self.collectionView reloadData];
-    NSLog(@"undoed");
-}
-
-
--(BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath{
-    return true;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
-{
-    NSInteger sourceRow = sourceIndexPath.row;
-    NSInteger destRow = destinationIndexPath.row;
-    Product*product = [[Product alloc] init];
-    
-    product = [[self.products objectAtIndex:sourceRow]retain];
-//    [self.tableView beginUpdates];
-    [self.products removeObjectAtIndex:sourceRow];
-    [self.products insertObject:product atIndex:destRow];
-    [self.dao trackProductsPosition:self.products selectedCompany:self.currentCompany];
-//    [self.tableView endUpdates];
-    [self.collectionView reloadData];
-    
-}
-
-
-
-
-
 @end

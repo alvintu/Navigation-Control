@@ -37,7 +37,8 @@
 -(void)editProducts:(Product*)selectedProduct;
 -(void)trackProductsPosition:(NSMutableArray*)products selectedCompany:(Company*)selectedCompany;
 -(void)deleteProductsRelatedToCompanyID:(Company*)company;
-
+-(void)redoChanges;
+-(void)redoProductChanges;
 
 -(void) saveChanges;
 -(void)populateProductsBasedOnCompanyID:(Company*)selectedCompany;

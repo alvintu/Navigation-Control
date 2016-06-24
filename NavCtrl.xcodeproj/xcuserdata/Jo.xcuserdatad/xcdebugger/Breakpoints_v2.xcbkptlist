@@ -9,60 +9,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ProductViewController.h"
-            timestampString = "487635113.902252"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "@interface ProductViewController"
-            landmarkType = "2">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[ProductViewController webViewController]"
-                  moduleName = "NavCtrl"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jo/NavCtrl/ProductViewController.h"
-                  timestampString = "483999428.805962"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "12">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[ProductViewController setWebViewController:]"
-                  moduleName = "NavCtrl"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jo/NavCtrl/ProductViewController.h"
-                  timestampString = "483999428.806111"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "20">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "NavCtrl/ProductFormViewController.m"
-            timestampString = "486844452.643181"
+            timestampString = "488419123.176018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
             landmarkName = "-saveButton"
             landmarkType = "5">
          </BreakpointContent>
@@ -73,12 +25,44 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NavCtrl/ProductFormViewController.m"
-            timestampString = "485813431.262423"
+            filePath = "CompanyViewController.m"
+            timestampString = "488479936.704014"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CompanyViewController.m"
+            timestampString = "488479936.704014"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NavCtrl/ProductFormViewController.m"
+            timestampString = "488419123.176018"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -89,13 +73,45 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NavCtrl/FormViewController.m"
-            timestampString = "486504388.147196"
+            filePath = "CompanyViewController.m"
+            timestampString = "488479936.704014"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "282"
+            endingLineNumber = "282"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NavCtrl/FormViewController.m"
+            timestampString = "488398386.176789"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CompanyViewController.m"
+            timestampString = "488479936.704014"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -121,12 +137,28 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NavCtrl/ProductFormViewController.m"
-            timestampString = "486844268.277513"
+            filePath = "ProductViewController.m"
+            timestampString = "488480022.615022"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NavCtrl/ProductFormViewController.m"
+            timestampString = "488419123.176018"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "-saveButton"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "487705949.937504"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "698"
-            endingLineNumber = "698"
+            startingLineNumber = "737"
+            endingLineNumber = "737"
             landmarkName = "-retain"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "486771923.287038"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
             landmarkName = "-addCompany:"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "486771923.287038"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
             landmarkName = "-addCompany:"
             landmarkType = "5">
          </BreakpointContent>
@@ -202,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "486771923.287038"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
+            startingLineNumber = "236"
+            endingLineNumber = "236"
             landmarkName = "-addCompany:"
             landmarkType = "5">
          </BreakpointContent>
@@ -218,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "486771923.287038"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
             landmarkName = "-addCompany:"
             landmarkType = "5">
          </BreakpointContent>
@@ -234,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "487705949.937504"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "755"
-            endingLineNumber = "755"
+            startingLineNumber = "794"
+            endingLineNumber = "794"
             landmarkName = "-changeBoolEntitytoRun"
             landmarkType = "5">
          </BreakpointContent>
@@ -250,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "486771923.287038"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "-createOrOpenDB"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "487705949.937504"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "719"
-            endingLineNumber = "719"
+            startingLineNumber = "758"
+            endingLineNumber = "758"
             landmarkName = "-fetchRequestIfAppHasRun"
             landmarkType = "5">
          </BreakpointContent>
@@ -282,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "487705949.937504"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "732"
-            endingLineNumber = "732"
+            startingLineNumber = "771"
+            endingLineNumber = "771"
             landmarkName = "-fetchRequestIfAppHasRun"
             landmarkType = "5">
             <Locations>
@@ -330,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "487705949.937504"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "742"
-            endingLineNumber = "742"
+            startingLineNumber = "781"
+            endingLineNumber = "781"
             landmarkName = "-fetchRequestIfAppHasRun"
             landmarkType = "5">
          </BreakpointContent>
@@ -346,11 +378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "487705949.937504"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "751"
-            endingLineNumber = "751"
+            startingLineNumber = "790"
+            endingLineNumber = "790"
             landmarkName = "-fetchRequestIfAppHasRun"
             landmarkType = "5">
          </BreakpointContent>
@@ -362,11 +394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "486771923.287038"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
+            startingLineNumber = "303"
+            endingLineNumber = "303"
             landmarkName = "-deleteCompany:"
             landmarkType = "5">
          </BreakpointContent>
@@ -378,11 +410,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "486771923.287038"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
+            startingLineNumber = "305"
+            endingLineNumber = "305"
             landmarkName = "-deleteCompany:"
             landmarkType = "5">
          </BreakpointContent>
@@ -393,12 +425,44 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NavCtrl/DAO.m"
-            timestampString = "487705949.937504"
+            filePath = "CompanyViewController.m"
+            timestampString = "488479936.704014"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "703"
-            endingLineNumber = "703"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CompanyViewController.m"
+            timestampString = "488479936.704014"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "-tableView:commitEditingStyle:forRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NavCtrl/DAO.m"
+            timestampString = "488478047.675395"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "742"
+            endingLineNumber = "742"
             landmarkName = "-retainCount"
             landmarkType = "5">
          </BreakpointContent>
@@ -409,13 +473,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NavCtrl/DAO.m"
-            timestampString = "486771923.287038"
+            filePath = "CompanyViewController.m"
+            timestampString = "488479936.704014"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
-            landmarkName = "-readDatabase"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "-tableView:commitEditingStyle:forRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -426,12 +490,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "486771923.287038"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
             landmarkName = "-readDatabase"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CompanyViewController.m"
+            timestampString = "488479936.704014"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -442,11 +522,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/FormViewController.m"
-            timestampString = "486504388.147196"
+            timestampString = "488398386.176789"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "-saveButton"
             landmarkType = "5">
          </BreakpointContent>
@@ -454,15 +534,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "486771923.287038"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
             landmarkName = "-addCompany:"
             landmarkType = "5">
          </BreakpointContent>
@@ -474,11 +554,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "486771923.287038"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "371"
-            endingLineNumber = "371"
+            startingLineNumber = "412"
+            endingLineNumber = "412"
             landmarkName = "-trackCompanyPosition"
             landmarkType = "5">
             <Locations>
@@ -518,79 +598,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "486771923.287038"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
-            landmarkName = "-readDatabase"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NavCtrl/DAO.m"
-            timestampString = "486771923.287038"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
-            landmarkName = "-readDatabase"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[DAO readDatabase]"
-                  moduleName = "NavCtrl"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jo/NavCtrl/NavCtrl/DAO.m"
-                  timestampString = "486593767.868028"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "138"
-                  endingLineNumber = "138"
-                  offsetFromSymbolStart = "1325">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[DAO readDatabase]"
-                  moduleName = "NavCtrl"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jo/NavCtrl/NavCtrl/DAO.m"
-                  timestampString = "486593767.868181"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "138"
-                  endingLineNumber = "138"
-                  offsetFromSymbolStart = "1437">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NavCtrl/DAO.m"
-            timestampString = "487705949.937504"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "920"
-            endingLineNumber = "920"
+            startingLineNumber = "959"
+            endingLineNumber = "959"
             landmarkName = "-populateProductsBasedOnCompanyID:"
             landmarkType = "5">
          </BreakpointContent>
@@ -602,11 +618,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "487705949.937504"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "953"
-            endingLineNumber = "953"
+            startingLineNumber = "992"
+            endingLineNumber = "992"
             landmarkName = "-populateProductsBasedOnCompanyID:"
             landmarkType = "5">
          </BreakpointContent>
@@ -618,11 +634,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "486840786.343538"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "486"
-            endingLineNumber = "486"
+            startingLineNumber = "528"
+            endingLineNumber = "528"
             landmarkName = "-deleteProduct:"
             landmarkType = "5">
          </BreakpointContent>
@@ -634,11 +650,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "487705949.937504"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "921"
-            endingLineNumber = "921"
+            startingLineNumber = "960"
+            endingLineNumber = "960"
             landmarkName = "-populateProductsBasedOnCompanyID:"
             landmarkType = "5">
          </BreakpointContent>
@@ -650,11 +666,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "487705949.937504"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "549"
-            endingLineNumber = "549"
+            startingLineNumber = "588"
+            endingLineNumber = "588"
             landmarkName = "-editProducts:"
             landmarkType = "5">
          </BreakpointContent>
@@ -666,11 +682,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "487705949.937504"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "554"
-            endingLineNumber = "554"
+            startingLineNumber = "593"
+            endingLineNumber = "593"
             landmarkName = "-editProducts:"
             landmarkType = "5">
          </BreakpointContent>
@@ -682,11 +698,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "487705949.937504"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "660"
-            endingLineNumber = "660"
+            startingLineNumber = "699"
+            endingLineNumber = "699"
             landmarkName = "-trackProductsPosition:selectedCompany:"
             landmarkType = "5">
          </BreakpointContent>
@@ -698,11 +714,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "487705949.937504"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "550"
-            endingLineNumber = "550"
+            startingLineNumber = "589"
+            endingLineNumber = "589"
             landmarkName = "-editProducts:"
             landmarkType = "5">
          </BreakpointContent>
@@ -714,11 +730,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "487705949.937504"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "551"
-            endingLineNumber = "551"
+            startingLineNumber = "590"
+            endingLineNumber = "590"
             landmarkName = "-editProducts:"
             landmarkType = "5">
          </BreakpointContent>
@@ -729,12 +745,28 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NavCtrl/DAO.m"
-            timestampString = "486771923.287038"
+            filePath = "NavCtrl/ProductFormViewController.m"
+            timestampString = "488419123.176018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
+            landmarkName = "-saveButton"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NavCtrl/DAO.m"
+            timestampString = "488478047.675395"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
             landmarkName = "-deleteProductsRelatedToCompanyID:"
             landmarkType = "5">
          </BreakpointContent>
@@ -746,11 +778,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "486771923.287038"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
             landmarkName = "-deleteProductsRelatedToCompanyID:"
             landmarkType = "5">
          </BreakpointContent>
@@ -762,11 +794,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "486771923.287038"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
+            startingLineNumber = "321"
+            endingLineNumber = "321"
             landmarkName = "-deleteCompany:"
             landmarkType = "5">
          </BreakpointContent>
@@ -778,11 +810,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "486771923.287038"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "220"
-            endingLineNumber = "220"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
             landmarkName = "-deleteProductsRelatedToCompanyID:"
             landmarkType = "5">
          </BreakpointContent>
@@ -794,11 +826,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "486840786.343538"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "487"
-            endingLineNumber = "487"
+            startingLineNumber = "529"
+            endingLineNumber = "529"
             landmarkName = "-deleteProduct:"
             landmarkType = "5">
          </BreakpointContent>
@@ -810,11 +842,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "486840937.185344"
+            timestampString = "488472846.560337"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "-undoProductChanges"
             landmarkType = "5">
          </BreakpointContent>
@@ -825,12 +857,60 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NavCtrl/DAO.m"
-            timestampString = "487705949.937504"
+            filePath = "ProductViewController.m"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "562"
-            endingLineNumber = "562"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "-undo"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CompanyViewController.m"
+            timestampString = "488479936.704014"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "-undo"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProductViewController.m"
+            timestampString = "488414209.583054"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NavCtrl/DAO.m"
+            timestampString = "488478047.675395"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "601"
+            endingLineNumber = "601"
             landmarkName = "-editProducts:"
             landmarkType = "5">
          </BreakpointContent>
@@ -842,11 +922,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "487705949.937504"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "936"
-            endingLineNumber = "936"
+            startingLineNumber = "975"
+            endingLineNumber = "975"
             landmarkName = "-populateProductsBasedOnCompanyID:"
             landmarkType = "5">
          </BreakpointContent>
@@ -858,11 +938,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/ProductFormViewController.m"
-            timestampString = "486844268.277513"
+            timestampString = "488419123.176018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "-saveButton"
             landmarkType = "5">
          </BreakpointContent>
@@ -874,11 +954,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "486840282.11591"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "456"
-            endingLineNumber = "456"
+            startingLineNumber = "497"
+            endingLineNumber = "497"
             landmarkName = "-addProduct:selectedCompanyID:indexOfProduct:"
             landmarkType = "5">
          </BreakpointContent>
@@ -886,527 +966,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CompanyViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CompanyViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CompanyViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-<<<<<<< HEAD
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "-viewWillAppear:"
-=======
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "-viewDidLoad"
->>>>>>> nsurlsession
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CompanyViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-<<<<<<< HEAD
-            startingLineNumber = "230"
-            endingLineNumber = "230"
-            landmarkName = "-editCollectionCell:"
-=======
-            startingLineNumber = "202"
-            endingLineNumber = "202"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
->>>>>>> nsurlsession
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CompanyViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "-edit"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CompanyViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-<<<<<<< HEAD
-            startingLineNumber = "280"
-            endingLineNumber = "280"
-            landmarkName = "-pushForm"
-=======
-            startingLineNumber = "252"
-            endingLineNumber = "252"
-            landmarkName = "-deleteCollectionCell:"
->>>>>>> nsurlsession
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[CompanyViewController deleteCollectionCell:]"
-                  moduleName = "NavCtrl"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jo/NavCtrl/CompanyViewController.m"
-                  timestampString = "487615761.000143"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "331"
-                  endingLineNumber = "331"
-                  offsetFromSymbolStart = "174">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__46-[CompanyViewController deleteCollectionCell:]_block_invoke"
-                  moduleName = "NavCtrl"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jo/NavCtrl/CompanyViewController.m"
-                  timestampString = "487615761.000288"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "331"
-                  endingLineNumber = "331"
-                  offsetFromSymbolStart = "204">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__copy_helper_block_.197"
-                  moduleName = "NavCtrl"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jo/NavCtrl/CompanyViewController.m"
-                  timestampString = "487615761.000441"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "331"
-                  endingLineNumber = "331"
-                  offsetFromSymbolStart = "42">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.198"
-                  moduleName = "NavCtrl"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jo/NavCtrl/CompanyViewController.m"
-                  timestampString = "487615761.000599"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "331"
-                  endingLineNumber = "331"
-                  offsetFromSymbolStart = "30">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__46-[CompanyViewController deleteCollectionCell:]_block_invoke.200"
-                  moduleName = "NavCtrl"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jo/NavCtrl/CompanyViewController.m"
-                  timestampString = "487615761.000748"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "331"
-                  endingLineNumber = "331"
-                  offsetFromSymbolStart = "35">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CompanyViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CompanyViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CompanyViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-<<<<<<< HEAD
-            startingLineNumber = "250"
-            endingLineNumber = "250"
-            landmarkName = "-deleteCollectionCell:"
-=======
-            startingLineNumber = "222"
-            endingLineNumber = "222"
-            landmarkName = "-editCollectionCell:"
->>>>>>> nsurlsession
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CompanyViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-<<<<<<< HEAD
-            startingLineNumber = "237"
-            endingLineNumber = "237"
-            landmarkName = "-deleteCollectionCell:"
-=======
-            startingLineNumber = "209"
-            endingLineNumber = "209"
-            landmarkName = "-editCollectionCell:"
->>>>>>> nsurlsession
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CompanyViewController.m"
+            timestampString = "488479936.704014"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "-addCompanyButton:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProductViewController.m"
+            timestampString = "488480022.615022"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "292"
+            endingLineNumber = "292"
+            landmarkName = "-pushEmptyStateViewWhenNoProductsExist"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/DAO.m"
-            timestampString = "487627119.208671"
+            timestampString = "488478047.675395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "259"
-            endingLineNumber = "259"
-            landmarkName = "-deleteCompany:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CompanyViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-<<<<<<< HEAD
-            startingLineNumber = "349"
-            endingLineNumber = "349"
-            landmarkName = "-loadStockPrices"
-=======
-            startingLineNumber = "298"
-            endingLineNumber = "298"
-            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
->>>>>>> nsurlsession
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CompanyViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-<<<<<<< HEAD
-            startingLineNumber = "347"
-            endingLineNumber = "347"
-            landmarkName = "-loadStockPrices"
-=======
-            startingLineNumber = "296"
-            endingLineNumber = "296"
-            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
->>>>>>> nsurlsession
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProductViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "-collectionView:numberOfItemsInSection:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProductViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "-numberOfSectionsInCollectionView:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CompanyViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-<<<<<<< HEAD
-            startingLineNumber = "178"
-            endingLineNumber = "178"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
-=======
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "-numberOfSectionsInCollectionView:"
->>>>>>> nsurlsession
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CompanyViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-<<<<<<< HEAD
-            startingLineNumber = "185"
-            endingLineNumber = "185"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
-=======
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "-collectionView:numberOfItemsInSection:"
->>>>>>> nsurlsession
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProductViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
-            landmarkName = "-edit"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProductViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
-            landmarkName = "-edit"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProductViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
-            landmarkName = "-done"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CompanyViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-<<<<<<< HEAD
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "-saveToDisk"
-=======
-            startingLineNumber = "112"
-            endingLineNumber = "112"
-            landmarkName = "-edit"
->>>>>>> nsurlsession
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CompanyViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-<<<<<<< HEAD
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "-saveToDisk"
-=======
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "-edit"
->>>>>>> nsurlsession
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CompanyViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "-edit"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CompanyViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
-            landmarkName = "-edit"
+            startingLineNumber = "1000"
+            endingLineNumber = "1000"
+            landmarkName = "-populateProductsBasedOnCompanyID:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1416,100 +1017,30 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CompanyViewController.m"
-            timestampString = "488214620.231636"
+            filePath = "NavCtrl/FormViewController.m"
+            timestampString = "488398386.176789"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-<<<<<<< HEAD
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "-saveToDisk"
-=======
-            startingLineNumber = "113"
-            endingLineNumber = "113"
-            landmarkName = "-edit"
->>>>>>> nsurlsession
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "-deleteButton"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CompanyViewController.m"
-            timestampString = "487728646.592597"
+            filePath = "NavCtrl/ProductFormViewController.m"
+            timestampString = "488419123.176018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "-done"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "-saveButton"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProductViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
-            landmarkName = "-deleteCollectionCell:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProductViewController.m"
-            timestampString = "488214620.231636"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
-            landmarkName = "-deleteCollectionCell:"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[ProductViewController deleteCollectionCell:]"
-                  moduleName = "NavCtrl"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jo/NavCtrl/ProductViewController.m"
-                  timestampString = "488220569.431649"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "204"
-                  endingLineNumber = "204"
-                  offsetFromSymbolStart = "72">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__46-[ProductViewController deleteCollectionCell:]_block_invoke"
-                  moduleName = "NavCtrl"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jo/NavCtrl/ProductViewController.m"
-                  timestampString = "488220569.431798"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "204"
-                  endingLineNumber = "204"
-                  offsetFromSymbolStart = "12">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1519,11 +1050,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NavCtrl/ProductFormViewController.m"
-            timestampString = "487707218.414769"
+            timestampString = "488419123.176018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "-saveButton"
             landmarkType = "5">
          </BreakpointContent>
@@ -1534,14 +1065,126 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NavCtrl/AFNetworking/AFURLSessionManager.m"
-            timestampString = "488216131.988453"
+            filePath = "NavCtrl/ProductFormViewController.m"
+            timestampString = "488419123.176018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "@implementation AFURLSessionManagerTaskDelegate"
-            landmarkType = "3">
+            startingLineNumber = "155"
+            endingLineNumber = "155"
+            landmarkName = "-saveButton"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NavCtrl/WebViewController.m"
+            timestampString = "488407092.615526"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "-editButtonWasPressed"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NavCtrl/WebViewController.m"
+            timestampString = "488407108.10529"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "-editButtonWasPressed"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NavCtrl/ProductFormViewController.m"
+            timestampString = "488419123.176018"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "-saveButton"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CompanyViewController.m"
+            timestampString = "488479936.704014"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProductViewController.m"
+            timestampString = "488480022.615022"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CompanyViewController.m"
+            timestampString = "488414470.986582"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NavCtrl/WebViewController.m"
+            timestampString = "488418062.105929"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "-editButtonWasPressed"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

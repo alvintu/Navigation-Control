@@ -19,7 +19,6 @@
     NSString *compdataPath;
     NSString *dataPath;
     bool hasItRun;
-    NSMutableArray *productArray;
     
 }
 
@@ -64,6 +63,14 @@ static DAO *sharedDAO = nil;    // static instance variable
     [self readDatabase];
 }
 
+
+-(void)redoChanges{
+    [self.context redo];
+    
+    [self.companies removeAllObjects];
+    [self readDatabase];
+}
+
 -(void)undoProductChanges{
     //    [self.context setUndoManager:undoManager];
     [self.context undo];
@@ -88,6 +95,33 @@ static DAO *sharedDAO = nil;    // static instance variable
     //    [undoManager release];
     //    [self.context reset];
 }
+
+-(void)redoProductChanges{
+    //    [self.context setUndoManager:undoManager];
+    [self.context redo];
+    
+    
+    //    [self.context.undoManager setLevelsOfUndo:1];
+    
+    for(Company *company in self.companies){
+        [company.products removeAllObjects];
+        
+        //getting close it's reading the database and repopulating it..i dont think undo is working
+        
+        
+        //        for(Company *company in self.companies){
+        //            [company.products removeAllObjects];
+        //        }
+        //
+        [self populateProductsBasedOnCompanyID:company];
+        
+    }
+    
+    //    [undoManager release];
+    //    [self.context reset];
+}
+
+
 
 
 
@@ -156,6 +190,7 @@ static DAO *sharedDAO = nil;    // static instance variable
     {
         [NSException raise:@"Fetch Failed" format:@"Reason: %@", [error localizedDescription]];
     }
+//    NSMutableArray *productArray = [[NSMutableArray alloc]init];
     
     
 //        [self.companies removeAllObjects];
@@ -165,11 +200,14 @@ static DAO *sharedDAO = nil;    // static instance variable
         comp.companyID = [object valueForKey:@"comp_id"];
         comp.companySYM = [object valueForKey:@"comp_sym"];
         comp.companyLogo = [object valueForKey:@"comp_logo"];
-        [self.companies addObject:comp];
-//        [productArray removeAllObjects];
 
         [self populateProductsBasedOnCompanyID:comp];
+
 //        comp.products = productArray;
+//        NSLog(@"now productArray is %@", productArray);
+
+        [self.companies addObject:comp];
+
     }
     
     //    [self setCompanies:[[NSMutableArray alloc]initWithArray:result]];
@@ -186,6 +224,7 @@ static DAO *sharedDAO = nil;    // static instance variable
     NSLog(@"PK: %@", pk);
     
     newCompany.companyID = pk;
+
     
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Company" inManagedObjectContext:self.context];
     NSManagedObject *newMOCompany=[[NSManagedObject alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:self.context];
@@ -197,7 +236,9 @@ static DAO *sharedDAO = nil;    // static instance variable
     [newMOCompany setValue:[NSNumber numberWithInt:newCompanyPosition ] forKey:@"position"];
 
 //    [self saveChanges];
-    
+    newCompany.products = [[NSMutableArray alloc]init];
+    [self.companies addObject:newCompany];
+
     
     return (int)pk;
     //    char *error1;
@@ -463,6 +504,7 @@ static DAO *sharedDAO = nil;    // static instance variable
     [newMOProduct setValue:newProduct.productName forKey:@"prod_name"];
     [newMOProduct setValue:newProduct.productURL forKey:@"prod_url"];
     [newMOProduct setValue:newProduct.productLogo forKey:@"prod_logo"];
+    [newMOProduct setValue:newProduct.price forKey:@"prod_price"];
     [newMOProduct setValue:[NSNumber numberWithInteger:indexOfProduct] forKey:@"prod_position"];
     
 //    [self saveChanges];
@@ -515,14 +557,7 @@ static DAO *sharedDAO = nil;    // static instance variable
         //Remove object from context
         //    NSManagedObject *company = (NSManagedObject *)[result objectAtIndex:[self.companies indexOfObject:selectedCompany]];
         
-        [self.context deleteObject:product];
-        for(Company *company in self.companies){
-            if(company.companyID == selectedProduct.comp_id){
-            [company.products removeObject:selectedProduct];
-        }
-        }
-
-        
+        [self.context deleteObject:product];        
         NSError *deleteError = nil;
         
         if (![product.managedObjectContext save:&deleteError]) {
@@ -531,7 +566,11 @@ static DAO *sharedDAO = nil;    // static instance variable
         }
 //        [self saveChanges];
         
-        
+        for(Company *company in self.companies){
+            if(company.companyID == selectedProduct.comp_id){
+                [company.products removeObject:selectedProduct];
+            }
+        }
         
     }
 
@@ -762,153 +801,153 @@ static DAO *sharedDAO = nil;    // static instance variable
 
 
 -(void)loadHardCodedCoreDataValues{
-        NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Company" inManagedObjectContext:self.context];
-        NSManagedObject *newMOCompany=[[NSManagedObject alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:self.context];
-        [newMOCompany setValue:[NSNumber numberWithInt:0] forKey:@"comp_id"];
-        [newMOCompany setValue:[NSNumber numberWithInt:0] forKey:@"position"];
-        [newMOCompany setValue:@"AAPL" forKey:@"comp_sym"];
-        [newMOCompany setValue:@"apple.png" forKey:@"comp_logo"];
-        [newMOCompany setValue:@"Apple" forKey:@"comp_name"];
-    
-    NSEntityDescription *entityDescription1 = [NSEntityDescription entityForName:@"Company" inManagedObjectContext:self.context];
-    NSManagedObject *newMOCompany1=[[NSManagedObject alloc] initWithEntity:entityDescription1 insertIntoManagedObjectContext:self.context];
-    [newMOCompany1 setValue:[NSNumber numberWithInt:1] forKey:@"comp_id"];
-    [newMOCompany1 setValue:[NSNumber numberWithInt:1]forKey:@"position"];
-    [newMOCompany1 setValue:@"SSNLF" forKey:@"comp_sym"];
-    [newMOCompany1 setValue:@"samsung.png" forKey:@"comp_logo"];
-    [newMOCompany1 setValue:@"Samsung" forKey:@"comp_name"];
-
-    NSEntityDescription *entityDescription2 = [NSEntityDescription entityForName:@"Company" inManagedObjectContext:self.context];
-    NSManagedObject *newMOCompany2=[[NSManagedObject alloc] initWithEntity:entityDescription2 insertIntoManagedObjectContext:self.context];
-    [newMOCompany2 setValue:[NSNumber numberWithInt:2] forKey:@"comp_id"];
-    [newMOCompany2 setValue:[NSNumber numberWithInt:2] forKey:@"position"];
-    [newMOCompany2 setValue:@"GOOG" forKey:@"comp_sym"];
-    [newMOCompany2 setValue:@"google.jpg" forKey:@"comp_logo"];
-    [newMOCompany2 setValue:@"Google" forKey:@"comp_name"];
-
-    NSEntityDescription *entityDescription3 = [NSEntityDescription entityForName:@"Company" inManagedObjectContext:self.context];
-    NSManagedObject *newMOCompany3=[[NSManagedObject alloc] initWithEntity:entityDescription3 insertIntoManagedObjectContext:self.context];
-    [newMOCompany3 setValue:[NSNumber numberWithInt:3] forKey:@"comp_id"];
-    [newMOCompany3 setValue:[NSNumber numberWithInt:3] forKey:@"position"];
-    [newMOCompany3 setValue:@"S" forKey:@"comp_sym"];
-    [newMOCompany3 setValue:@"sprint.jpg" forKey:@"comp_logo"];
-    [newMOCompany3 setValue:@"Sprint" forKey:@"comp_name"];
-    
-    NSEntityDescription *productEntityDescription = [NSEntityDescription entityForName:@"Product" inManagedObjectContext:self.context];
-    NSManagedObject *newMOProduct=[[NSManagedObject alloc] initWithEntity:productEntityDescription insertIntoManagedObjectContext:self.context];
-    //    [newMOCompany3 setValue:pk forKey:@"comp_id"];
-    [newMOProduct setValue:[NSNumber numberWithInt:0] forKey:@"comp_id"];
-    [newMOProduct setValue:[NSNumber numberWithInt:0] forKey:@"prod_position"];
-    [newMOProduct setValue:@"iPad" forKey:@"prod_name"];
-    [newMOProduct setValue:@"https://www.apple.com/ipad" forKey:@"prod_url"];
-    [newMOProduct setValue:@"ipad.jpg" forKey:@"prod_logo"];
-    
-    NSEntityDescription *productEntityDescription1 = [NSEntityDescription entityForName:@"Product" inManagedObjectContext:self.context];
-    NSManagedObject *newMOProduct1 =[[NSManagedObject alloc] initWithEntity:productEntityDescription1 insertIntoManagedObjectContext:self.context];
-    //    [newMOCompany3 setValue:pk forKey:@"comp_id"];
-    [newMOProduct1 setValue:[NSNumber numberWithInt:0] forKey:@"comp_id"];
-    [newMOProduct1 setValue:[NSNumber numberWithInt:1] forKey:@"prod_position"];
-    [newMOProduct1 setValue:@"iPod Touch" forKey:@"prod_name"];
-    [newMOProduct1 setValue:@"https://www.apple.com/ipod-touch" forKey:@"prod_url"];
-    [newMOProduct1 setValue:@"ipodtouch.jpg" forKey:@"prod_logo"];
-    
-    
-    NSEntityDescription *productEntityDescription2 = [NSEntityDescription entityForName:@"Product" inManagedObjectContext:self.context];
-    NSManagedObject *newMOProduct2=[[NSManagedObject alloc] initWithEntity:productEntityDescription2 insertIntoManagedObjectContext:self.context];
-    //    [newMOCompany3 setValue:pk forKey:@"comp_id"];
-    [newMOProduct2 setValue:[NSNumber numberWithInt:0] forKey:@"comp_id"];
-    [newMOProduct2 setValue:[NSNumber numberWithInt:2] forKey:@"prod_position"];
-    [newMOProduct2 setValue:@"iPhone" forKey:@"prod_name"];
-    [newMOProduct2 setValue:@"https://www.apple.com/iPhone" forKey:@"prod_url"];
-    [newMOProduct2 setValue:@"iphone.jpg" forKey:@"prod_logo"];
-    
-    NSEntityDescription *productEntityDescription3 = [NSEntityDescription entityForName:@"Product" inManagedObjectContext:self.context];
-    NSManagedObject *newMOProduct3=[[NSManagedObject alloc] initWithEntity:productEntityDescription3 insertIntoManagedObjectContext:self.context];
-    //    [newMOCompany3 setValue:pk forKey:@"comp_id"];
-    [newMOProduct3 setValue:[NSNumber numberWithInt:1] forKey:@"comp_id"];
-    [newMOProduct3 setValue:[NSNumber numberWithInt:0] forKey:@"prod_position"];
-    [newMOProduct3 setValue:@"Galaxy S4" forKey:@"prod_name"];
-    [newMOProduct3 setValue:@"http://www.samsung.com/us/mobile/cell-phones/SCH-I545ZKAVZW" forKey:@"prod_url"];
-    [newMOProduct3 setValue:@"galaxys4.jpg" forKey:@"prod_logo"];
-    
-    NSEntityDescription *productEntityDescription4 = [NSEntityDescription entityForName:@"Product" inManagedObjectContext:self.context];
-    NSManagedObject *newMOProduct4 =[[NSManagedObject alloc] initWithEntity:productEntityDescription4 insertIntoManagedObjectContext:self.context];
-    //    [newMOCompany3 setValue:pk forKey:@"comp_id"];
-    [newMOProduct4 setValue:[NSNumber numberWithInt:1] forKey:@"comp_id"];
-    [newMOProduct4 setValue:[NSNumber numberWithInt:1] forKey:@"prod_position"];
-    [newMOProduct4 setValue:@"Galaxy Note" forKey:@"prod_name"];
-    [newMOProduct4 setValue:@"http://www.samsung.com/us/mobile/galaxy-note/" forKey:@"prod_url"];
-    [newMOProduct4 setValue:@"galaxynote.png" forKey:@"prod_logo"];
-    
-    
-    NSEntityDescription *productEntityDescription5 = [NSEntityDescription entityForName:@"Product" inManagedObjectContext:self.context];
-    NSManagedObject *newMOProduct5=[[NSManagedObject alloc] initWithEntity:productEntityDescription5 insertIntoManagedObjectContext:self.context];
-    //    [newMOCompany3 setValue:pk forKey:@"comp_id"];
-    [newMOProduct5 setValue:[NSNumber numberWithInt:1] forKey:@"comp_id"];
-    [newMOProduct5 setValue:[NSNumber numberWithInt:2] forKey:@"prod_position"];
-    [newMOProduct5 setValue:@"Galaxy Tab" forKey:@"prod_name"];
-    [newMOProduct5 setValue:@"http://www.samsung.com/us/mobile/galaxy-tab/" forKey:@"prod_url"];
-    [newMOProduct5 setValue:@"galaxytab.jpg" forKey:@"prod_logo"];
-    
-    
-    
-    NSEntityDescription *productEntityDescription6 = [NSEntityDescription entityForName:@"Product" inManagedObjectContext:self.context];
-    NSManagedObject *newMOProduct6=[[NSManagedObject alloc] initWithEntity:productEntityDescription6 insertIntoManagedObjectContext:self.context];
-    //    [newMOCompany3 setValue:pk forKey:@"comp_id"];
-    [newMOProduct6 setValue:[NSNumber numberWithInt:2] forKey:@"comp_id"];
-    [newMOProduct6 setValue:[NSNumber numberWithInt:0] forKey:@"prod_position"];
-    [newMOProduct6 setValue:@"Nexus 5X" forKey:@"prod_name"];
-    [newMOProduct6 setValue:@"https://www.google.com/nexus/5x/" forKey:@"prod_url"];
-    [newMOProduct6 setValue:@"nexus5x.jpg" forKey:@"prod_logo"];
-    
-    NSEntityDescription *productEntityDescription7 = [NSEntityDescription entityForName:@"Product" inManagedObjectContext:self.context];
-    NSManagedObject *newMOProduct7 =[[NSManagedObject alloc] initWithEntity:productEntityDescription7 insertIntoManagedObjectContext:self.context];
-    //    [newMOCompany3 setValue:pk forKey:@"comp_id"];
-    [newMOProduct7 setValue:[NSNumber numberWithInt:2] forKey:@"comp_id"];
-    [newMOProduct7 setValue:[NSNumber numberWithInt:1] forKey:@"prod_position"];
-    [newMOProduct7 setValue:@"Nexus 6" forKey:@"prod_name"];
-    [newMOProduct7 setValue:@"https://www.google.com/nexus/6p" forKey:@"prod_url"];
-    [newMOProduct7 setValue:@"nexus6.jpg" forKey:@"prod_logo"];
-    
-    
-    NSEntityDescription *productEntityDescription8 = [NSEntityDescription entityForName:@"Product" inManagedObjectContext:self.context];
-    NSManagedObject *newMOProduct8=[[NSManagedObject alloc] initWithEntity:productEntityDescription8 insertIntoManagedObjectContext:self.context];
-    //    [newMOCompany3 setValue:pk forKey:@"comp_id"];
-    [newMOProduct8 setValue:[NSNumber numberWithInt:2] forKey:@"comp_id"];
-    [newMOProduct8 setValue:[NSNumber numberWithInt:2] forKey:@"prod_position"];
-    [newMOProduct8 setValue:@"Nexus 9" forKey:@"prod_name"];
-    [newMOProduct8 setValue:@"https://www.google.com/nexus/9" forKey:@"prod_url"];
-    [newMOProduct8 setValue:@"nexus9.jpg" forKey:@"prod_logo"];
-    
-    
-    NSEntityDescription *productEntityDescription9 = [NSEntityDescription entityForName:@"Product" inManagedObjectContext:self.context];
-    NSManagedObject *newMOProduct9=[[NSManagedObject alloc] initWithEntity:productEntityDescription9 insertIntoManagedObjectContext:self.context];
-    //    [newMOCompany3 setValue:pk forKey:@"comp_id"];
-    [newMOProduct9 setValue:[NSNumber numberWithInt:3] forKey:@"comp_id"];
-    [newMOProduct9 setValue:[NSNumber numberWithInt:0] forKey:@"prod_position"];
-    [newMOProduct9 setValue:@"Nextel" forKey:@"prod_name"];
-    [newMOProduct9 setValue:@"http://www.amazon.com/Motorola-Nextel-Boost-Mobile-Phone/dp/B003APT3KU/ref=sr_1_1?ie=UTF8&qid=1461951678&sr=8-1&keywords=nextel" forKey:@"prod_url"];
-    [newMOProduct9 setValue:@"nextel.jpg" forKey:@"prod_logo"];
-    
-    NSEntityDescription *productEntityDescription10 = [NSEntityDescription entityForName:@"Product" inManagedObjectContext:self.context];
-    NSManagedObject *newMOProduct10 =[[NSManagedObject alloc] initWithEntity:productEntityDescription10 insertIntoManagedObjectContext:self.context];
-    //    [newMOCompany3 setValue:pk forKey:@"comp_id"];
-    [newMOProduct10 setValue:[NSNumber numberWithInt:3] forKey:@"comp_id"];
-    [newMOProduct10 setValue:[NSNumber numberWithInt:1] forKey:@"prod_position"];
-    [newMOProduct10 setValue:@"Blackberry" forKey:@"prod_name"];
-    [newMOProduct10 setValue:@"http://www.amazon.com/BlackBerry-Classic-Factory-Unlocked-Cellphone/dp/B00OYZZ3VS/ref=sr_1_3?ie=UTF8&qid=1461951711&sr=8-3&keywords=blackberry" forKey:@"prod_url"];
-    [newMOProduct10 setValue:@"blackberry.jpg" forKey:@"prod_logo"];
-    
-    
-    NSEntityDescription *productEntityDescription11 = [NSEntityDescription entityForName:@"Product" inManagedObjectContext:self.context];
-    NSManagedObject *newMOProduct11=[[NSManagedObject alloc] initWithEntity:productEntityDescription11 insertIntoManagedObjectContext:self.context];
-    //    [newMOCompany3 setValue:pk forKey:@"comp_id"];
-    [newMOProduct11 setValue:[NSNumber numberWithInt:3] forKey:@"comp_id"];
-    [newMOProduct11 setValue:[NSNumber numberWithInt:2] forKey:@"prod_position"];
-    [newMOProduct11 setValue:@"Motorla Razr" forKey:@"prod_name"];
-    [newMOProduct11 setValue:@"http://www.amazon.com/Motorola-V3-Unlocked-Player--U-S-Warranty/dp/B0016JDE34/ref=sr_1_1?s=wireless&ie=UTF8&qid=1461951732&sr=1-1&keywords=motorola+razr" forKey:@"prod_url"];
-    [newMOProduct11 setValue:@"razr.jpg" forKey:@"prod_logo"];
-    
+//        NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Company" inManagedObjectContext:self.context];
+//        NSManagedObject *newMOCompany=[[NSManagedObject alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:self.context];
+//        [newMOCompany setValue:[NSNumber numberWithInt:0] forKey:@"comp_id"];
+//        [newMOCompany setValue:[NSNumber numberWithInt:0] forKey:@"position"];
+//        [newMOCompany setValue:@"AAPL" forKey:@"comp_sym"];
+//        [newMOCompany setValue:@"apple.png" forKey:@"comp_logo"];
+//        [newMOCompany setValue:@"Apple" forKey:@"comp_name"];
+//    
+//    NSEntityDescription *entityDescription1 = [NSEntityDescription entityForName:@"Company" inManagedObjectContext:self.context];
+//    NSManagedObject *newMOCompany1=[[NSManagedObject alloc] initWithEntity:entityDescription1 insertIntoManagedObjectContext:self.context];
+//    [newMOCompany1 setValue:[NSNumber numberWithInt:1] forKey:@"comp_id"];
+//    [newMOCompany1 setValue:[NSNumber numberWithInt:1]forKey:@"position"];
+//    [newMOCompany1 setValue:@"SSNLF" forKey:@"comp_sym"];
+//    [newMOCompany1 setValue:@"samsung.png" forKey:@"comp_logo"];
+//    [newMOCompany1 setValue:@"Samsung" forKey:@"comp_name"];
+//
+//    NSEntityDescription *entityDescription2 = [NSEntityDescription entityForName:@"Company" inManagedObjectContext:self.context];
+//    NSManagedObject *newMOCompany2=[[NSManagedObject alloc] initWithEntity:entityDescription2 insertIntoManagedObjectContext:self.context];
+//    [newMOCompany2 setValue:[NSNumber numberWithInt:2] forKey:@"comp_id"];
+//    [newMOCompany2 setValue:[NSNumber numberWithInt:2] forKey:@"position"];
+//    [newMOCompany2 setValue:@"GOOG" forKey:@"comp_sym"];
+//    [newMOCompany2 setValue:@"google.jpg" forKey:@"comp_logo"];
+//    [newMOCompany2 setValue:@"Google" forKey:@"comp_name"];
+//
+//    NSEntityDescription *entityDescription3 = [NSEntityDescription entityForName:@"Company" inManagedObjectContext:self.context];
+//    NSManagedObject *newMOCompany3=[[NSManagedObject alloc] initWithEntity:entityDescription3 insertIntoManagedObjectContext:self.context];
+//    [newMOCompany3 setValue:[NSNumber numberWithInt:3] forKey:@"comp_id"];
+//    [newMOCompany3 setValue:[NSNumber numberWithInt:3] forKey:@"position"];
+//    [newMOCompany3 setValue:@"S" forKey:@"comp_sym"];
+//    [newMOCompany3 setValue:@"sprint.jpg" forKey:@"comp_logo"];
+//    [newMOCompany3 setValue:@"Sprint" forKey:@"comp_name"];
+//    
+//    NSEntityDescription *productEntityDescription = [NSEntityDescription entityForName:@"Product" inManagedObjectContext:self.context];
+//    NSManagedObject *newMOProduct=[[NSManagedObject alloc] initWithEntity:productEntityDescription insertIntoManagedObjectContext:self.context];
+//    //    [newMOCompany3 setValue:pk forKey:@"comp_id"];
+//    [newMOProduct setValue:[NSNumber numberWithInt:0] forKey:@"comp_id"];
+//    [newMOProduct setValue:[NSNumber numberWithInt:0] forKey:@"prod_position"];
+//    [newMOProduct setValue:@"iPad" forKey:@"prod_name"];
+//    [newMOProduct setValue:@"https://www.apple.com/ipad" forKey:@"prod_url"];
+//    [newMOProduct setValue:@"ipad.jpg" forKey:@"prod_logo"];
+//    
+//    NSEntityDescription *productEntityDescription1 = [NSEntityDescription entityForName:@"Product" inManagedObjectContext:self.context];
+//    NSManagedObject *newMOProduct1 =[[NSManagedObject alloc] initWithEntity:productEntityDescription1 insertIntoManagedObjectContext:self.context];
+//    //    [newMOCompany3 setValue:pk forKey:@"comp_id"];
+//    [newMOProduct1 setValue:[NSNumber numberWithInt:0] forKey:@"comp_id"];
+//    [newMOProduct1 setValue:[NSNumber numberWithInt:1] forKey:@"prod_position"];
+//    [newMOProduct1 setValue:@"iPod Touch" forKey:@"prod_name"];
+//    [newMOProduct1 setValue:@"https://www.apple.com/ipod-touch" forKey:@"prod_url"];
+//    [newMOProduct1 setValue:@"ipodtouch.jpg" forKey:@"prod_logo"];
+//    
+//    
+//    NSEntityDescription *productEntityDescription2 = [NSEntityDescription entityForName:@"Product" inManagedObjectContext:self.context];
+//    NSManagedObject *newMOProduct2=[[NSManagedObject alloc] initWithEntity:productEntityDescription2 insertIntoManagedObjectContext:self.context];
+//    //    [newMOCompany3 setValue:pk forKey:@"comp_id"];
+//    [newMOProduct2 setValue:[NSNumber numberWithInt:0] forKey:@"comp_id"];
+//    [newMOProduct2 setValue:[NSNumber numberWithInt:2] forKey:@"prod_position"];
+//    [newMOProduct2 setValue:@"iPhone" forKey:@"prod_name"];
+//    [newMOProduct2 setValue:@"https://www.apple.com/iPhone" forKey:@"prod_url"];
+//    [newMOProduct2 setValue:@"iphone.jpg" forKey:@"prod_logo"];
+//    
+//    NSEntityDescription *productEntityDescription3 = [NSEntityDescription entityForName:@"Product" inManagedObjectContext:self.context];
+//    NSManagedObject *newMOProduct3=[[NSManagedObject alloc] initWithEntity:productEntityDescription3 insertIntoManagedObjectContext:self.context];
+//    //    [newMOCompany3 setValue:pk forKey:@"comp_id"];
+//    [newMOProduct3 setValue:[NSNumber numberWithInt:1] forKey:@"comp_id"];
+//    [newMOProduct3 setValue:[NSNumber numberWithInt:0] forKey:@"prod_position"];
+//    [newMOProduct3 setValue:@"Galaxy S4" forKey:@"prod_name"];
+//    [newMOProduct3 setValue:@"http://www.samsung.com/us/mobile/cell-phones/SCH-I545ZKAVZW" forKey:@"prod_url"];
+//    [newMOProduct3 setValue:@"galaxys4.jpg" forKey:@"prod_logo"];
+//    
+//    NSEntityDescription *productEntityDescription4 = [NSEntityDescription entityForName:@"Product" inManagedObjectContext:self.context];
+//    NSManagedObject *newMOProduct4 =[[NSManagedObject alloc] initWithEntity:productEntityDescription4 insertIntoManagedObjectContext:self.context];
+//    //    [newMOCompany3 setValue:pk forKey:@"comp_id"];
+//    [newMOProduct4 setValue:[NSNumber numberWithInt:1] forKey:@"comp_id"];
+//    [newMOProduct4 setValue:[NSNumber numberWithInt:1] forKey:@"prod_position"];
+//    [newMOProduct4 setValue:@"Galaxy Note" forKey:@"prod_name"];
+//    [newMOProduct4 setValue:@"http://www.samsung.com/us/mobile/galaxy-note/" forKey:@"prod_url"];
+//    [newMOProduct4 setValue:@"galaxynote.png" forKey:@"prod_logo"];
+//    
+//    
+//    NSEntityDescription *productEntityDescription5 = [NSEntityDescription entityForName:@"Product" inManagedObjectContext:self.context];
+//    NSManagedObject *newMOProduct5=[[NSManagedObject alloc] initWithEntity:productEntityDescription5 insertIntoManagedObjectContext:self.context];
+//    //    [newMOCompany3 setValue:pk forKey:@"comp_id"];
+//    [newMOProduct5 setValue:[NSNumber numberWithInt:1] forKey:@"comp_id"];
+//    [newMOProduct5 setValue:[NSNumber numberWithInt:2] forKey:@"prod_position"];
+//    [newMOProduct5 setValue:@"Galaxy Tab" forKey:@"prod_name"];
+//    [newMOProduct5 setValue:@"http://www.samsung.com/us/mobile/galaxy-tab/" forKey:@"prod_url"];
+//    [newMOProduct5 setValue:@"galaxytab.jpg" forKey:@"prod_logo"];
+//    
+//    
+//    
+//    NSEntityDescription *productEntityDescription6 = [NSEntityDescription entityForName:@"Product" inManagedObjectContext:self.context];
+//    NSManagedObject *newMOProduct6=[[NSManagedObject alloc] initWithEntity:productEntityDescription6 insertIntoManagedObjectContext:self.context];
+//    //    [newMOCompany3 setValue:pk forKey:@"comp_id"];
+//    [newMOProduct6 setValue:[NSNumber numberWithInt:2] forKey:@"comp_id"];
+//    [newMOProduct6 setValue:[NSNumber numberWithInt:0] forKey:@"prod_position"];
+//    [newMOProduct6 setValue:@"Nexus 5X" forKey:@"prod_name"];
+//    [newMOProduct6 setValue:@"https://www.google.com/nexus/5x/" forKey:@"prod_url"];
+//    [newMOProduct6 setValue:@"nexus5x.jpg" forKey:@"prod_logo"];
+//    
+//    NSEntityDescription *productEntityDescription7 = [NSEntityDescription entityForName:@"Product" inManagedObjectContext:self.context];
+//    NSManagedObject *newMOProduct7 =[[NSManagedObject alloc] initWithEntity:productEntityDescription7 insertIntoManagedObjectContext:self.context];
+//    //    [newMOCompany3 setValue:pk forKey:@"comp_id"];
+//    [newMOProduct7 setValue:[NSNumber numberWithInt:2] forKey:@"comp_id"];
+//    [newMOProduct7 setValue:[NSNumber numberWithInt:1] forKey:@"prod_position"];
+//    [newMOProduct7 setValue:@"Nexus 6" forKey:@"prod_name"];
+//    [newMOProduct7 setValue:@"https://www.google.com/nexus/6p" forKey:@"prod_url"];
+//    [newMOProduct7 setValue:@"nexus6.jpg" forKey:@"prod_logo"];
+//    
+//    
+//    NSEntityDescription *productEntityDescription8 = [NSEntityDescription entityForName:@"Product" inManagedObjectContext:self.context];
+//    NSManagedObject *newMOProduct8=[[NSManagedObject alloc] initWithEntity:productEntityDescription8 insertIntoManagedObjectContext:self.context];
+//    //    [newMOCompany3 setValue:pk forKey:@"comp_id"];
+//    [newMOProduct8 setValue:[NSNumber numberWithInt:2] forKey:@"comp_id"];
+//    [newMOProduct8 setValue:[NSNumber numberWithInt:2] forKey:@"prod_position"];
+//    [newMOProduct8 setValue:@"Nexus 9" forKey:@"prod_name"];
+//    [newMOProduct8 setValue:@"https://www.google.com/nexus/9" forKey:@"prod_url"];
+//    [newMOProduct8 setValue:@"nexus9.jpg" forKey:@"prod_logo"];
+//    
+//    
+//    NSEntityDescription *productEntityDescription9 = [NSEntityDescription entityForName:@"Product" inManagedObjectContext:self.context];
+//    NSManagedObject *newMOProduct9=[[NSManagedObject alloc] initWithEntity:productEntityDescription9 insertIntoManagedObjectContext:self.context];
+//    //    [newMOCompany3 setValue:pk forKey:@"comp_id"];
+//    [newMOProduct9 setValue:[NSNumber numberWithInt:3] forKey:@"comp_id"];
+//    [newMOProduct9 setValue:[NSNumber numberWithInt:0] forKey:@"prod_position"];
+//    [newMOProduct9 setValue:@"Nextel" forKey:@"prod_name"];
+//    [newMOProduct9 setValue:@"http://www.amazon.com/Motorola-Nextel-Boost-Mobile-Phone/dp/B003APT3KU/ref=sr_1_1?ie=UTF8&qid=1461951678&sr=8-1&keywords=nextel" forKey:@"prod_url"];
+//    [newMOProduct9 setValue:@"nextel.jpg" forKey:@"prod_logo"];
+//    
+//    NSEntityDescription *productEntityDescription10 = [NSEntityDescription entityForName:@"Product" inManagedObjectContext:self.context];
+//    NSManagedObject *newMOProduct10 =[[NSManagedObject alloc] initWithEntity:productEntityDescription10 insertIntoManagedObjectContext:self.context];
+//    //    [newMOCompany3 setValue:pk forKey:@"comp_id"];
+//    [newMOProduct10 setValue:[NSNumber numberWithInt:3] forKey:@"comp_id"];
+//    [newMOProduct10 setValue:[NSNumber numberWithInt:1] forKey:@"prod_position"];
+//    [newMOProduct10 setValue:@"Blackberry" forKey:@"prod_name"];
+//    [newMOProduct10 setValue:@"http://www.amazon.com/BlackBerry-Classic-Factory-Unlocked-Cellphone/dp/B00OYZZ3VS/ref=sr_1_3?ie=UTF8&qid=1461951711&sr=8-3&keywords=blackberry" forKey:@"prod_url"];
+//    [newMOProduct10 setValue:@"blackberry.jpg" forKey:@"prod_logo"];
+//    
+//    
+//    NSEntityDescription *productEntityDescription11 = [NSEntityDescription entityForName:@"Product" inManagedObjectContext:self.context];
+//    NSManagedObject *newMOProduct11=[[NSManagedObject alloc] initWithEntity:productEntityDescription11 insertIntoManagedObjectContext:self.context];
+//    //    [newMOCompany3 setValue:pk forKey:@"comp_id"];
+//    [newMOProduct11 setValue:[NSNumber numberWithInt:3] forKey:@"comp_id"];
+//    [newMOProduct11 setValue:[NSNumber numberWithInt:2] forKey:@"prod_position"];
+//    [newMOProduct11 setValue:@"Motorla Razr" forKey:@"prod_name"];
+//    [newMOProduct11 setValue:@"http://www.amazon.com/Motorola-V3-Unlocked-Player--U-S-Warranty/dp/B0016JDE34/ref=sr_1_1?s=wireless&ie=UTF8&qid=1461951732&sr=1-1&keywords=motorola+razr" forKey:@"prod_url"];
+//    [newMOProduct11 setValue:@"razr.jpg" forKey:@"prod_logo"];
+//    
 
     
     [self saveChanges];
@@ -956,7 +995,10 @@ static DAO *sharedDAO = nil;    // static instance variable
         prod.productURL = [object valueForKey:@"prod_url"];
         prod.productLogo = [object valueForKey:@"prod_logo"];
         prod.comp_id = [object valueForKey:@"comp_id"];
+        prod.price = [object valueForKey:@"prod_price"];
+        
         [selectedCompany.products addObject:prod];
+        NSLog(@"selectedCompany.products is %@",selectedCompany.products);
     
     }
     }

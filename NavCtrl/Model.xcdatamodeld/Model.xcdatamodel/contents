@@ -13,6 +13,7 @@
         <attribute name="prod_logo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="prod_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="prod_position" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="prod_price" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="prod_url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="products" inverseEntity="Company" syncable="YES"/>
     </entity>
@@ -21,7 +22,7 @@
     </entity>
     <elements>
         <element name="Company" positionX="-308" positionY="-18" width="128" height="135"/>
-        <element name="Product" positionX="-54" positionY="27" width="128" height="135"/>
+        <element name="Product" positionX="-54" positionY="27" width="128" height="150"/>
         <element name="RunOnceOnly" positionX="-135" positionY="-54" width="128" height="60"/>
     </elements>
 </model>

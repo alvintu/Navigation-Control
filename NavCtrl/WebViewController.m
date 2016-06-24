@@ -13,25 +13,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    
-//    UIWebView *webview=[[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 1024,1024)];
-////    NSString *url=@"https://www.google.com";
-//    NSURL *nsurl=[NSURL URLWithString:self.link];
-//    NSURLRequest *nsrequest=[NSURLRequest requestWithURL:nsurl];
-//    [webview loadRequest:nsrequest];
-//    [self.view addSubview:webview];
+    
+    
+    
     
     WKWebViewConfiguration *theConfiguration = [[WKWebViewConfiguration alloc] init];
     WKWebView *webView = [[WKWebView alloc] initWithFrame:self.view.frame ];
     [theConfiguration release];
 
-    NSURL *nsurl=[NSURL URLWithString:self.link];
-
+    NSURL *nsurl=[NSURL URLWithString:[NSString stringWithFormat:@"https://%@",self.link]];
     webView.navigationDelegate = self;
     NSURLRequest *nsrequest=[NSURLRequest requestWithURL:nsurl];
     [webView loadRequest:nsrequest];
     [self.view addSubview:webView];
     [webView release];
+    
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc]
+                                   initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
+                                   target:self
+                                   action:@selector(editButtonWasPressed)];
+    self.navigationItem.rightBarButtonItem = editButton;
+
     
     // Uncomment the following line to preserve selection between presentations.
     
@@ -42,6 +44,27 @@
     
     [super viewWillAppear:YES];
     
+}
+
+-(void)editButtonWasPressed{
+        ProductFormViewController *productFormViewController = [[ProductFormViewController alloc] init];
+        
+        productFormViewController.title = @"Edit your products";
+        productFormViewController.productName = self.productName;
+        productFormViewController.productURL = self.productURL;
+        productFormViewController.productLogo = self.productLogo;
+        productFormViewController.productPrice = self.productPrice;
+        productFormViewController.currentProduct = self.currentProduct;
+        productFormViewController.currentproducts = self.currentproducts;
+        productFormViewController.currentCompany = self.currentCompany;
+    productFormViewController.passedCompanyIndex = self.passedCompanyIndex;
+    NSLog(@"webViewController.productPrice right after push is %@",self.productPrice);
+
+    
+        [self.navigationController
+         pushViewController:productFormViewController
+         animated:YES];
+        [productFormViewController release];
 }
 
 - (void)didReceiveMemoryWarning

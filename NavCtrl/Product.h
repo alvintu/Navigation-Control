@@ -14,6 +14,8 @@
 @property (nonatomic,strong) NSString *productURL;
 @property (nonatomic,strong) NSString *productLogo;
 @property (nonatomic,strong) NSNumber *comp_id;
+@property (nonatomic,strong) NSString *price;
+
 @property (nonatomic) int productPosition;
 
 

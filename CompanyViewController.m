@@ -8,19 +8,10 @@
 
 #import "CompanyViewController.h"
 #import "ProductViewController.h"
-#import "AFNetworking.h"
-@interface CompanyViewController (){
-    UIBarButtonItem *editButton;
-    UIBarButtonItem *doneButton;
-    UIBarButtonItem *addButton;
-    UIBarButtonItem *saveButton;
-    UIBarButtonItem *undoButton;
-    NSMutableArray *navigationItems;
-    //ProtoCell *cell;
-    NSIndexPath *deleteIndexPath;
-}
-@property (nonatomic, retain)  FormViewController * formViewController;
 
+@interface CompanyViewController ()
+
+@property (nonatomic, retain)  FormViewController * formViewController;
 
 @end
 
@@ -30,68 +21,131 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.installsStandardGestureForInteractiveMovement = true;
-
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.498 green:0.706 blue:0.224 alpha:1.0];
+    self.tableView.allowsSelectionDuringEditing = YES;
+    
+    self.clearsSelectionOnViewWillAppear = NO;
     self.dao = [DAO sharedDAO];
 
-    addButton = [[UIBarButtonItem alloc]
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
                                   initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                   target:self
                                   action:@selector(pushForm)];
     
     
-   saveButton = [[UIBarButtonItem alloc]
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc]
                                   initWithBarButtonSystemItem:UIBarButtonSystemItemSave
                                   target:self
                                   action:@selector(saveToDisk)];
     
     
-    undoButton = [[UIBarButtonItem alloc]
-                                   initWithBarButtonSystemItem:UIBarButtonSystemItemUndo
-                                   target:self
-                                   action:@selector(undo)];
+    CGRect undoButtonFrame = CGRectMake(200,555, 200, 50 );
+    self.undoButton = [[UIButton alloc] initWithFrame: undoButtonFrame];
+    [self.undoButton setTitle: @"Undo" forState: UIControlStateNormal];
+    [self.undoButton addTarget:self action:@selector(undo) forControlEvents:UIControlEventTouchUpInside];
+    [self.undoButton setTitleColor: [UIColor whiteColor] forState: UIControlStateNormal];
+    self.undoButton.backgroundColor = [UIColor colorWithRed:0.259 green:0.259 blue:0.259 alpha:1];
     
-    editButton = [[UIBarButtonItem alloc]
-                                   initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
-                                   target:self
-                                   action:@selector(edit)];
-    
-    
-     doneButton = [[UIBarButtonItem alloc]
-                                   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                   target:self
-                                   action:@selector(done)];
+    CGRect redoButtonFrame = CGRectMake(0,555, 200, 50 );
 
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:editButton,addButton,saveButton,undoButton,nil];
+    self.redoButton = [[UIButton alloc] initWithFrame: redoButtonFrame];
+    [self.redoButton setTitle: @"Redo" forState: UIControlStateNormal];
+    [self.redoButton addTarget:self action:@selector(redo) forControlEvents:UIControlEventTouchUpInside];
+    [self.redoButton setTitleColor: [UIColor whiteColor] forState: UIControlStateNormal];
+    self.redoButton.backgroundColor = [UIColor colorWithRed:0.259 green:0.259 blue:0.259 alpha:1];
     
-    self.title = @"Mobile device makers";
-    self.collectionView.backgroundColor = [UIColor whiteColor];
-    
-    UINib *cellNib = [UINib nibWithNibName:@"ProtoCell" bundle:nil];
-    [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"ProtoCell"];
-    
-    self.flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [self.flowLayout setItemSize:CGSizeMake(350, 350)];
-    [self.flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    self.flowLayout.minimumInteritemSpacing = 0.0f;
-    [self.collectionView setCollectionViewLayout:self.flowLayout];
-//    self.collectionView.bounces = YES;
-    [self.collectionView setShowsHorizontalScrollIndicator:NO];
-    [self.collectionView setShowsVerticalScrollIndicator:NO];
+
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.editButtonItem,addButton,nil]; //removed undoButton but functionality is there, just have to assign it to reassign it to a frame next to redo button
+    self.navigationItem.leftBarButtonItem = saveButton;
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+
+    [self.view addSubview:self.undoButton];
+    [self.view addSubview:self.redoButton];
+
+}
+
+
+
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
 
     
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+
+
+-(void)saveToDisk{
+    [self.dao saveChanges];
+}
+
+
+-(void)redo{
+    [self.dao redoChanges];
+    [self loadStockPrices];
+    [self.tableView reloadData];
+    [self viewWillAppear:YES];
+
+}
+
+
+-(void)undo{
+    [self.dao undoChanges];
+    [self loadStockPrices];
+    [self.tableView reloadData];
+    [self viewWillAppear:YES];
     
 }
 
+- (IBAction)addCompanyButton:(id)sender{
+    [self pushForm];
+}
+
+
+-(void)pushEmptyStateViewWhenNoCompaniesExist{
+//    CGRect screenRect = [[UIScreen mainScreen] bounds];
+//    CGFloat screenWidth = screenRect.size.width;
+//    CGFloat screenHeight = screenRect.size.height;
+
+    
+    
+    if([self.dao.companies count] != 0){
+        self.title = @"Watch List";
+        [self.EmptyState removeFromSuperview];
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
+        [self.view addSubview:self.undoButton];
+        [self.view addSubview:self.redoButton];
+
+    }else{
+        self.title =@"Stock Tracker";
+//        [self.EmptyState initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [self.tableView addSubview:self.EmptyState];
+        [self.view addSubview:self.undoButton];
+        [self.view addSubview:self.redoButton];
+
+        
+    }
+    
+}
 - (void)viewWillAppear:(BOOL)animated {
-    //        [self.dao orderCompaniesByPosition];
-    
-    //init withStockSymbol
+
+    [self pushEmptyStateViewWhenNoCompaniesExist];
     [super viewWillAppear:animated];
-    NSLog(@"viewwillappear");
-    
     [self loadStockPrices];
-    [self.collectionView reloadData];
+    
+    [self.tableView reloadData];
+    [self.view addSubview:self.undoButton];
+    [self.view addSubview:self.redoButton];
+
     
 }
 
@@ -99,183 +153,98 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Table view data source
 
--(void)saveToDisk{
-    [self.dao saveChanges];
-}
-
--(void)edit{
-    self.isEditing = YES;
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:doneButton,addButton,saveButton,undoButton,nil];
-
-    [self.collectionView reloadData];
-//    [doneButton release];
-
-//    [doneButton release];
-    if(self.isEditing){
-    
-    NSLog(@"I'm editing");
-    
-
-        
-        
-    }
-}
-
--(void)done{
-    self.isEditing = NO;
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:editButton,addButton,saveButton,undoButton,nil];
-    [self.collectionView reloadData];
-    
-
-
-}
-
--(void)undo{
-    [self.dao undoChanges];
-    [self loadStockPrices];
-
-    [self.collectionView reloadData];
-    
-}
-
-
-
-#pragma mark - collection view data source
-
-
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-//    return [self.dao.companies count];
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
-
 }
 
-
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-//    return 1;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return [self.dao.companies count];
-
-
 }
 
-
--(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-     ProtoCell *cell  = [collectionView dequeueReusableCellWithReuseIdentifier:@"ProtoCell" forIndexPath:indexPath];
-    UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[[self.dao.companies objectAtIndex:[indexPath row]]companyLogo]]];
-    logo.contentMode = UIViewContentModeScaleAspectFit;
-    cell.backgroundView = logo;
-    cell.titleLabel.text = [[self.dao.companies objectAtIndex:[indexPath row]]companyName];
-    cell.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
-    cell.titleLabel.textAlignment =  NSTextAlignmentCenter;
-
-    
-    cell.stockPriceLabel.text = [[self.dao.companies objectAtIndex:[indexPath row]]stockPrice];
-    cell.stockPriceLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
-    cell.stockPriceLabel.textAlignment =  NSTextAlignmentCenter;
-    
-    cell.deleteButton.tag = indexPath.row;
-    [cell.deleteButton addTarget:self
-                          action:@selector(deleteCollectionCell:)
-     
-                forControlEvents:UIControlEventTouchUpInside];
-    
-    cell.editButton.tag = indexPath.row;
-    [cell.editButton addTarget:self action:@selector(editCollectionCell:) forControlEvents:UIControlEventTouchUpInside];
-    
-    if(self.isEditing){
-        cell.deleteButton.hidden = NO;
-        cell.editButton.hidden = NO;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    else{
-    cell.deleteButton.hidden = YES;
-    cell.editButton.hidden = YES;
-    }
-//
-
-
-
-   
     
+    
+    cell.textLabel.text = [[self.dao.companies objectAtIndex:indexPath.row]companyName];; //[self.companyList objectAtIndex:[indexPath row]];
+    cell.imageView.image = [UIImage imageNamed:[[self.dao.companies objectAtIndex:[indexPath row]]companyLogo]];
+    cell.detailTextLabel.text = [[self.dao.companies objectAtIndex:indexPath.row]stockPrice];
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:16.0];
     return cell;
-
 }
 
--(void)editCollectionCell:(id)sender{
-    
-    UIButton *editBtn = sender;
-    int row = (int)editBtn.tag;
 
-    
-    self.formViewController = [[FormViewController alloc] init];
-    
-    
-    [self.navigationController
-     pushViewController:self.formViewController
-     animated:YES];
-    
-    self.formViewController.title = @"Edit your company";
-    self.formViewController.currentCompany = self.dao.companies[row];
-    
-    [self.formViewController.currentCompany setCompanyName:[self.dao.companies[row]companyName]];
-    [self.formViewController.currentCompany setCompanyLogo: [self.dao.companies[row]companyLogo]];
-    [self.formViewController.currentCompany setCompanySYM:[self.dao.companies[row]companySYM]];
-            [self.formViewController.currentCompany setCompanyID:[self.dao.companies[row]companyID]];
-    
-    [self.formViewController release];
-
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
 }
 
 
 
--(void)deleteCollectionCell:(id)sender{
-    NSLog(@"dododo");
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Keeps cells from being selectable while not editing. No more blue flash.
     
-    UIButton *delBtn = sender;
-    int row = (int)delBtn.tag;
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+
+        [tableView beginUpdates];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.dao deleteCompany:[self.dao.companies objectAtIndex:indexPath.row]];
+        [tableView endUpdates];
+        [tableView reloadData];
+        [self pushEmptyStateViewWhenNoCompaniesExist];
+        
+    }
     
-
-    [self.collectionView performBatchUpdates:^{
-//        [self.dao deleteCompany:self.dao.companies[row]];
-
-
-        NSIndexPath *indexPath =[NSIndexPath indexPathForItem:row inSection:0];
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
         
-        [self.collectionView deleteItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
-        [self.dao deleteCompany:self.dao.companies[row]];
+    }
 
-//        [self.dao.companies removeObjectAtIndex:row];
-        
-//        [self.dao deleteCompany:self.dao.companies[row]];
+}
 
-        
-        
-    } completion:^(BOOL finished) {
-
-        [self.collectionView reloadData];
-
-
-                //    }
-                
-            
-            
-        
-    }];
+// Override to support rearranging the table view.
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    NSInteger sourceRow = fromIndexPath.row;
+    NSInteger destRow = toIndexPath.row;
+    [self.tableView beginUpdates];
+    Company*company = [[Company alloc] init];
+    company = [[self.dao.companies objectAtIndex:sourceRow] retain];
+    [[[DAO sharedDAO] companies] removeObjectAtIndex:sourceRow];
+    [[[DAO sharedDAO] companies] insertObject:company atIndex:destRow];
+    [[DAO sharedDAO] trackCompanyPosition];
+    [self.tableView endUpdates];
+    [self.tableView reloadData];
 
 }
 
 
 
+// Override to support conditional rearranging of the table view.
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the item to be re-orderable.
+    return YES;
+}
 -(void)pushForm{ //when you create a new company name, logo, symbol pushed to formviewcontroller
     
     FormViewController *formViewController = [[FormViewController alloc] init];
     
     
     
-    formViewController.title = @"Add a New Company";
+    formViewController.title = @"New Company";
     
     
     
@@ -284,53 +253,61 @@
      animated:YES];
     [formViewController release];
     
-
+    
 }
 
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    if(!self.isEditing){
-    //    self.productViewController.company = myCompanies[indexPath.row]
-    self.productViewController = [[ProductViewController alloc]initWithNibName:@"ProductViewController" bundle:nil];
+
+#pragma mark - Table view delegate
+
+// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
+
     self.productViewController.title = [self.dao.companies[indexPath.row]companyName];
-    
     Company *company = self.dao.companies[indexPath.row];
-    
-    self.productViewController.products =  company.products;
     self.productViewController.currentCompany = self.dao.companies[indexPath.row];
+    self.productViewController.products =  company.products;
+    self.productViewController.passedLogoString = [self.dao.companies[indexPath.row]companyLogo];
     
+    NSLog(@"company is %@",self.dao.companies[indexPath.row]);
+    NSLog(@"products is  is %@",self.dao.companies[indexPath.row].products);
 
-    [self.navigationController
-     pushViewController:self.productViewController
-     animated:YES];
 
-    [self.productViewController release];
+
+    if(self.editing == YES){  //conditions for editing a comapany
+        self.formViewController = [[FormViewController alloc] init];
+        
+        
+        [self.navigationController
+         pushViewController:self.formViewController
+         animated:YES];
+        
+        //        Company *newCompany = [[Company alloc]init];
+        self.formViewController.title = @"Edit your company";
+        self.formViewController.currentCompany = self.dao.companies[indexPath.row];
+        
+        [self.formViewController.currentCompany setCompanyName:[self.dao.companies[indexPath.row]companyName]];
+        [self.formViewController.currentCompany setCompanyLogo: [self.dao.companies[indexPath.row]companyLogo]];
+        [self.formViewController.currentCompany setCompanySYM:[self.dao.companies[indexPath.row]companySYM]];
+        
+        self.formViewController.passedCompanyIndex = indexPath.row;
+        //        [self.formViewController.currentCompany setCompanyID:[self.dao.companies[indexPath.row]companyID]];
+        [self.formViewController release];
+        //        formViewController.companyID = [NSString stringWithFormat:@"%d",[self.dao addCompany:newCompany]] ;
+    }
+    else{
+        
+        [self.navigationController
+         pushViewController:self.productViewController
+         animated:YES];
     }
     
-}
-
-
--(BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath{
-    return true;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{
-    NSInteger sourceRow = sourceIndexPath.row;
-    NSInteger destRow = destinationIndexPath.row;
-//    [self.collectionView beginUpdates];
-    Company*company = [[Company alloc] init];
-    company = [[self.dao.companies objectAtIndex:sourceRow] retain];
-    [[[DAO sharedDAO] companies] removeObjectAtIndex:sourceRow];
-    [[[DAO sharedDAO] companies] insertObject:company atIndex:destRow];
-    [[DAO sharedDAO] trackCompanyPosition];
-//    [self.tableView endUpdates];
-    [self.collectionView reloadData];
     
 }
 
 -(void)loadStockPrices{
-    
     NSMutableString *stockSymbols = [[NSMutableString alloc]init];
     for(Company* company in self.dao.companies){
         NSMutableString *companyStockSymbol = [[company companySYM]mutableCopy];
@@ -345,83 +322,45 @@
     [stockSymbols release];
     NSURL *yahooAPIURL = [NSURL URLWithString:yahooAPI];
     
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:yahooAPIURL
+                                                         completionHandler:
+                              ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                  if (data) {
+                                      
+                                      NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                      self.stockComponents = [[str componentsSeparatedByString:@"\n" ]mutableCopy];
+                                  
+                                      for(int i = 0; i < [self.dao.companies count]; i++){
+                                      
+                                          [self.dao.companies[i] setStockPrice:[NSString stringWithFormat:@"$%@",self.stockComponents[i]]];
+                                      }
+                                      [str release];
+                                      dispatch_async(dispatch_get_main_queue(), ^{
+                                          [self.tableView reloadData]; //dispatch main queue
+                                      });
+                                      
+                                      
+                                      
+                                      
+                                      
+                                  }else {
+                                      NSLog(@"Failed to fetch %@: %@", yahooAPIURL, error);
+                                  }
+                                  
+                                  
+                                  
+                                  
+                                  
+                              }];
     
-//    NSURL *URL = [NSURL URLWithString:@"http://example.com/upload"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:yahooAPIURL];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-
-    
-    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        if (error) {
-            NSLog(@"Error: %@", error);
-        } else {
-            NSData *data;
-            data = responseObject;
-            NSLog(@"response is %@  and responseObject is %@", response, responseObject);
-            if (data) {
-                
-                NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                self.stockComponents = [[str componentsSeparatedByString:@"\n" ]mutableCopy];
-                //                                      for(Company* company in self.dao.companies){
-                //                                          for(NSString* components in self.stockComponents){
-                //                                              [company setStockPrice: components];
-                for(int i = 0; i < [self.dao.companies count]; i++){
-                    [self.dao.companies[i] setStockPrice: self.stockComponents[i]];
-                }
-                [str release];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.collectionView reloadData]; //dispatch main queue
-                });
-                
-                
-                
-                
-                
-            }else {
-                NSLog(@"Failed to fetch %@: %@", yahooAPIURL, error);
-            }
-            
-            
- 
-        }
-    }];
-    [dataTask resume];
-
-    
-//    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:yahooAPIURL
-//                                                         completionHandler:
-//                              ^(NSData *data, NSURLResponse *response, NSError *error) {
-//                                  if (data) {
-//
-//                                      NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//                                      self.stockComponents = [[str componentsSeparatedByString:@"\n" ]mutableCopy];
-//                                      //                                      for(Company* company in self.dao.companies){
-//                                      //                                          for(NSString* components in self.stockComponents){
-//                                      //                                              [company setStockPrice: components];
-//                                      for(int i = 0; i < [self.dao.companies count]; i++){
-//                                          [self.dao.companies[i] setStockPrice: self.stockComponents[i]];
-//                                      }
-//                                      [str release];
-//                                      dispatch_async(dispatch_get_main_queue(), ^{
-//                                          [self.collectionView reloadData]; //dispatch main queue
-//                                      });
-//                                      
-//                                      
-//                                      
-//                                      
-//                                      
-//                                  }else {
-//                                      NSLog(@"Failed to fetch %@: %@", yahooAPIURL, error);
-//                                  }
-//                                  
-//                                  
-//
-//                                  
-//                                  
-//                              }];
-//    
-//    [task resume];
+    [task resume];
 }
+
+
+
+- (void)dealloc {
+    [_EmptyState release];
+    [super dealloc];
+}
+
 @end

@@ -22,6 +22,7 @@
 @property (nonatomic,strong) UIButton *button;
 @property (nonatomic,strong) UILabel *warningMessageLabel;
 @property (nonatomic,strong) UILabel *warningMessageLabel1;
+@property (nonatomic) NSInteger passedCompanyIndex;
 
 
 @property(nonatomic,strong) Company *currentCompany;

@@ -11,6 +11,16 @@
 @import WebKit;
 @interface WebViewController : UIViewController <WKNavigationDelegate, WKUIDelegate>
 @property (nonatomic, retain) NSString *link;
+@property (nonatomic,strong) NSString *productName;
+@property (nonatomic,strong) NSString *productURL;
+@property (nonatomic,strong) NSString *productLogo;
+@property (nonatomic,strong) NSString *productPrice;
+
+@property (nonatomic,strong) Product *currentProduct;
+@property (nonatomic,strong) Company *currentCompany;
+//@property(nonatomic, strong) DAO *dao;
+@property (nonatomic,strong) NSMutableArray *currentproducts;
+@property (nonatomic) NSInteger passedCompanyIndex;
 
 
 @end
